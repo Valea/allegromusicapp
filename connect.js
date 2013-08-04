@@ -22,9 +22,19 @@ xmlhttp.onreadystatechange=function()
   {
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
     {
+	// everything the php script returns goes inside the main_center tag
     document.getElementById("main_center").innerHTML=xmlhttp.responseText;
     }
   }
+  
+// request to run getAllItem.php without query strings  
 xmlhttp.open("GET","getAllItem.php",true);
+
+// excecute the request
 xmlhttp.send();
+}
+
+// addToBasket takes in a upc and adds it to basket
+function addToBasket(upc){
+	// create function to addToBasket
 }
