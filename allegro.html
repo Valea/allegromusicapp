@@ -2,14 +2,25 @@
 <!--https://github.com/boyanghu/allegromusicapp.git-->
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<!-- favicon (little symbol beside the page name) also only works on chrome when site is live -->
 <link rel="shortcut icon" href="img/favicon.png" type="image/png">
+
+<!-- linking the Cascasding Style Sheet to the html page -->
 <link type="text/css" rel="stylesheet" href="allegro.css"/>
+
+<!-- linking the font from google fonts, try running the page without internet, the font changes -->
 <link href='http://fonts.googleapis.com/css?family=Nixie+One' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Pathway+Gothic+One' rel='stylesheet' type='text/css'>
+
+<!-- linking the javascript page to this html page -->
+<script type="text/javascript" src="connect.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
 <title>Allegro</title>
 </head>
 
-<body>
+<body onload = "pageInit()">
 
 <div id = "sidebar_left">
 	<img id = "title_img" src = "img/title_pic4.png">
@@ -66,7 +77,6 @@ Right Side bar
 
 
 <div id = "main_center">
-Main Page
 </div>
 
 </body>

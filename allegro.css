@@ -81,6 +81,7 @@ body {
 #main_center{
 	height:100%;
 	background-image:url("img/bgnoise.png");
+    overflow:scroll;
 }
 
 #title_img{
@@ -103,6 +104,7 @@ body {
 	color:#ece1c3;
 	line-height:2.2em;
 	margin-left:0.75em;
+	overflow:hidden;
 	
 }
 
@@ -112,10 +114,11 @@ body {
 	background-color:#386166;
 	box-shadow: inset -15px 0px 25px -10px #323232;
 	border-bottom:1px solid #ece1c3;
+	overflow:hidden;
 }
 
 .genre_items:hover{
-	box-shadow: inset 0px 0px 0px 0px #323232;
+	box-shadow: inset -15px 0px 25px -10px #3e838c;
 	cursor:pointer;
 }
 
@@ -142,3 +145,172 @@ body {
 #all_check_img{
 	opacity:1;
 }
+
+
+#mainTable{
+    margin:auto;
+    
+}
+
+.item{
+    width:18em;
+    height:auto;
+    margin-top:1.5em;
+    margin-left:1.5em;
+    overflow-x:hidden;
+    background-color: #505050;
+    
+    box-shadow: 0px 0px 6px 2px #505050;
+    
+}
+
+.item_title{
+    width:100%;
+    height:auto; 
+    background-color: #3e838c;
+    text-align: center;
+}
+
+.item_title_text{
+    font-family: 'Nixie One', cursive;
+    font-size:1.5em;
+	color:#ece1c3;
+	line-height:2.2em;
+}
+
+.item_category{
+    width:7.5em;
+    height:2em;
+    background-color: #D7C299;
+    margin-top:0.2em;
+}
+
+.item_category_text{
+    font-family: 'Pathway Gothic One', sans-serif;
+    font-size:1em;
+    color:#386166;
+	line-height:2em;
+    margin-left: 0.5em;
+}
+
+.item_disk_type{
+    position:relative;
+    margin-top:-2em;
+    margin-left:7.7em;
+    width:10.5em;
+    height:2em;
+    background-color: #386166;
+}
+
+.item_disk_type_text{
+    font-family: 'Pathway Gothic One', sans-serif;
+    font-size:1em;
+    color:#ece1c3;
+    line-height:2em;
+    margin-left: 0.5em;
+}
+
+.item_company{
+    margin-top:0.2em;
+    width:100%;
+    height:2em;
+    background-color: #8ebdb6;
+}
+
+.item_company_text{
+    font-family: 'Pathway Gothic One', sans-serif;
+    font-size:1em;
+    color:#323232;
+    line-height:2em;
+    margin-left: 0.5em;
+}
+
+
+.item_pub_year{
+    margin-top:0.2em;
+    width:6em;
+    height:2em;
+    background-color: #3e838c;
+}
+
+.item_pub_year_text{
+    font-family: 'Pathway Gothic One', sans-serif;
+    font-size:1em;
+    color:#ece1c3;
+    line-height:2em;
+    margin-left: 0.5em;
+}
+
+.item_price{
+    margin-top:-2em;
+    margin-left:6em;
+    width:6em;
+    height:2em;
+    background-color: #4C7175;
+}
+
+.item_price_text{
+    font-family: 'Pathway Gothic One', sans-serif;
+    font-size:1em;
+    color:#ece1c3;
+    line-height:2em;
+    margin-left: 0.5em;
+}
+
+
+.item_stock{
+    margin-top:-2em;
+    margin-left:12em;
+    width:6em;
+    height:2em;
+    background-color: #386166;
+}
+
+.item_stock_text{
+    font-family: 'Pathway Gothic One', sans-serif;
+    font-size:1em;
+    color:#ece1c3;
+    line-height:2em;
+    margin-left: 0.5em;
+}
+
+
+.item_add{
+    margin-top:0.2em;
+    width:100%;
+    height:2.5em;
+    background-color: #F5DEB3;
+    text-align:center;
+}
+
+.item_add_text{
+    font-family: 'Pathway Gothic One', sans-serif;
+    font-size:1.25em;
+    color:#d30d0d;
+    line-height:2em;
+}
+
+.item_add:hover{
+    cursor:pointer;
+}
+
+.item_add:active{
+    box-shadow: inset 0px 0px 0px 4px #d30d0d
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
