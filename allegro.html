@@ -22,7 +22,17 @@
 
 <!-- when the page layout is set the call to the Javascript function is called to fill in the body--> 
 <body onload = "pageInit()">
-
+<div id = "sign_in_popup">
+	<img id = "sign_in_cancel" src = "img/cancel.svg" onclick = "signIn(0)">
+	<form id "sign_in_form">
+		<input id ="email_sign_in" class = "sign_in_input" type ="text" name = "email" placeholder = "E-Mail">
+		<input id ="password_sign_in" class = "sign_in_input" type ="password" name = "password" placeholder = "Password">
+		<input id ="address_sign_in" class = "sign_in_input" type ="text" name = "address" placeholder = "Address">
+		<input id ="phone_sign_in" class = "sign_in_input" type ="text" name = "phone" placeholder = "Phone Number">
+	</form>
+	<div id = "sign_in">Sign In</div>
+	<div id = "sign_up">Sign Up</div>
+</div>
 <!-- filter menu-->
 <div id = "sidebar_left">
 	<img id = "title_img" src = "img/title_pic4.png">
@@ -68,7 +78,7 @@
 		<img id = "instrumental_check_img" class = "check_img" src = "img/checkmark.png">
     	<p id = "instrumental_text" class = "filter_text">instrumental</p>
 	</div>
-    
+    <div id = "sign_in_button" onclick = "signIn(1)">Sign In</div>
 
 </div>
 
@@ -80,6 +90,7 @@ Right Side bar
 <!-- main display -->
 <div id = "main_center">
 </div>
+
 
 </body>
 </html>
