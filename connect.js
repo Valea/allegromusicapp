@@ -38,3 +38,15 @@ xmlhttp.send();
 function addToBasket(upc){
 	// create function to addToBasket
 }
+
+// signin
+function signIn(open){
+	if (open == 1)
+		document.getElementById('sign_in_popup').style.display = 'inline';
+	else{
+		document.getElementById('sign_in_popup').style.display = 'none';
+		document.getElementById('address_sign_in').style.display = 'none';
+		document.getElementById('phone_sign_in').style.display = 'none';
+		
+		}
+}
