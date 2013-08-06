@@ -28,7 +28,7 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-	background-color:#cdb380;
+	
 }
 ol, ul {
 	list-style: none;
@@ -50,6 +50,8 @@ table {
 
 html {
 	height: 100%;
+	background-color:#cdb380;
+	overflow:hidden;
 	
 }
 body {
@@ -58,41 +60,41 @@ body {
 	padding: 0;
 	height: 100%;
 	width:100%;
-	overflow-x:hidden;
+	overflow:hidden;
+	background-image: url("img/bgnoise.png");
 }
 
-#title_img{
-	width:50em;
-	height:40em;
-	position:relative;
-	left:50%;
-	margin-left:-25em;
-	
-}
 
 #threeicons{
+	width:45em;
+	height:15em;
+	overflow:hidden;
 	position:relative;
+	border:10px solid white;
+	top:50%;
+	margin-top:-8em;
 	left:50%;
-	margin-left:-30em;
+	margin-left:-22.5em;
+	box-shadow: 0 0 20px 5px #323232;
 }
 
 .socialbig{
-	width: 20em;
-	height: 20em;
+	width: 15em;
+	height: 15em;
 	position:relative;
 
 }
 
 .socialbig:active{
-	box-shadow: inset 0 0 0 20px #8ebdb6;
+	box-shadow: inset 0 0 0 10px #8ebdb6;
 	
 }
 
 
 .socialbigpic{
-	width: 9em;
-	margin-top:5em;
-	margin-left:5em;
+	width: 7em;
+	margin-top:4em;
+	margin-left:4em;
 }
 
 #facebookbig{
@@ -100,14 +102,14 @@ body {
 }
 #linkedinbig{
 	background-color: #F5DEB3;
-	left: 20em;
-	top:-20em;
+	margin-left: 15em;
+	margin-top:-15em;
 }
 
 #mailbig{
 	background-color: #4C7175;
-	left:40em;
-	top:-40em;
+	left:30em;
+	top:-15em;
 }
 
 
@@ -116,10 +118,10 @@ body {
 	text-align:center;
 	font-size:2em;
 	font-family:'Nixie One',cursive;
-	width:10em;
-	height:10em;
-	margin-top:-7em;
-	line-height:16em;
+	width:7.5em;
+	height:7.5em;
+	margin-top:-5.5em;
+	line-height:12.5em;
 	opacity:0;
 	-webkit-transition: all 0.3s ease-in-out;
 	-moz-transition: all 0.3s ease-in-out;
@@ -128,6 +130,7 @@ body {
 
 .txt:hover{
 	opacity:1;
+	cursor:pointer;
 	
 }
 
