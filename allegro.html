@@ -24,14 +24,20 @@
 <body onload = "pageInit()">
 <div id = "sign_in_popup">
 	<img id = "sign_in_cancel" src = "img/cancel.svg" onclick = "signIn(0)">
-	<form id "sign_in_form">
+	<form id = "sign_in_form">
 		<input id ="email_sign_in" class = "sign_in_input" type ="text" name = "email" placeholder = "E-Mail">
 		<input id ="password_sign_in" class = "sign_in_input" type ="password" name = "password" placeholder = "Password">
-		<input id ="address_sign_in" class = "sign_in_input" type ="text" name = "address" placeholder = "Address">
-		<input id ="phone_sign_in" class = "sign_in_input" type ="text" name = "phone" placeholder = "Phone Number">
+		<input id ="name_sign_in" class = "sign_in_input" type ="text" name = "name" placeholder = "Name">
+		<input id ="address_sign_in" class = "sign_in_input" type ="text" name = "address" placeholder = "Address (optional)">
+		<input id ="phone_sign_in" class = "sign_in_input" type ="text" name = "phone" placeholder = "Phone Number (optional)">
 	</form>
-	<div id = "sign_in">Sign In</div>
-	<div id = "sign_up">Sign Up</div>
+	<div id = "sign_in" onclick = "signIntoAccount()">Sign In</div>
+	<div id = "sign_up" onclick = "signUpForAccount()">Sign Up</div>
+</div>
+
+<div id = "message_popup">
+	<div id = "message_box_text" class = "sign_in_input">placeholder</div>
+	<div id = "message_box_close" onclick = "document.getElementById('message_popup').style.display = 'none'">Ok</div>
 </div>
 <!-- filter menu-->
 <div id = "sidebar_left">

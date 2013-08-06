@@ -336,7 +336,7 @@ body {
 	box-shadow: inset 0px 0px 0px 6px #ece1c3;
 }
 
-#sign_in_popup{
+#sign_in_popup, #message_popup{
 	position:fixed;
 	background-color:white;
 	width: 30em;
@@ -346,11 +346,15 @@ body {
 	overflow:hidden;
 	border:0.7em solid white;
 	box-shadow: 0px 0px 15px 3px #323232;
-	margin-top:-11.3em;
+	margin-top:-13.3em;
 	margin-left:-15.2em;
 	display:none;
+	
 }
 
+#message_popup{
+	margin-top:-5.3em;
+}
 .sign_in_input{
 	border:none;
 	width: 100%;
@@ -371,7 +375,16 @@ body {
 	background-color:#3e838c;
 }
 
+#name_sign_in{
+	background-color:#729792;
+	display:none;
+}
 
+#message_box_text{
+	background-color:#3e838c;
+	height:auto;
+	text-align:center;
+}
 #address_sign_in{
 	background-color:#4C7175;
 	display:none;
@@ -382,7 +395,7 @@ body {
 	display:none;
 }
 
-#sign_in{
+#sign_in, #message_box_close{
 	width:5em;
 	height:2em;
 	font-family: 'Pathway Gothic One', sans-serif;
@@ -394,10 +407,15 @@ body {
 	margin-top:0.2em;
 }
 
-#sign_in:hover, #sign_up:hover{
+#message_box_close{
+	width:100%;
+}
+
+
+#sign_in:hover, #sign_up:hover,#message_box_close:hover{
 	cursor:pointer;
 }
-#sign_in:active{
+#sign_in:active, #message_box_close:active{
 	box-shadow: inset 0px 0px 0px 10px #3e838c;
 }
 
@@ -434,6 +452,38 @@ body {
 	top:0.8em;
 	left: 28.1em;
 }
+
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: 6px;
+	background-color: rgba(255,255,255,0.8);
+	-webkit-border-radius: 10px;
+	margin-right:10px;
+}
+
+::-o-scrollbar {
+	width: 5px;
+}
+
+::-o-scrollbar-thumb {
+	border-radius: 6px;
+	background-color: rgba(255, 255, 255, 0.6);
+	-webkit-border-radius: 10px;
+}
+
+::-moz-scrollbar {
+	width: 5px;
+}
+
+::-moz-scrollbar-thumb {
+	border-radius: 6px;
+	background-color: rgba(255, 255, 255, 0.6);
+	-webkit-border-radius: 10px;
+}
+
 
 
 
