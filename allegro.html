@@ -68,13 +68,18 @@
 		<img id = "instrumental_check_img" class = "check_img" src = "img/checkmark.png">
     	<p id = "instrumental_text" class = "filter_text">instrumental</p>
 	</div>
-    
-
 </div>
 
 <!-- basket menu -->
 <div id = "sidebar_right">
-Right Side bar
+	<form name="input" method="get">
+	<br>Category:<br><input type="text" name="category">
+	<br>Title:<br><input type="text" name="title">
+	<br>Leading Singer:<br><input type="text" name="singer">
+	<br>Quantity:<br><input type="text" name="quantity">
+	<input type="submit" value="Find Item" onclick="findMatchingItems(this.form)">
+	</form>
+	<button type="button" onclick="updateBasket()">View Shopping Basket</button>
 </div>
 
 <!-- main display -->

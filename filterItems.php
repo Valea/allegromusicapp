@@ -3,8 +3,43 @@
 // connect with the database
 include_once("MYSQL_Connect.php");
 
-//get all items from the database
-$allItems = mysql_query("SELECT * FROM item");
+$category=$_GET["category"];
+$title=$_GET["title"];
+$singer=$_GET["singer"];
+$quantity=$_GET["quantity"];
+
+//construct the WHERE statement
+$conditions = "I.upc = S.upc";
+
+if (strlen($category) > 0)
+{
+	$conditions .= "AND I.category = '".$category."'";
+}
+
+if (strlen($title) > 0)
+{
+	$conditions .= "AND I.title LIKE '".$title."'";
+}
+
+if (strlen($singer) > 0)
+{
+	$conditions .= "AND S.name LIKE '".$singer."'";
+}
+
+//execute the query
+$results = mysql_query(
+"SELECT * 
+FROM item I, lead_singer S
+WHERE " . $conditions);
+
+if (mysql_num_rows($results) == 0)
+{
+	alert("Empty query results!");
+}
+else
+{
+	alert("Not empty query results!");
+}
 
 // return a table called mainTable
 echo "<table id = 'mainTable'>";
@@ -12,7 +47,7 @@ echo "<table id = 'mainTable'>";
 $i = 0;
 
 // item is of one item or tuple in the item table
-while ($item = mysql_fetch_array($allItems))
+while ($item = mysql_fetch_array($results))
 {
   if($i == 0)
   {
