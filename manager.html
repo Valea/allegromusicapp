@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--https://github.com/boyanghu/allegromusicapp.git-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!-- favicon (little symbol beside the page name) also only works on chrome when site is live -->
+<link rel="shortcut icon" href="img/favicon.png" type="image/png">
+
+<!-- linking the Cascasding Style Sheet to the html page -->
+<link type="text/css" rel="stylesheet" href="allegro.css"/>
+
+<!-- linking the font from google fonts, try running the page without internet, the font changes -->
+<link href='http://fonts.googleapis.com/css?family=Nixie+One' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Pathway+Gothic+One' rel='stylesheet' type='text/css'>
+
+<!-- linking the javascript page to this html page -->
+<script type="text/javascript" src="connect.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<!-- the text displayed on the tab of your browser -->
+<title>Allegro</title>
+</head>
+
+<!-- when the page layout is set the call to the Javascript function is called to fill in the body--> 
+<body onload = "pageInit()">
+
+<div id="add_popup">
+	<form id="add_item" action="addItem.php" method="POST">
+		<!--UPC:  <input name="upc" type="text"><br>-->
+		<input id="add_title" class="add_input" name="title" type="text" placeholder="Title"><br>
+		<input id="add_type" class="add_input" name="disk_type" type="text" placeholder="Disk Type"><br>
+		<input id="add_cate" class="add_input" name="category" type="text" placeholder="Genre"><br>
+		<input id="add_comp" class="add_input" name="company" type="text" placeholder="Publishing Company"><br>
+		<input id="add_year" class="add_input" name="pub_year" type="text" placeholder="Publishing Year"><br>
+		<input id="add_price" class="add_input" name="price" type="text" placeholder="Price"><br>
+		<input id="add_stock" class="add_input" name="stock" type="text" placeholder="Stock"><br>
+		<input id="add_submit" class="add_input" type="submit">
+	</form>
+</div>
+
+</body>
+</html>
