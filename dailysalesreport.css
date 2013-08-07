@@ -1,0 +1,125 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*initializer DO NOT ALTER IN ANY WAY*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+
+html {
+	height: 100%;
+	background-color:#cdb380;
+	overflow:hidden;
+	
+}
+body {
+	
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width:100%;
+	overflow:hidden;
+	background-image: url("img/bgnoise.png");
+}
+
+#title_img{
+	width:10em;
+	height:10em;
+	position:fixed;
+}
+#printreports{
+	width:30em;
+	height:5em;
+	overflow:hidden;
+	position:relative;
+	margin-top:2em;
+	margin-left: 11em;
+	box-shadow: 0 0 20px 5px #323232;
+}
+
+#printtxt{
+	font-size:2em;
+	font-family:'Nixie One',cursive;
+	margin-left:3.5em;
+	margin-top:-1.5em;
+}
+
+.printerimg{
+	width:2em;
+	height:3em;
+	margin-left: 3em;
+	
+}
+
+.printbox{
+	width: 15em;
+	height: 15em;
+	position:relative;
+
+}
+
+
+#printsales{
+	background-color: #3e838c;
+}
+#printtop{
+	background-color: #F5DEB3;
+	margin-left: 15em;
+	margin-top:-15em;
+}
+
+.reporttxt{
+	text-align:center;
+	font-size:1.5em;
+	font-family:'Nixie One',cursive;
+	opacity:1;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+}
+
+
+
+

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!--https://github.com/boyanghu/allegromusicapp.git-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!-- favicon (little symbol beside the page name) also only works on chrome when site is live -->
+<link rel="shortcut icon" href="img/favicon.png" type="image/png">
+
+<!-- linking the Cascasding Style Sheet to the html page -->
+<link type="text/css" rel="stylesheet" href="dailysalesreport.css"/>
+
+<link href='http://fonts.googleapis.com/css?family=Nixie+One' rel='stylesheet' type='text/css'>
+
+<!-- JavaScript Files -->
+		<script type="text/javascript" src="onclick.js"></script>
+</head>
+
+<body>
+	<div id ="shopicon" onclick = "menuopen('printsales')">
+		<img id = "title_img" src = "img/title_pic4.png">
+	</div>
+	<div id = "printreports">
+		<div id = "printsales" class= "printbox">
+			<p id = "dailytxt" class = "reporttxt">Daily Sales Report</p>
+			<img class = "printerimg" src= "img/printer.svg">
+			<p id = "printtxt"> Print </p>
+		</div>
+		<div id = "printtop" class= "printbox">
+			<p id = "toptxt" class = "reporttxt">Top Selling Report</p>
+			<img class = "printerimg" src= "img/printer.svg">
+			<p id = "printtxt"> Print </p>
+		</div>
+	</div>
+
+</body>
