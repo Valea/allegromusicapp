@@ -3,11 +3,11 @@
 // connect with the database
 include_once("MYSQL_Connect.php");
 
-if(isset($_POST["upc"])) { $upc=$_POST["upc"]; }
-if(isset($_POST["stock"])) { $stock=$_POST["stock"]; }
-if(isset($_POST["price"])) { $price=$_POST["price"]; }
+$upc=$_GET["upc"]; }
+$stock=$_GET["stock"]; }
+$price=$_GET["price"]; }
 
-if(empty($_POST["price"])) {
+if(empty($_GET["price"])) {
 	$query=mysql_query("UPDATE item
 					SET stock=stock+'$stock'
 					WHERE upc='$upc'");

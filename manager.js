@@ -58,6 +58,33 @@ function itemadded(){
 }
 
 function stockadded(){
-	var signUpValues = document.getElementById("stock_item");
+	var addStockValues = document.getElementById("stock_item");
+	var upc = addStockValues.elements[0].value;
+	var stock = addStockValues.elements[1].value;
+	var price = addStockValues.elements[2].value;
+// when all fields are covered
+	if (window.XMLHttpRequest)
+	{// initialize a request for modern browsers
+		xmlhttp=new XMLHttpRequest();
+	}
+	else
+	{// initialize a request for internet explorer, cuz ie is soooo awesome!
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			//document.getElementById("hullahs").innerHTML=xmlhttp.responseText;
+			displayMessage(xmlhttp.responseText);
+		//add(0)
+		}
+	}
+	// request to run signUp.php with query strings  
+	xmlhttp.open("GET","addStock.php?upc="+ upc+ "&stock=" + stock+ "&price=" + price,true);
+
+	// excecute the request
+	xmlhttp.send();
+}
 
 }

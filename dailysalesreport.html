@@ -14,43 +14,7 @@
 		<script type="text/javascript" src="onclick.js"></script>
 		<script type="text/javascript" src="manager.js"></script>
 		<script type="text/javascript" src="connect.js"></script>
-<script>
-		function itemadded(){
 
-	var addItemValues = document.getElementById("add_item");
-	var title = addItemValues.elements[0].value;
-	var diskType = addItemValues.elements[1].value;
-	var category= addItemValues.elements[2].value;
-	var company = addItemValues.elements[3].value;
-	var year = addItemValues.elements[4].value;
-	var price= addItemValues.elements[5].value;
-	var stock= addItemValues.elements[6].value;
-	
-	// when all fields are covered
-	if (window.XMLHttpRequest)
-	{// initialize a request for modern browsers
-		xmlhttp=new XMLHttpRequest();
-	}
-	else
-	{// initialize a request for internet explorer, cuz ie is soooo awesome!
-		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-	}
-	xmlhttp.onreadystatechange=function()
-	{
-		if (xmlhttp.readyState==4 && xmlhttp.status==200)
-		{
-			//document.getElementById("hullahs").innerHTML=xmlhttp.responseText;
-			displayMessage(xmlhttp.responseText);
-		//add(0)
-		}
-	}
-	// request to run signUp.php with query strings  
-	xmlhttp.open("GET","addItem.php?title="+ title+ "&disk_type=" + diskType+ "&category=" + category+ "&company=" + company+ "&pub_year=" + year + "&price=" + price + "&stock=" + stock,true);
-
-	// excecute the request
-	xmlhttp.send();
-}
-</script>
 </head>
 
 <body>
@@ -98,7 +62,7 @@
 	<div id = "item_submit" onclick = "itemadded()"> Add New Item </div> 
 </div>
 <div id="stock_popup">
-	<form id="stock_item" action="addStock.php" method="POST">
+	<form id="stock_item">
 		<input id="stock_upc" class="manager_input" name="upc" type="text" placeholder="UPC" required><br>
 		<input id="stock_stock" class="manager_input" name="stock" type="text" placeholder="Stock" required><br>
 		<input id="stock_price" class="manager_input" name="price" type="text" placeholder="Price"><br>
