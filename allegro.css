@@ -75,11 +75,13 @@ body {
 
 
 #sidebar_right{
-	width:12em;
+	width:15em;
 	height:100%;
 	float:right;
 	background-color: #4C7175;
 	box-shadow: inset 15px 0px 25px -10px #323232;
+	overflow-Y:auto;
+	overflow-X:hidden;
 }
 
 #center{
@@ -95,6 +97,7 @@ body {
 	width: 17em;
 	margin:1.25em;	
 }
+
 
 #filter_row{
 	width:100%;
@@ -147,10 +150,6 @@ body {
 	left:4.5em;
 	line-height:3em;
 	color:#8ebdb6;	
-}
-
-#all_check_img{
-	opacity:1;
 }
 
 
@@ -311,32 +310,130 @@ body {
     box-shadow: inset 0px 0px 0px 4px #d30d0d
 }
 
+.basket{
+	width: 13em;
+	height:auto;
+	margin-left: 1em;
+	margin-top: 1em;
+	overflow-x:hidden;
+	
+}
 
-#sign_in_button{
+.basket_title{
+	background-color: #ece1c3;
 	width:100%;
+	height:auto;
+	text-align:center;
+}
+
+.basket_title_text{
+	font-family: 'Pathway Gothic One', sans-serif;
+    font-size:1em;
+    color:#386166;
+    line-height:2em;
+}
+
+.basket_price{
+	background-color: #D7C299;
+	width:5em;
+	height:2em;
+	overflow:hidden;
+}
+
+.basket_price_text{
+	font-family: 'Pathway Gothic One', sans-serif;
+    font-size:1em;
+    color:#386166;
+    line-height:2em;
+	margin-left: 0.5em;
+}
+
+.basket_stock{
+	background-color: #8ebdb6;
+	margin-top: -2em;
+	margin-left: 5em;
+	width:100%;
+	height:2em;
+	overflow:hidden;
+}
+
+.basket_stock_text{
+	font-family: 'Pathway Gothic One', sans-serif;
+    font-size:1em;
+    color:#386166;
+    line-height:2em;
+	margin-left: 0.5em;
+}
+
+.basket_remove{
+	background-color: #d30d0d;
+	width:100%;
+	height:auto;
+	text-align:center;
+}
+
+.basket_remove_text{
+	font-family: 'Pathway Gothic One', sans-serif;
+    font-size:1em;
+    color:#ece1c3;
+    line-height:2em;
+}
+
+
+.basket_remove:hover{
+    cursor:pointer;
+}
+
+.basket_remove:active{
+    box-shadow: inset 0px 0px 0px 4px #ece1c3
+}
+
+
+
+
+
+#sign_in_button, #search_button{
+	width:5em;
 	height:2em;
 	font-family: 'Pathway Gothic One', sans-serif;
     font-size:2em;
 	color: #ece1c3;
-	margin-bottom:1em;
     background-color:#d30d0d;
     line-height:2em;
 	text-align:center;
-	border-bottom:1px solid #ece1c3;
 	overflow:hidden;
-	box-shadow: inset -15px 0px 25px -10px #323232;
 }
 
-#sign_in_button:hover{
-	box-shadow: inset -15px 0px 25px -10px #ece1c3;
+#search_img{
+	width: 1.2em;
+	margin-top:0.4em;
+
+}
+
+#search_button{
+	background-color: #D7C299;
+	margin-bottom:0em;
+}
+#sign_in_button{
+	margin-top:-2em;
+	margin-left: 5em;
+	box-shadow: inset -15px 0px 15px -10px #323232;
+}
+
+#sign_in_button:hover,#search_button:hover{
+	box-shadow: inset 0px 0px 15px  5px #386166;
 	cursor:pointer;
 }
+
 
 #sign_in_button:active{
 	box-shadow: inset 0px 0px 0px 6px #ece1c3;
 }
 
-#sign_in_popup, #message_popup{
+#search_button:active{
+	box-shadow: inset 0px 0px 0px 6px #386166;
+}
+#sign_in_popup, #message_popup, #search_popup, #basket_quantity_popup{
 	position:fixed;
 	background-color:white;
 	width: 30em;
@@ -352,9 +449,10 @@ body {
 	
 }
 
-#message_popup{
+#message_popup,#basket_quantity_popup{
 	margin-top:-5.3em;
 }
+
 .sign_in_input{
 	border:none;
 	width: 100%;
@@ -395,7 +493,16 @@ body {
 	display:none;
 }
 
-#sign_in, #message_box_close{
+#title_search{
+	background-color:#3e838c;
+}
+
+#leading_singer_search, #quantity_basket{
+	background-color:#729792;
+}
+
+
+#sign_in, #message_box_close, #search, #add_quantity{
 	width:5em;
 	height:2em;
 	font-family: 'Pathway Gothic One', sans-serif;
@@ -407,15 +514,15 @@ body {
 	margin-top:0.2em;
 }
 
-#message_box_close{
+#message_box_close, #search,#add_quantity{
 	width:100%;
 }
 
 
-#sign_in:hover, #sign_up:hover,#message_box_close:hover{
+#sign_in:hover, #sign_up:hover,#message_box_close:hover, #search:hover,#add_quantity:hover{
 	cursor:pointer;
 }
-#sign_in:active, #message_box_close:active{
+#sign_in:active, #message_box_close:active, #search:active, #add_quantity:active{
 	box-shadow: inset 0px 0px 0px 10px #3e838c;
 }
 
@@ -436,18 +543,18 @@ body {
 	box-shadow: inset 0px 0px 0px 10px #3e838c;
 }
 
-#sign_in_cancel{
+#sign_in_cancel, #search_cancel, #basket_quantity_cancel{
 	width:1.6em;
 	position:absolute;
 	top:0.6em;
 	left: 27.9em;
 }
 
-#sign_in_cancel:hover{
+#sign_in_cancel:hover, #search_cancel:hover,#basket_quantity_cancel:hover{
 	cursor:pointer;
 }
 
-#sign_in_cancel:active{
+#sign_in_cancel:active, #search_cancel:active,#basket_quantity_cancel:active{
 	width:1.2em;
 	top:0.8em;
 	left: 28.1em;
