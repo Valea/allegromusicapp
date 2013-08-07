@@ -57,7 +57,7 @@ body {
 	margin: 0;
 	padding: 0;
 	height: 100%;
-	overflow:hidden;
+	
 	
 }
 
@@ -82,6 +82,9 @@ body {
 	box-shadow: inset 15px 0px 25px -10px #323232;
 }
 
+#center{
+	height:100%;
+}
 #main_center{
 	height:100%;
 	background-image:url("img/bgnoise.png");
@@ -151,6 +154,13 @@ body {
 }
 
 
+#sign_in_panel{
+	width:100%;
+	height:3em; 
+	overflow:hidden;
+	background-color:black;
+
+}
 #mainTable{
     margin:auto;
     
@@ -198,7 +208,6 @@ body {
 }
 
 .item_disk_type{
-    position:relative;
     margin-top:-2em;
     margin-left:7.7em;
     width:10.5em;
@@ -303,17 +312,177 @@ body {
 }
 
 
+#sign_in_button{
+	width:100%;
+	height:2em;
+	font-family: 'Pathway Gothic One', sans-serif;
+    font-size:2em;
+	color: #ece1c3;
+	margin-bottom:1em;
+    background-color:#d30d0d;
+    line-height:2em;
+	text-align:center;
+	border-bottom:1px solid #ece1c3;
+	overflow:hidden;
+	box-shadow: inset -15px 0px 25px -10px #323232;
+}
+
+#sign_in_button:hover{
+	box-shadow: inset -15px 0px 25px -10px #ece1c3;
+	cursor:pointer;
+}
+
+#sign_in_button:active{
+	box-shadow: inset 0px 0px 0px 6px #ece1c3;
+}
+
+#sign_in_popup, #message_popup{
+	position:fixed;
+	background-color:white;
+	width: 30em;
+	height:auto;
+	left:50%;
+	top:50%;
+	overflow:hidden;
+	border:0.7em solid white;
+	box-shadow: 0px 0px 15px 3px #323232;
+	margin-top:-13.3em;
+	margin-left:-15.2em;
+	display:none;
+	
+}
+
+#message_popup{
+	margin-top:-5.3em;
+}
+.sign_in_input{
+	border:none;
+	width: 100%;
+	height: 2em;
+	font-family: 'Pathway Gothic One', sans-serif;
+	font-size: 2em;
+	line-height:2em;
+	color:#ece1c3;
+	z-index:10;
+}
+
+#email_sign_in{
+	background-color:#8ebdb6;
+	color:#386166;
+}
+
+#password_sign_in{
+	background-color:#3e838c;
+}
+
+#name_sign_in{
+	background-color:#729792;
+	display:none;
+}
+
+#message_box_text{
+	background-color:#3e838c;
+	height:auto;
+	text-align:center;
+}
+#address_sign_in{
+	background-color:#4C7175;
+	display:none;
+}
+
+#phone_sign_in{
+	background-color:#386166;
+	display:none;
+}
+
+#sign_in, #message_box_close{
+	width:5em;
+	height:2em;
+	font-family: 'Pathway Gothic One', sans-serif;
+	font-size: 3em;
+	line-height:2em;
+	background-color:#d30d0d;
+	color: #ece1c3;
+	text-align:center;
+	margin-top:0.2em;
+}
+
+#message_box_close{
+	width:100%;
+}
 
 
+#sign_in:hover, #sign_up:hover,#message_box_close:hover{
+	cursor:pointer;
+}
+#sign_in:active, #message_box_close:active{
+	box-shadow: inset 0px 0px 0px 10px #3e838c;
+}
 
+#sign_up{
+	width:5em;
+	height:2em;
+	font-family: 'Pathway Gothic One', sans-serif;
+	font-size: 3em;
+	line-height:2em;
+	color:#d30d0d;
+	background-color: #D7C299;
+	text-align:center;
+	margin-top:-2em;
+	margin-left:5em;
 
+}
+#sign_up:active{
+	box-shadow: inset 0px 0px 0px 10px #3e838c;
+}
 
+#sign_in_cancel{
+	width:1.6em;
+	position:absolute;
+	top:0.6em;
+	left: 27.9em;
+}
 
+#sign_in_cancel:hover{
+	cursor:pointer;
+}
 
+#sign_in_cancel:active{
+	width:1.2em;
+	top:0.8em;
+	left: 28.1em;
+}
 
+::-webkit-scrollbar {
+	width: 10px;
+}
 
+::-webkit-scrollbar-thumb {
+	border-radius: 6px;
+	background-color: rgba(255,255,255,0.8);
+	-webkit-border-radius: 10px;
+	margin-right:10px;
+}
 
+::-o-scrollbar {
+	width: 5px;
+}
 
+::-o-scrollbar-thumb {
+	border-radius: 6px;
+	background-color: rgba(255, 255, 255, 0.6);
+	-webkit-border-radius: 10px;
+}
+
+::-moz-scrollbar {
+	width: 5px;
+}
+
+::-moz-scrollbar-thumb {
+	border-radius: 6px;
+	background-color: rgba(255, 255, 255, 0.6);
+	-webkit-border-radius: 10px;
+}
 
 
 
