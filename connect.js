@@ -128,7 +128,6 @@ function showCheckMark(genre){
 
 
 
-
 // addToBasket takes in a upc and adds it to basket
 function addToBasket(upc){
 	item_upc = upc;
@@ -161,7 +160,10 @@ function addQuantity(){
 	   }
 	  else{
 		item_quantity = quantity;
-		addToSide(item_upc, item_quantity);
+		var person = new basketItem(item_upc, item_quantity);
+		// create function to addToBasket
+		basket[basket.length] = person;
+		addToSide(person);
 	  }
     
     }
@@ -174,10 +176,7 @@ function addQuantity(){
   
 }
 
-function addToSide(upc, quantity){
-	var person = new basketItem(upc, quantity);
-	// create function to addToBasket
-	basket[basket.length] = person;
+function addToSide(person){
 	basketInner = document.getElementById('sidebar_right').innerHTML;
 	 if (window.XMLHttpRequest)
   {// initialize a request for modern browsers
@@ -198,7 +197,7 @@ function addToSide(upc, quantity){
     }
   } 
   // request to run getAllItem.php without query strings  
-  xmlhttp.open("GET","addToBasket.php?upc="+upc +"&quantity=" +quantity,true)
+  xmlhttp.open("GET","addToBasket.php?upc="+person.upc +"&quantity=" +person.quantity,true)
 
   // excecute the request
   xmlhttp.send();	
@@ -206,6 +205,22 @@ function addToSide(upc, quantity){
   
 }  
 
+function removeFromBasket(upc){
+	
+	var person_temp = new Array();
+	var temp = 0;
+    for (var i = 0; i < basket.length; i++){
+		if (upc != basket[i].upc){
+			person_temp[temp] = basket[i];
+			temp++;
+		}
+	}
+     document.getElementById("sidebar_right").innerHTML= "";
+	 basket = person_temp;
+	for (var i = 0; i < basket.length; i++){
+		addToSide(person_temp[i]);
+	}
+}
 
 function basketQuantity(open){
 	if (open == 1){
