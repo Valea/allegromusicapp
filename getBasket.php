@@ -3,7 +3,7 @@
 // connect with the database
 include_once("MYSQL_Connect.php");
 
-$basket=json_decode($_GET['basket']);
+$upcs=json_decode($_GET['upcs']);
 $quantity=(isset($_GET['quantity']) ? json_decode($_GET['quantity']) : null);
 
 // return a table called mainTable
@@ -18,49 +18,51 @@ echo "<thead><tr>
 			<th scope='col'>Action</th>
 		</tr></thead>";
 
-if (empty($basket))
+if (empty($upcs))
 {
 	// return an item
-	  echo "<div class = 'item'>";  
-	  
-	  //Item title
-	  echo "<td>";
-	  echo "<div class = 'item_title'><p class = 'item_price_text'>''</p></div>";  
-	  echo "</td>";
-	  
-	  //Item stock
-	  echo "<td>";
-	  echo "<div class = 'item_stock'><p class = 'item_price_text'>''</p></div>";
-	  echo "</td>";
-	  
-	  //Item UPC
-	  echo "<td>";
-	  echo "<div class = 'item_upc'><p class = 'item_price_text'>''</p></div>";  
-	  echo "</td>";
-	  
-	  //Item price - we recorded price in cents now we have to covert it back to dollars
-	  echo "<td>";
-	  echo "<div class = 'item_price'><p class = 'item_price_text'>''</p></div>";
-	  echo "</td>";
-	  
-	  //Item quantity - get corresponding qty from quantity array using current index
-	  echo "<td>";
-	  echo "<div class = 'item_quantity'><p class = 'item_price_text'>''</p></div>";
-	  echo "</td>";
-	  
-	  //Extended price (quantity * price)
-	  echo "<td>";
-	  echo "<div class = 'item_price'><p class = 'item_price_text'>''</p></div>";
-	  echo "</td>";
-	  
-	  //Remove from basket
-	  echo "<td>";  
-	  echo "<div class = 'item_add'><p class = 'item_add_text'>''</p></div>";
-	  echo "</td>";
+	echo "<div class = 'item'>";  
+
+	//Item title
+	echo "<td>";
+	echo "<div class = 'item_title'><p class = 'item_price_text'>''</p></div>";  
+	echo "</td>";
+
+	//Item stock
+	echo "<td>";
+	echo "<div class = 'item_stock'><p class = 'item_price_text'>''</p></div>";
+	echo "</td>";
+
+	//Item UPC
+	echo "<td>";
+	echo "<div class = 'item_upc'><p class = 'item_price_text'>''</p></div>";  
+	echo "</td>";
+
+	//Item price - we recorded price in cents now we have to covert it back to dollars
+	echo "<td>";
+	echo "<div class = 'item_price'><p class = 'item_price_text'>''</p></div>";
+	echo "</td>";
+
+	//Item quantity - get corresponding qty from quantity array using current index
+	echo "<td>";
+	echo "<div class = 'item_quantity'><p class = 'item_price_text'>''</p></div>";
+	echo "</td>";
+
+	//Extended price (quantity * price)
+	echo "<td>";
+	echo "<div class = 'item_price'><p class = 'item_price_text'>''</p></div>";
+	echo "</td>";
+
+	//Remove from basket
+	echo "<td>";  
+	echo "<div class = 'item_add'><p class = 'item_add_text'>''</p></div>";
+	echo "</td>";
+
+	echo "</table>";
 }
 else
 {		
-	foreach ($basket as $index=>$upc)
+	foreach ($upcs as $index=>$upc)
 	{
 		//get info for each item in basket from the database
 		$sql = "SELECT * FROM item WHERE upc = '".$upc."'";
@@ -124,17 +126,19 @@ else
 		  echo "<div class = 'item_add' onclick = 'removeFromBasket(" . $item['upc'] . ")'><p class = 'item_add_text'>Remove From Basket</p></div>";
 		  echo "</td>";
 		  $i++;
-		  // i want a table that is 4xn (1 row per item, 4 columns for each attribute)
-		  if ($i == 4)
+		  
+		  if ($i == 7)
 		  {
 			echo "</tr>";
 			$i = 0;
 		  }
 		}
 	}
+	echo "</table>";
+	echo "<tr>";
+	echo "<button type='button' onclick = 'checkoutBasket()'>Checkout</button>";
+	echo "</tr>";	
 }
-
-echo "</table>";
 mysql_close();
 
 ?>

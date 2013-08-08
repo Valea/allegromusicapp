@@ -2,7 +2,11 @@
 
 var signUp = 0;
 var user ="";
+
 var basket = new Array();
+var basketUPCs = new Array();
+var basketQtys = new Array();
+
 var basketInner;
 var item_upc; 
 var item_quantity;
@@ -21,7 +25,6 @@ function pageInit(){
 
 function updateBasket()
 {
-	alert("update basket!");
 	if (window.XMLHttpRequest)
 	{
 		// initialize a request for modern browsers
@@ -43,13 +46,13 @@ function updateBasket()
 	}
 
 	// request to run getBasket.php
-	var basketUPCs = new Array();
+	basketUPCs = new Array();
 	for(item in basket)
 	{
 		basketUPCs.push(item);
 	}
 	
-	var basketQtys = new Array();
+	basketQtys = new Array();
 	for(item in basket)
 	{
 		basketQtys.push(basket[item]);
@@ -57,9 +60,7 @@ function updateBasket()
 	
 	var jsonUPCs = JSON.stringify(basketUPCs);
 	var jsonQtys = JSON.stringify(basketQtys);
-	alert(jsonUPCs);
-	alert(jsonQtys);
-	var args = "basket=" + jsonUPCs + "&quantity=" + jsonQtys;
+	var args = "upcs=" + jsonUPCs + "&quantity=" + jsonQtys;
 	xmlhttp.open("GET","getBasket.php?" + args,true);
 
 	// excecute the request
@@ -113,7 +114,6 @@ function addToBasket(upc)
 	{
 		basket[upc] = basket[upc] + 1;
 	}
-	alert("Item " + upc + " has qty " + basket[upc]);
 }
 
 //Remove the given upc from the shopping basket
@@ -128,6 +128,82 @@ function removeFromBasket(upc)
 			break;
 		}
 	}
+}
+
+function checkoutBasket()
+{
+	if (window.XMLHttpRequest)
+	{
+		// initialize a request for modern browsers
+		xmlhttp=new XMLHttpRequest();
+	}
+	else
+	{
+		// initialize a request for internet explorer, cuz ie is soooo awesome!
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			// everything the php script returns goes inside the main_center ta
+			document.getElementById("main_center").innerHTML=xmlhttp.responseText;
+		}
+	}
+
+	// request to run checkoutBasket.php
+	var jsonUPCs = JSON.stringify(basketUPCs);
+	var jsonQtys = JSON.stringify(basketQtys);
+	var args = "upcs=" + jsonUPCs + "&quantity=" + jsonQtys;
+	xmlhttp.open("GET","checkoutBasket.php?" + args,true);
+
+	// excecute the request
+	xmlhttp.send();
+}
+
+function cancelOrder()
+{
+	alert("cancel order!");
+}
+
+function confirmOrder(form, total)
+{
+
+	var cc_number = form.cc_number.value;
+	var cc_exp_date = form.cc_exp_date.value;
+
+	alert("confirm order!");
+	if (window.XMLHttpRequest)
+	{
+		// initialize a request for modern browsers
+		xmlhttp=new XMLHttpRequest();
+	}
+	else
+	{
+		// initialize a request for internet explorer, cuz ie is soooo awesome!
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			// everything the php script returns goes inside the main_center ta
+			document.getElementById("main_center").innerHTML=xmlhttp.responseText;
+		}
+	}
+
+	// request to run createPurchase.php
+	var jsonUPCs = JSON.stringify(basketUPCs);
+	var jsonQtys = JSON.stringify(basketQtys);
+	alert(jsonUPCs);
+	alert(jsonQtys);
+	var args = "upcs=" + jsonUPCs + "&quantity=" + jsonQtys + "&cid=" + user + "&cardNum=" + cc_number + "&expiryDate=" + cc_exp_date;
+	xmlhttp.open("GET","createPurchase.php?" + args,true);
+
+	// excecute the request
+	xmlhttp.send();
 }
 
 function findMatchingItems(form)
