@@ -36,7 +36,7 @@ while ($item = mysql_fetch_array($allItems))
   echo "<div class = 'item_price'><p class = 'item_price_text'>$" . $price . "</p></div>";
   echo "<div class = 'item_stock'><p class = 'item_stock_text'>Stock: " . $item['stock'] . "</p></div>";
   echo "<div class = 'item_add' onclick = 'addToBasket(" . $item['upc'] . ")'><p class = 'item_add_text'>Add To Basket</p></div>";
-  echo "<div class = 'item_add' onclick = 'removeFromBasket(" . $item['upc'] . ")'><p class = 'item_add_text'>Remove From Basket</p></div>";
+  echo "</div>";
   echo "</td>";
   $i++;
   // i want a table that is 3xn

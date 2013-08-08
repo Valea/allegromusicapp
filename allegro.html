@@ -14,6 +14,7 @@
 
 <!-- linking the javascript page to this html page -->
 <script type="text/javascript" src="connect.js"></script>
+<script type="text/javascript" src="masonry.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 <!-- the text displayed on the tab of your browser -->
@@ -23,51 +24,97 @@
 <!-- when the page layout is set the call to the Javascript function is called to fill in the body--> 
 <body onload = "pageInit()">
 
+<!-- sign in popup -->
+<div id = "sign_in_popup">
+	<img id = "sign_in_cancel" src = "img/cancel.svg" onclick = "signIn(0)">
+	<form id = "sign_in_form">
+		<input id ="email_sign_in" class = "sign_in_input" type ="text" name = "email" placeholder = "E-Mail">
+		<input id ="password_sign_in" class = "sign_in_input" type ="password" name = "password" placeholder = "Password">
+		<input id ="name_sign_in" class = "sign_in_input" type ="text" name = "name" placeholder = "Name">
+		<input id ="address_sign_in" class = "sign_in_input" type ="text" name = "address" placeholder = "Address (optional)">
+		<input id ="phone_sign_in" class = "sign_in_input" type ="text" name = "phone" placeholder = "Phone Number (optional)">
+	</form>
+	<div id = "sign_in" onclick = "signIntoAccount()">Sign In</div>
+	<div id = "sign_up" onclick = "signUpForAccount()">Sign Up</div>
+</div>
+
+
+<div id = "search_popup">
+	<img id = "search_cancel" src = "img/cancel.svg" onclick = "search(0)">
+	<form id = "search_form">
+		<input id ="title_search" class = "sign_in_input" type ="text" name = "title" placeholder = "Disk Title">
+		<input id ="leading_singer_search" class = "sign_in_input" type ="text" name = "name" placeholder = "Artist">
+	</form>
+	<div id = "search" onclick = "search()">Search</div>
+</div>
+
+<div id = "basket_quantity_popup">
+	<img id = "basket_quantity_cancel" src = "img/cancel.svg" onclick = "basketQuantity(0)">
+	<form id = "basket_quantity_form">
+		<input id ="quantity_basket" class = "sign_in_input" type ="text" name = "title" placeholder = "Quantity Needed">
+	</form>
+	<div id = "add_quantity" onclick = "addQuantity()">Add</div>
+</div>
+
+<!-- message popup-->
+<div id = "message_popup">
+	<div id = "message_box_text" class = "sign_in_input">placeholder</div>
+	<div id = "message_box_close" onclick = "document.getElementById('message_popup').style.display = 'none'">Ok</div>
+</div>
+
+
+
 <!-- filter menu-->
 <div id = "sidebar_left">
 	<img id = "title_img" src = "img/title_pic4.png">
 	
-    <div id ="filter_row"><p id = "genre_title">Genre</p></div>
+	<div id = filter>
+		<div id ="filter_row"><p id = "genre_title">Genre</p></div>
 	
-    <div id = "all_genre_row"class = "genre_items">
-		<img id = "all_check_img" class = "check_img" src = "img/checkmark.png">
-   		<p id = "all_text" class = "filter_text">all genres</p>
-	</div>
+		<div id = "all_genre_row"class = "genre_items" onclick = "displayAllItem()">
+			<img id = "all_check_img" class = "check_img" src = "img/checkmark.png">
+			<p id = "all_text" class = "filter_text">all genres</p>
+		</div>
 
-	<div id = "rock_genre_row" class = "genre_items">
-		<img id = "rock_check_img" class = "check_img" src = "img/checkmark.png">
-    	<p id = "rock_text" class = "filter_text">rock</p>
-	</div>
+		<div id = "rock_genre_row" class = "genre_items" onclick = "getByGenre('Rock')">
+			<img id = "rock_check_img" class = "check_img" src = "img/checkmark.png">
+			<p id = "rock_text" class = "filter_text">rock</p>
+		</div>
 
-	<div id = "rap_genre_row" class = "genre_items">
-		<img id = "rap_check_img" class = "check_img" src = "img/checkmark.png">
-    	<p id = "rap_text" class = "filter_text">rap</p>
-	</div>
+		<div id = "rap_genre_row" class = "genre_items" onclick = "getByGenre('Rap')">
+			<img id = "rap_check_img" class = "check_img" src = "img/checkmark.png">
+			<p id = "rap_text" class = "filter_text">rap</p>
+		</div>
 
-	<div id = "pop_genre_row" class = "genre_items">
-		<img id = "pop_check_img" class = "check_img" src = "img/checkmark.png">
-    	<p id = "pop_text" class = "filter_text">pop</p>
-	</div>
+		<div id = "pop_genre_row" class = "genre_items" onclick = "getByGenre('Pop')">
+			<img id = "pop_check_img" class = "check_img" src = "img/checkmark.png">
+			<p id = "pop_text" class = "filter_text">pop</p>
+		</div>
 
-	<div id = "country_genre_row" class = "genre_items">
-		<img id = "country_check_img" class = "check_img" src = "img/checkmark.png">
-  		<p id = "country_text" class = "filter_text">country</p>
-	</div>
+		<div id = "country_genre_row" class = "genre_items" onclick = "getByGenre('Country')">
+			<img id = "country_check_img" class = "check_img" src = "img/checkmark.png">
+			<p id = "country_text" class = "filter_text">country</p>
+		</div>
 
-	<div id = "newAge_genre_row" class = "genre_items">
-		<img id = "newAge_check_img" class = "check_img" src = "img/checkmark.png">
-    	<p id = "ageAge_text" class = "filter_text">new age</p>
-	</div>
+		<div id = "newAge_genre_row" class = "genre_items" onclick = "getByGenre('New Age')">
+			<img id = "newAge_check_img" class = "check_img" src = "img/checkmark.png">
+			<p id = "ageAge_text" class = "filter_text">new age</p>
+		</div>
 
-	<div id = "classical_genre_row"  class = "genre_items">
-		<img id = "classical_check_img" class = "check_img" src = "img/checkmark.png">
-    	<p id = "classical_text" class = "filter_text">classical</p>
-	</div>
+		<div id = "classical_genre_row"  class = "genre_items" onclick = "getByGenre('Classical')">
+			<img id = "classical_check_img" class = "check_img" src = "img/checkmark.png">
+			<p id = "classical_text" class = "filter_text">classical</p>
+		</div>
 
-	<div id = "instrumental_genre_row" class = "genre_items">
-		<img id = "instrumental_check_img" class = "check_img" src = "img/checkmark.png">
-    	<p id = "instrumental_text" class = "filter_text">instrumental</p>
+		<div id = "instrumental_genre_row" class = "genre_items" onclick = "getByGenre('Instrumental')">
+			<img id = "instrumental_check_img" class = "check_img" src = "img/checkmark.png">
+			<p id = "instrumental_text" class = "filter_text">instrumental</p>
+		</div>
 	</div>
+	
+	<div id = "search_button" onclick = "search(1)"><img id = "search_img" src = "img/search.svg"></div>
+	<div id = "sign_in_button" onclick = "signIn(1)">Sign In</div>
+
 </div>
 
 <!-- basket menu -->
@@ -83,8 +130,9 @@
 </div>
 
 <!-- main display -->
-<div id = "main_center">
+<div id = "main_center" >
 </div>
+
 
 </body>
 </html>
