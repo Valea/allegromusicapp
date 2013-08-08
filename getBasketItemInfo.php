@@ -3,12 +3,22 @@
 // connect with the database
 include_once("MYSQL_Connect.php");
 
-$basket=json_decode($_GET["basket"]);
+$basket=json_decode($_GET['basket']);
+$quantity=(isset($_GET['quantity']) ? json_decode($_GET['quantity']) : null);
 
 // return a table called mainTable
 echo "<table id = 'mainTable'>";
+echo "<thead><tr> 
+			<th scope='col'>Item Name</th>
+			<th scope='col'>Stock</th>
+			<th scope='col'>UPC</th>
+			<th scope='col'>Price</th>
+			<th scope='col'>QTY</th>
+			<th scope='col'>Ext. Price</th>
+			<th scope='col'>Action</th>
+		</tr></thead>";
 
-foreach ($basket as $upc)
+foreach ($basket as $index=>$upc)
 {
 	//get info for each item in basket from the database
 	$sql = "SELECT * FROM item WHERE upc = '".$upc."'";
@@ -30,7 +40,19 @@ foreach ($basket as $upc)
 	  
 	  //Item title
 	  echo "<td>";
-	  echo "<div class = 'item_title'><p class = 'item_title_text'>" . $item['title'] . "</p></div>";  
+	  echo "<div class = 'item_title'><p class = 'item_price_text'>" . $item['title'] . "</p></div>";  
+	  echo "</td>";
+	  $i++;
+	  
+	  //Item stock
+	  echo "<td>";
+	  echo "<div class = 'item_stock'><p class = 'item_price_text'>" . $item['stock'] . "</p></div>";
+	  echo "</td>";
+	  $i++;
+	  
+	  //Item UPC
+	  echo "<td>";
+	  echo "<div class = 'item_upc'><p class = 'item_price_text'>" . $item['upc'] . "</p></div>";  
 	  echo "</td>";
 	  $i++;
 	  
@@ -41,9 +63,17 @@ foreach ($basket as $upc)
 	  echo "</td>";
 	  $i++;
 	  
-	  //Item quantity
+	  //Item quantity - get corresponding qty from quantity array using current index
+	  $qty = $quantity[$index];
 	  echo "<td>";
-	  echo "<div class = 'item_stock'><p class = 'item_stock_text'>Stock: " . $item['stock'] . "</p></div>";
+	  echo "<div class = 'item_quantity'><p class = 'item_price_text'>" . $qty . "</p></div>";
+	  echo "</td>";
+	  $i++;
+	  
+	  //Extended price (quantity * price)
+	  $extprice = $qty * ($item['price']/100);
+	  echo "<td>";
+	  echo "<div class = 'item_price'><p class = 'item_price_text'>$" . $extprice . "</p></div>";
 	  echo "</td>";
 	  $i++;
 	  
@@ -60,7 +90,6 @@ foreach ($basket as $upc)
 	  }
 	}
 }
-unset $upc;
 
 echo "</table>";
 mysql_close();

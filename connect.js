@@ -32,9 +32,24 @@ function updateBasket()
 	}
 
 	// request to run getBasketItemInfo.php
-	var jsonBasket = JSON.stringify(shoppingBasket);
-	alert(jsonBasket);
-	xmlhttp.open("GET","getBasketItemInfo.php?basket="+jsonBasket,true);
+	var basketUPCs = new Array();
+	for(item in shoppingBasket)
+	{
+		basketUPCs.push(item);
+	}
+	
+	var basketQtys = new Array();
+	for(item in shoppingBasket)
+	{
+		basketQtys.push(shoppingBasket[item]);
+	}
+	
+	var jsonUPCs = JSON.stringify(basketUPCs);
+	var jsonQtys = JSON.stringify(basketQtys);
+	alert(jsonUPCs);
+	alert(jsonQtys);
+	var args = "basket=" + jsonUPCs + "&quantity=" + jsonQtys;
+	xmlhttp.open("GET","getBasketItemInfo.php?" + args,true);
 
 	// excecute the request
 	xmlhttp.send();
@@ -143,7 +158,7 @@ function findMatchingItems(form)
 	}
 
 	// request to run filterItems
-	var args = "category=" + category + "title=" + title + "singer=" + singer + "quantity=" + quantity;
+	var args = "category=" + category + "&title=" + title + "&singer=" + singer + "&quantity=" + quantity;
 	xmlhttp.open("GET","filterItems.php?" + args,true);
 
 	alert("Category " + category + " title " + title + " singer " + singer + " quantity " + quantity);
