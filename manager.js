@@ -18,10 +18,10 @@ function add(open){
 		document.getElementById("add_year").style.display = 'none';
 		document.getElementById("add_price").style.display = 'none';
 		document.getElementById("add_stock").style.display = 'none';
-	
+
 }
 }
-function itemadded(){
+function itemAdded(){
 
 	var addItemValues = document.getElementById("add_item");
 	var title = addItemValues.elements[0].value;
@@ -31,7 +31,7 @@ function itemadded(){
 	var year = addItemValues.elements[4].value;
 	var price= addItemValues.elements[5].value;
 	var stock= addItemValues.elements[6].value;
-	
+
 	// when all fields are covered
 	if (window.XMLHttpRequest)
 	{// initialize a request for modern browsers
@@ -45,8 +45,8 @@ function itemadded(){
 	{
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{
-			//document.getElementById("hullahs").innerHTML=xmlhttp.responseText;
-			displayMessage(xmlhttp.responseText);
+			document.getElementById("hullahs").innerHTML=xmlhttp.responseText;
+			//displayMessage(xmlhttp.responseText);
 		//add(0)
 		}
 	}
@@ -57,7 +57,7 @@ function itemadded(){
 	xmlhttp.send();
 }
 
-function stockadded(){
+function stockAdded(){
 	var addStockValues = document.getElementById("stock_item");
 	var upc = addStockValues.elements[0].value;
 	var stock = addStockValues.elements[1].value;
@@ -75,8 +75,8 @@ function stockadded(){
 	{
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{
-			//document.getElementById("hullahs").innerHTML=xmlhttp.responseText;
-			displayMessage(xmlhttp.responseText);
+			document.getElementById("hullahs2").innerHTML=xmlhttp.responseText;
+			//displayMessage(xmlhttp.responseText);
 		//add(0)
 		}
 	}
@@ -87,4 +87,8 @@ function stockadded(){
 	xmlhttp.send();
 }
 
+// USE THIS METHOD TO DISPLAY A MESSAGE TO A USER!!!!!!!  
+function displayMessage(message){
+  document.getElementById("message_box_text").innerHTML = message;
+  document.getElementById('message_popup').style.display = 'inline'
 }

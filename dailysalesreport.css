@@ -126,12 +126,12 @@ body {
 }
 
 #add_popup {
-	top:17em;
+	top:22em;
 	left:2em;
     border:none;
     width: 15em;
-    background-color:#386166;
-    border: 2px solid white;
+    background-color:#ece1c3;
+    border: 1px solid white;
     overflow: hidden;
     box-shadow: 0 0 15px 5px #323232;
     float: right;
@@ -143,8 +143,8 @@ body {
 	left:2em;
     border:none;
     width: 15em;
-    background-color:#386166;
-    border: 2px solid white;
+    background-color:#ece1c3;
+    border: 1px solid white;
     overflow: hidden;
     box-shadow: 0 0 15px 5px #323232;
     float: right;
@@ -160,18 +160,47 @@ body {
 .manager_input{
     border:none;
   	width: 100%;
-    font-family: 'Pathway Gothic One', sans-serif;
+    font-family: 'Nixie One', sans-serif;
     font-size: 1em;
-    color:#8ebdb6;
-    background-color:#ece1c3;
+    color:#ffffff;
+    background-color:#386166;
     z-index:10;
-    color: #386166;
 }
 
-#submit{
-    padding: 2px;
-    background-color:#386166;
-    color: #ece1c3;
+#item_submit{
+   
+    background-color:#ece1c3;
+    color: #152b3c;
+    font-family: 'Corben', cursive;
+    font-size: 1.2em;
+    text-align:center;
+    height:1.5em;
+    margin-bottom:0.3em;
 }
+#stock_submit{
+   
+    background-color:#ece1c3;
+    color: #152b3c;
+    font-family: 'Corben', cursive;
+    font-size: 1.2em;
+    text-align:center;
+    height:2em;
+    margin-top:0.2em;
+
+}
+
+#hullahs{
+	color:#323232;
+	font-family: 'Corben', cursive;
+	text-align: center;
+}
+
+#hullahs2{
+	color:#323232;
+	font-family: 'Corben', cursive;
+	text-align: center;
+}
+
+
 
 

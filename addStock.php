@@ -3,9 +3,9 @@
 // connect with the database
 include_once("MYSQL_Connect.php");
 
-$upc=$_GET["upc"]; }
-$stock=$_GET["stock"]; }
-$price=$_GET["price"]; }
+$upc=$_GET["upc"]; 
+$stock=$_GET["stock"]; 
+$price=$_GET["price"]; 
 
 if(empty($_GET["price"])) {
 	$query=mysql_query("UPDATE item

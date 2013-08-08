@@ -9,11 +9,10 @@
 <link type="text/css" rel="stylesheet" href="dailysalesreport.css"/>
 
 <link href='http://fonts.googleapis.com/css?family=Nixie+One' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Corben' rel='stylesheet' type='text/css'>
 
 <!-- JavaScript Files -->
-		<script type="text/javascript" src="onclick.js"></script>
-		<script type="text/javascript" src="manager.js"></script>
-		<script type="text/javascript" src="connect.js"></script>
+	<script type="text/javascript" src="manager.js"></script>
 
 </head>
 
@@ -27,13 +26,20 @@
 			<img class = "printerimg" src= "img/printer.svg">
 			<p id = "printtxt"> Print </p>
 		</div>
+
 		<div id = "printtop" class= "printbox">
 			<p id = "toptxt" class = "reporttxt">Top Selling Report</p>
 			<img class = "printerimg" src= "img/printer.svg">
 			<p id = "printtxt"> Print </p>
 		</div>
 
-		<!-- forms! -->
+	<!-- message popup-->
+	<div id = "message_popup">
+		<div id = "message_box_text" class = "sign_in_input">placeholder</div>
+		<div id = "message_box_close" onclick = "document.getElementById('message_popup').style.display = 'none'">Ok</div>
+	</div>
+
+	<!-- forms! -->
 	</div>
 	<div id="add_popup">
 		<form id="add_item" >
@@ -57,20 +63,19 @@
 		<input id="add_year" class="manager_input" name="pub_year" type="text" placeholder="Publishing Year" required>
 		<input id="add_price" class="manager_input" name="price" type="text" placeholder="Price" required><br>
 		<input id="add_stock" class="manager_input" name="stock" type="text" placeholder="Stock" required>
-		<input type="button" onclick="itemadded()">
 	</form>
-	<div id = "item_submit" onclick = "itemadded()"> Add New Item </div> 
+	<div id = "item_submit" class="submit" onclick = "itemAdded()"> Add New Item </div> 
+	<div id="hullahs"></div>
 </div>
 <div id="stock_popup">
 	<form id="stock_item">
 		<input id="stock_upc" class="manager_input" name="upc" type="text" placeholder="UPC" required><br>
 		<input id="stock_stock" class="manager_input" name="stock" type="text" placeholder="Stock" required><br>
 		<input id="stock_price" class="manager_input" name="price" type="text" placeholder="Price"><br>
-		
-	</form>
-	<div id = "stock_submit" onclick = "stockadded()"> Update Stock </div>
-</div>
 
-<div id="hullahs"></div>
+	</form>
+	<div id = "stock_submit" class="submit" onclick = "stockAdded()"> Update Stock </div>
+	<div id="hullahs2"></div>
+</div>
 
 </body>
