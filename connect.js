@@ -123,21 +123,8 @@ function removeFromBasket(upc)
 	{
 		if (item == upc)
 		{
-			if (basket[upc] > 0)
-			{
-				basket[upc]--;
-				alert("Item " + upc + " has qty " + basket[upc]);
-				break;
-			}
-			else
-			{
-				alert("0 qty for item " + upc);
-				break;
-			}
-		}
-		else
-		{
-			alert("Item " + upc + " not in basket");
+			delete basket[upc];
+			updateBasket();
 			break;
 		}
 	}
@@ -258,12 +245,6 @@ function showCheckMark(genre){
 }
 
 /*
-// addToBasket takes in a upc and adds it to basket
-function addToBasket(upc){
-	item_upc = upc;
-	basketQuantity(1);
-}
-
 function addQuantity(){
 	var quantityForm = document.getElementById("basket_quantity_form");
 	var quantity = quantityForm.elements[0].value;
@@ -304,62 +285,6 @@ function addQuantity(){
   // excecute the request
   xmlhttp.send();	
   
-}
-
-function addToSide(person){
-	basketInner = document.getElementById('sidebar_right').innerHTML;
-	 if (window.XMLHttpRequest)
-  {// initialize a request for modern browsers
-    xmlhttp=new XMLHttpRequest();
-  }
-  else
-  {// initialize a request for internet explorer, cuz ie is soooo awesome!
-    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
-  xmlhttp.onreadystatechange=function()
-  {
-    if (xmlhttp.readyState==4 && xmlhttp.status==200)
-    {
-	  // everything the php script returns goes inside the main_center tag
-	  basketInner += xmlhttp.responseText;
-      document.getElementById("sidebar_right").innerHTML=basketInner;
-	  basketQuantity(0);
-    }
-  } 
-  // request to run getAllItem.php without query strings  
-  xmlhttp.open("GET","addToBasket.php?upc="+person.upc +"&quantity=" +person.quantity,true)
-
-  // excecute the request
-  xmlhttp.send();	
- 
-  
-}  
-
-function removeFromBasket(upc){
-	
-	var person_temp = new Array();
-	var temp = 0;
-    for (var i = 0; i < basket.length; i++){
-		if (upc != basket[i].upc){
-			person_temp[temp] = basket[i];
-			temp++;
-		}
-	}
-     document.getElementById("sidebar_right").innerHTML= "";
-	 basket = person_temp;
-	for (var i = 0; i < basket.length; i++){
-		addToSide(person_temp[i]);
-	}
-}
-
-function basketQuantity(open){
-	if (open == 1){
-		document.getElementById('basket_quantity_popup').style.display = 'inline';
-	}
-	else{
-		document.getElementById("quantity_basket").value = '';
-		document.getElementById('basket_quantity_popup').style.display = 'none';
-		}
 }
 */
 
