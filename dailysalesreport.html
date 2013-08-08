@@ -18,11 +18,13 @@
 </head>
 
 <body>
-	<div id ="shopicon" onclick = "menuopen('printsales')">
+	<div id ="shopicon" >
 		<img id = "title_img" src = "img/title_pic4.png">
 	</div>
 	<div id = "printreports">
-		<div id = "printsales" class= "printbox" onclick = "menuopen('sales_popup')">
+
+		<div id = "printsales" class= "printbox" onclick = "menuopen('sales_popup')" >
+			
 			<p id = "dailytxt" class = "reporttxt">Daily Sales Report</p>
 			<!--<img id = "printerimg" src= "img/printer.svg"> -->
 			<p id = "printtxt"> Print </p>
@@ -79,7 +81,7 @@
 	<div id="hullahs2"></div>
 </div>
 <div id="sales_popup" >
-	
+	<img class = "subcloser" src = "cancel.svg" onclick = "menuclose('sales_popup')"> 
 	<form id="report_sales">
 		<p class = "reportdescription">Please enter a date for which a sales report will be printed.</p>
 		<input id="sales_day" class="manager_input" name="day" type="text" placeholder="dd">
@@ -87,19 +89,20 @@
 		<input id="sales_year" class="manager_input" name="year" type="text" placeholder="yyyy">
 	</form>
 	<div id = "sales_submit" class="submit" onclick = "checkDate()"> Return Report </div>
-	<div id = "hullahs3"></div>
+	<div id = "hullahs3" onclick = "menuclose('sales_popup')"> </div>
 	</div>
 
-	<div id="sales_popup2">
+	<div id="sales_popup2" >
 		
-	<form id="report_sales">
+	<form id="report_sales" >
+		<img class = "subcloser" src = "cancel.svg" onclick = "menuclose('sales_popup2')"> 
 		<p class = "reportdescription">Please enter a date for which a sales report will be printed.</p>
 		<input id="sales_day" class="manager_input" name="day" type="text" placeholder="dd">
 		<input id="sales_month" class="manager_input" name="month" type="text" placeholder="mm">
 		<input id="sales_year" class="manager_input" name="year" type="text" placeholder="yyyy">
 	</form>
 	<div id = "sales_submit" class="submit" onclick = "checkDate2()"> Return Report </div>
-	<div id = "hullahs4"></div>
+	<div id = "hullahs4" onclick = "menuclose('sales_popup2')"></div>
 	</div>
 
 

@@ -78,6 +78,10 @@ body {
 	box-shadow: 0 0 20px 5px #323232;
 }
 
+#printreports:hover{
+	cursor:pointer;
+}
+
 #printtxt{
 	font-size:2em;
 	font-family:'Nixie One',cursive;
@@ -262,3 +266,6 @@ background-color:#ece1c3;
 	font-size:1em;
 }
 
+.subcloser{
+	float:right;
+}
