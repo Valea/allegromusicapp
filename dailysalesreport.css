@@ -81,16 +81,16 @@ body {
 #printtxt{
 	font-size:2em;
 	font-family:'Nixie One',cursive;
-	margin-left:3.5em;
-	margin-top:-1.5em;
+	margin-left:2.5em;
+	margin-top:0em;
 }
 
-.printerimg{
+/*.printerimg{
 	width:2em;
 	height:3em;
 	margin-left: 3em;
 	
-}
+}*/
 
 .printbox{
 	width: 15em;
@@ -113,7 +113,6 @@ body {
 	text-align:center;
 	font-size:1.5em;
 	font-family:'Nixie One',cursive;
-	opacity:1;
 	-webkit-transition: all 0.3s ease-in-out;
 	-moz-transition: all 0.3s ease-in-out;
 	-o-transition: all 0.3s ease-in-out;
@@ -168,22 +167,10 @@ body {
 }
 
 #item_submit{
-   
-    background-color:#ece1c3;
-    color: #152b3c;
-    font-family: 'Corben', cursive;
-    font-size: 1.2em;
-    text-align:center;
     height:1.5em;
     margin-bottom:0.3em;
 }
 #stock_submit{
-   
-    background-color:#ece1c3;
-    color: #152b3c;
-    font-family: 'Corben', cursive;
-    font-size: 1.2em;
-    text-align:center;
     height:2em;
     margin-top:0.2em;
 
@@ -200,7 +187,78 @@ body {
 	font-family: 'Corben', cursive;
 	text-align: center;
 }
+#hullahs3{
+	color:#323232;
+	font-family: 'Corben', cursive;
+	text-align: center;
+}
+#hullahs4{
+	color:#323232;
+	font-family: 'Corben', cursive;
+	text-align: center;
+}
 
+#message_box_text{
+	background-color:#3e838c;
+	height:auto;
+	text-align:center;
+}
 
+#message_box_close{
+	width:5em;
+	height:2em;
+	font-family: 'Pathway Gothic One', sans-serif;
+	font-size: 3em;
+	line-height:2em;
+	background-color:#d30d0d;
+	color: #ece1c3;
+	text-align:center;
+	margin-top:0.2em;
+}
 
+#sales_popup{
+	top:8em;
+	left:25em;
+    border:none;
+    width: 15em;
+    background-color:#ece1c3;
+    border: 1px solid white;
+    overflow: hidden;
+    box-shadow: 0 0 15px 5px #323232;
+    float: right;
+    position:fixed;
+    opacity:0;
+  	
+}
+
+#sales_popup2{
+	top:8em;
+	left:40em;
+    border:none;
+    width: 15em;
+    background-color:#ece1c3;
+    border: 1px solid white;
+    overflow: hidden;
+    box-shadow: 0 0 15px 5px #323232;
+    float: right;
+    position:fixed;
+    opacity:0;
+  	
+}
+
+.submit{
+background-color:#ece1c3;
+    color: #152b3c;
+    font-family: 'Corben', cursive;
+    font-size: 1.2em;
+    text-align:center;
+    height:1.5em;
+    margin-bottom:0.3em;
+
+}
+
+.reportdescription{
+	font-family: 'Corben', cursive;
+	font-size:1em;
+}
 

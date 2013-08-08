@@ -13,6 +13,7 @@
 
 <!-- JavaScript Files -->
 	<script type="text/javascript" src="manager.js"></script>
+	<script type="text/javascript" src="report.js"></script>
 
 </head>
 
@@ -21,15 +22,15 @@
 		<img id = "title_img" src = "img/title_pic4.png">
 	</div>
 	<div id = "printreports">
-		<div id = "printsales" class= "printbox">
+		<div id = "printsales" class= "printbox" onclick = "menuopen('sales_popup')">
 			<p id = "dailytxt" class = "reporttxt">Daily Sales Report</p>
-			<img class = "printerimg" src= "img/printer.svg">
+			<!--<img id = "printerimg" src= "img/printer.svg"> -->
 			<p id = "printtxt"> Print </p>
 		</div>
 
-		<div id = "printtop" class= "printbox">
+		<div id = "printtop" class= "printbox" onclick = "menuopen('sales_popup2')">
 			<p id = "toptxt" class = "reporttxt">Top Selling Report</p>
-			<img class = "printerimg" src= "img/printer.svg">
+			<!--<img id = "printerimg" src= "img/printer.svg"> -->
 			<p id = "printtxt"> Print </p>
 		</div>
 
@@ -77,5 +78,29 @@
 	<div id = "stock_submit" class="submit" onclick = "stockAdded()"> Update Stock </div>
 	<div id="hullahs2"></div>
 </div>
+<div id="sales_popup" >
+	
+	<form id="report_sales">
+		<p class = "reportdescription">Please enter a date for which a sales report will be printed.</p>
+		<input id="sales_day" class="manager_input" name="day" type="text" placeholder="dd">
+		<input id="sales_month" class="manager_input" name="month" type="text" placeholder="mm">
+		<input id="sales_year" class="manager_input" name="year" type="text" placeholder="yyyy">
+	</form>
+	<div id = "sales_submit" class="submit" onclick = "checkDate()"> Return Report </div>
+	<div id = "hullahs3"></div>
+	</div>
+
+	<div id="sales_popup2">
+		
+	<form id="report_sales">
+		<p class = "reportdescription">Please enter a date for which a sales report will be printed.</p>
+		<input id="sales_day" class="manager_input" name="day" type="text" placeholder="dd">
+		<input id="sales_month" class="manager_input" name="month" type="text" placeholder="mm">
+		<input id="sales_year" class="manager_input" name="year" type="text" placeholder="yyyy">
+	</form>
+	<div id = "sales_submit" class="submit" onclick = "checkDate2()"> Return Report </div>
+	<div id = "hullahs4"></div>
+	</div>
+
 
 </body>
