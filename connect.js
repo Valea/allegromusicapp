@@ -36,7 +36,11 @@ xmlhttp.onreadystatechange=function()
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
     {
 	// everything the php script returns goes inside the main_center tag
-    document.getElementById("main_center").innerHTML=xmlhttp.responseText;
+    document.getElementById("container").innerHTML=xmlhttp.responseText;
+	var container = document.querySelector('.masonry');
+	var msnry = new Masonry( container, {
+    columnWidth: 40, isFitWidth: true
+  });
     }
   }
   // request to run getAllItem.php without query strings  
@@ -63,8 +67,10 @@ function getByGenre(genre) {
   {
     if (xmlhttp.readyState==4 && xmlhttp.status==200)
     {
-	  // everything the php script returns goes inside the main_center tag
-      document.getElementById("main_center").innerHTML=xmlhttp.responseText;
+	    document.getElementById("container").innerHTML=xmlhttp.responseText;
+	var container = document.querySelector('.masonry');
+	var msnry = new Masonry( container, {
+    columnWidth: 40, isFitWidth: true  });
     }
   } 
   // request to run getAllItem.php without query strings  

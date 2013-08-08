@@ -160,21 +160,23 @@ body {
 	background-color:black;
 
 }
-#mainTable{
-    margin:auto;
-    
-}
 
 .item{
     width:18em;
     height:auto;
     margin-top:1.5em;
-    margin-left:1.5em;
     overflow-x:hidden;
     background-color: #505050;
+    border: 5px solid white;
+    box-shadow: 0px 0px 9px 3px #505050;
     
-    box-shadow: 0px 0px 6px 2px #505050;
-    
+}
+
+#container{
+	margin:auto;
+	margin-top: 2em;
+	margin-bottom: 3.5em;
+	
 }
 
 .item_title{
@@ -195,20 +197,27 @@ body {
     width:7.5em;
     height:2em;
     background-color: #D7C299;
-    margin-top:0.2em;
+    
 }
+.has_song_img{
+	width:1em;
+	margin-left: 1.5em;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
 
 .item_category_text{
     font-family: 'Pathway Gothic One', sans-serif;
     font-size:1em;
     color:#386166;
 	line-height:2em;
-    margin-left: 0.5em;
+	    margin-left: 0.5em;
 }
 
 .item_disk_type{
     margin-top:-2em;
-    margin-left:7.7em;
+    margin-left:7.5em;
     width:10.5em;
     height:2em;
     background-color: #386166;
@@ -222,14 +231,45 @@ body {
     margin-left: 0.5em;
 }
 
-.item_company{
-    margin-top:0.2em;
+.item_company, .item_has_song{
+    
     width:100%;
     height:2em;
-    background-color: #8ebdb6;
+    background-color: :#386166;
 }
 
-.item_company_text{
+.item_company_text, .item_has_song_text{
+    font-family: 'Pathway Gothic One', sans-serif;
+    font-size:1em;
+    color:#ece1c3;
+    line-height:2em;
+    margin-left: 0.5em;
+}
+
+.item_has_song{
+
+	border-bottom: 1px solid #386166;
+	background-color: #8ebdb6;
+
+}
+
+.item_has_song_text{
+	color: #323232;
+}
+
+.item_has_song_text{
+	margin-left: 3.5em;
+	margin-top: -2.25em;
+}
+
+.item_lead_singer{
+    
+    width:100%;
+    height:2em;
+    background-color: #3e838c;
+}
+
+.item_lead_singer_text{
     font-family: 'Pathway Gothic One', sans-serif;
     font-size:1em;
     color:#323232;
@@ -239,7 +279,7 @@ body {
 
 
 .item_pub_year{
-    margin-top:0.2em;
+    
     width:6em;
     height:2em;
     background-color: #3e838c;
@@ -288,7 +328,7 @@ body {
 
 
 .item_add{
-    margin-top:0.2em;
+    
     width:100%;
     height:2.5em;
     background-color: #F5DEB3;
@@ -446,6 +486,7 @@ body {
 	margin-top:-13.3em;
 	margin-left:-15.2em;
 	display:none;
+	z-index:1000;
 	
 }
 
