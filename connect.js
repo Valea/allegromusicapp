@@ -364,18 +364,23 @@ function addQuantity(){
 }
 */
 
-function search(open){
-	if (open == 1){
+function search(open)
+{
+	if (open == 1)
+	{
 		document.getElementById('search_popup').style.display = 'inline';
 	}
-	else{
+	else
+	{
 		document.getElementById("title_search").value = '';
 		document.getElementById("leading_singer_search").value = '';
 		document.getElementById('search_popup').style.display = 'none';
-		}
+	}
 }
+
 // signin to account
-function signIn(open){
+function signIn(open)
+{
 	if (open == 1){
 		if (user != ""){
 			displayMessage('Already Signed In!');

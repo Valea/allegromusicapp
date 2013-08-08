@@ -13,23 +13,25 @@ $receiptId=0;
 //create entry in Purchase table
 //TODO: Calculate expectedDate and how to set deliveredDate??
 $currentDate = date_default_timezone_get();
-$purchase_sql = "INSERT INTO purchase (pur_date, cid, card#, expiryDate, expectedDate, deliveredDate) 
-				VALUES ($currentDate, $cid, $cardNum, $expiryDate, $currentDate, NULL)";
+$purchase_sql = "INSERT INTO purchase (pur_date, cid, card#, expiryDate) 
+				VALUES ('$currentDate', '$cid', '$cardNum', '$expiryDate')";
 if (!mysql_query($purchase_sql))
 {
-	echo "Error: " . mysql_error();
+	echo "<tr>Error:" . mysql_error() . "</tr>";
+	echo "alert(error!)";
 }
 else
 {
 	$receiptId = mysql_insert_id();
-	echo "1 Purchase added. receiptId = $receiptId";
+	echo "<tr>1 Purchase added. receiptId =" . $receiptId . "</tr>";
+	echo "alert(success!)";
 }
 
 foreach ($upcs as $index=>$upc)
 {
 	//create an entry in PurchaseItem table for each item upc
 	$purchaseItem_sql = "INSERT INTO purchase_item (receiptId, upc, quantity)
-						VALUES ($receiptId, $upc, $quantity[$index])";
+						VALUES ('$receiptId', '$upc', '$quantity[$index]')";
 	if (!mysql_query($purchaseItem_sql))
 	{
 		echo "Error: " . mysql_error();

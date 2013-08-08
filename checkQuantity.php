@@ -7,7 +7,7 @@ $upc=$_GET["upc"];
 $quantity=$_GET["quantity"];
 
 //get all items from the database
-$add = mysql_query("SELECT * FROM item WHERE upc = '".$upc."'");
+$add = mysql_query("SELECT stock, upc FROM item WHERE upc = '".$upc."'");
 
 
 // item is of one item or tuple in the item table
