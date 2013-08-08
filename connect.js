@@ -42,7 +42,7 @@ function updateBasket()
 		}
 	}
 
-	// request to run getBasketItemInfo.php
+	// request to run getBasket.php
 	var basketUPCs = new Array();
 	for(item in basket)
 	{
@@ -60,7 +60,7 @@ function updateBasket()
 	alert(jsonUPCs);
 	alert(jsonQtys);
 	var args = "basket=" + jsonUPCs + "&quantity=" + jsonQtys;
-	xmlhttp.open("GET","getBasketItemInfo.php?" + args,true);
+	xmlhttp.open("GET","getBasket.php?" + args,true);
 
 	// excecute the request
 	xmlhttp.send();
