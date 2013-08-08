@@ -25,7 +25,7 @@ $allItems = mysql_query("SELECT * FROM item WHERE category = '".$category."'");
   
     $songs = mysql_query("SELECT * FROM has_song where upc = '$upc' ");
   while ($song = mysql_fetch_array($songs)){
-	echo "<div class = 'item_has_song'><p class = 'item_has_song_text'>Song: " . $song['song_title'] . "</p></div>";
+	echo "<div class = 'item_has_song'><img class = 'has_song_img' src = 'img/music.svg'> <p class = 'item_has_song_text'> " . $song['song_title'] . "</p></div>";
   }
   
   echo "<div class = 'item_pub_year'><p class = 'item_pub_year_text'>Year: " . $item['pub_year'] . "</p></div>";
