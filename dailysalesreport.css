@@ -64,8 +64,9 @@ body {
 }
 
 #title_img{
-	width:10em;
+	width:14em;
 	position:fixed;
+	left:3em;
 }
 #printreports{
 	width:30em;
@@ -73,7 +74,7 @@ body {
 	overflow:hidden;
 	position:relative;
 	top:2em;
-	margin-left: 11em;
+	margin-left: 25em;
 	box-shadow: 0 0 20px 5px #323232;
 }
 
@@ -124,16 +125,31 @@ body {
 
 }
 
-#add_popup,#stock_popup {
-	margin-top: 0em;
-	margin-right: 2em;
+#add_popup {
+	top:17em;
+	left:2em;
     border:none;
     width: 15em;
     background-color:#386166;
-    border: 5px solid white;
+    border: 2px solid white;
     overflow: hidden;
     box-shadow: 0 0 15px 5px #323232;
     float: right;
+    position:fixed;
+}
+
+#stock_popup{
+	top:10em;
+	left:2em;
+    border:none;
+    width: 15em;
+    background-color:#386166;
+    border: 2px solid white;
+    overflow: hidden;
+    box-shadow: 0 0 15px 5px #323232;
+    float: right;
+    position:fixed;
+  
 }
 
 #stock_popup{
