@@ -3,8 +3,10 @@
 // connect with the database
 include_once("MYSQL_Connect.php");
 
+
+
 //get all items from the database
-$allItems = mysql_query("SELECT * FROM item");
+$allItems = mysql_query("SELECT * FROM item ");
 
 // return a table called mainTable
 echo "<table id = 'mainTable'>";

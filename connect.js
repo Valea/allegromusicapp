@@ -39,6 +39,7 @@ xmlhttp.onreadystatechange=function()
     document.getElementById("main_center").innerHTML=xmlhttp.responseText;
     }
   }
+
   // request to run getAllItem.php without query strings  
   xmlhttp.open("GET","getAllItem.php",true);
   // excecute the request
@@ -68,7 +69,10 @@ function getByGenre(genre) {
     }
   } 
   // request to run getAllItem.php without query strings  
-  xmlhttp.open("GET","getByGenre.php?genre="+genre,true)
+  xmlhttp.open("GET","getByGenre.php?genre="+genre,true);
+
+
+
 
   // excecute the request
   xmlhttp.send();
