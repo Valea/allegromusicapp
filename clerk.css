@@ -1,0 +1,157 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*initializer DO NOT ALTER IN ANY WAY*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+
+html {
+	height: 100%;
+	background-color:#cdb380;
+	
+}
+body {
+	
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width:100%;
+	overflow:hidden;
+	background-image: url("img/bgnoise.png");
+}
+
+#title_img{
+	width:14em;
+	position:fixed;
+	left:3em;
+}
+
+#search_cancel{
+	width:1em;
+	height:1em;
+
+}
+
+#purchase_popup {
+	top:11em;
+	left:2em;
+    border:none;
+    width: 15em;
+    background-color:#ece1c3;
+    border: 1px solid white;
+    overflow: hidden;
+    box-shadow: 0 0 15px 5px #323232;
+    float: right;
+    position:fixed;
+}
+
+#return_popup {
+	top:22em;
+	left:2em;
+    border:none;
+    width: 15em;
+    background-color:#ece1c3;
+    border: 1px solid white;
+    overflow: hidden;
+    box-shadow: 0 0 15px 5px #323232;
+    float: right;
+    position:fixed;
+}
+
+.clerk_input{
+    border:none;
+  	width: 100%;
+    font-family: 'Nixie One', sans-serif;
+    font-size: 1em;
+    color:#ffffff;
+    background-color:#386166;
+    z-index:10;
+}
+
+#cancel_purchase{
+    height:1.5em;
+    margin-bottom:0.3em;
+}
+
+#confirm_purchase{
+    height:1.5em;
+    margin-bottom:0.3em;
+}
+
+#hullahs{
+	color:#323232;
+	font-family: 'Corben', cursive;
+	text-align: center;
+}
+
+#message_box_text{
+	background-color:#3e838c;
+	height:auto;
+	text-align:center;
+}
+
+#message_box_close{
+	width:5em;
+	height:2em;
+	font-family: 'Pathway Gothic One', sans-serif;
+	font-size: 3em;
+	line-height:2em;
+	background-color:#d30d0d;
+	color: #ece1c3;
+	text-align:center;
+	margin-top:0.2em;
+}
+
+.submit{
+background-color:#ece1c3;
+    color: #152b3c;
+    font-family: 'Corben', cursive;
+    font-size: 1.2em;
+    text-align:center;
+    height:1.5em;
+    margin-bottom:0.3em;
+
+}

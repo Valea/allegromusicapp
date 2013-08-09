@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!--https://github.com/boyanghu/allegromusicapp.git-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!-- favicon (little symbol beside the page name) also only works on chrome when site is live -->
+<link rel="shortcut icon" href="img/favicon.png" type="image/png">
+
+<!-- linking the Cascasding Style Sheet to the html page -->
+<link type="text/css" rel="stylesheet" href="clerk.css"/>
+
+<!-- linking the font from google fonts, try running the page without internet, the font changes -->
+<link href='http://fonts.googleapis.com/css?family=Nixie+One' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Corben' rel='stylesheet' type='text/css'>
+
+<!-- linking the javascript page to this html page -->
+<script type="text/javascript" src="connect.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<!-- the text displayed on the tab of your browser -->
+<title>Allegro - Clerk</title>
+</head>
+
+<body>
+	<!-- shop icon -->
+	<div id ="shopicon">
+		<img id = "title_img" src = "img/title_pic4.png">
+	</div>
+	
+	<!-- message popup-->
+	<div id = "message_popup">
+		<div id = "message_box_text" class = "sign_in_input">placeholder</div>
+	</div>
+	
+	<!-- purchase popup -->
+	<div id = "purchase_popup">
+		<form id = "clerk_purchase">
+			<select id="add_payment_type" class="clerk_input" name="payment_type" required onchange="togglePaymentInfo(this.value);">
+				<option>Select a Payment Type</option>
+				<option value="Cash">Cash</option>
+				<option value="Credit">Credit Card</option>
+			</select>
+			<input id="cc_number" class="clerk_input" type="text" placeholder="Credit Card #" style="visibility:hidden"><br>	
+			<input id="cc_expdate" class="clerk_input" type="text" placeholder="Expiry Date" style="visibility:hidden"><br>	
+		</form>
+		<div id = "cancel_purchase" class="submit" onclick = "cancelPurchase()">Cancel Purchase</div>
+		<div id = "confirm_purchase" class="submit" onclick = "confirmPurchase()">Confirm Purchase</div>
+		<div id="hullahs"></div>
+	</div>
+	
+	<!-- return popup -->
+	<div id = "return_popup">
+		<form id = "clerk_return">			
+			<input id="receipt_id" class="clerk_input" type="text" placeholder="Receipt Id"><br>
+		</form>
+		<div id = "process_return" class="submit" onclick = "validateReturn()">Process Return</div>
+		<div id="hullahs"></div>
+	</div>
+	
+	<!-- main display -->
+	<div id = "main_center">
+	</div>
+</body>

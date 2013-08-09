@@ -295,15 +295,16 @@ function signIntoAccount(){
 	{
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{
-		// everything the php script returns a message
-		if (xmlhttp.responseText.trim() ===  "You do not have an account with us" || xmlhttp.responseText.trim() === "Incorrect Password!"){
-			displayMessage(xmlhttp.responseText);
-		}
-		else{
-			user = xmlhttp.responseText;
-			displayMessage("Welcome back " + user);
-			signIn(0);
-		}
+			// everything the php script returns a message
+			if (xmlhttp.responseText.trim() ===  "You do not have an account with us" || xmlhttp.responseText.trim() === "Incorrect Password!"){
+				displayMessage(xmlhttp.responseText);
+			}
+			else
+			{
+				user = xmlhttp.responseText;
+				displayMessage("Welcome back " + user);
+				signIn(0);
+			}
 		}
 	}
 	// request to run signUp.php with query strings  
@@ -371,8 +372,6 @@ function signUpForAccount(){
 	
 }
 
-
-
 // check if the email is an actual email
 function is_email(email){
 	return /^([\w!.%+\-])+@([\w\-])+(?:\.[\w\-]+)+$/.test(email);
@@ -386,4 +385,114 @@ function is_phone(phone){
 function displayMessage(message){
 	document.getElementById("message_box_text").innerHTML = message;
 	document.getElementById('message_popup').style.display = 'inline'
+}
+
+function togglePaymentInfo(type)
+{
+	//Hide initially
+	document.getElementById("cc_number").style.visibility = 'hidden';
+	document.getElementById("cc_expdate").style.visibility = 'hidden';
+	if (type == "Cash")
+	{
+		document.getElementById("cc_number").style.visibility = 'hidden';
+		document.getElementById("cc_expdate").style.visibility = 'hidden';
+	}
+	else if (type == "Credit")
+	{
+		document.getElementById("cc_number").style.visibility = 'visible';
+		document.getElementById("cc_expdate").style.visibility = 'visible';
+	}
+}
+
+function cancelPurchase()
+{
+	alert("Cancel purchase!");
+}
+
+function confirmPurchase()
+{
+	alert("Confirm purchase!");
+}
+
+function validateReturn()
+{
+	var receiptId = document.getElementById("receipt_id").value;
+	alert("Validate return for receiptId " + receiptId);
+	if (window.XMLHttpRequest)
+	{
+		xmlhttp=new XMLHttpRequest();
+	}
+	else
+	{
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	xmlhttp.onreadystatechange=function() {
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{			
+			if (xmlhttp.responseText.trim() == '0')
+			{
+				alert('Invalid receiptId');
+				displayMessage('Invalid receiptId');
+			}
+			else if (xmlhttp.responseText.trim() == '2')
+			{
+				alert('Not within 15 days');
+				displayMessage('Not within 15 days');
+			}
+			else
+			{      
+				document.getElementById("main_center").innerHTML=xmlhttp.responseText;
+			}			
+		}
+	}
+	
+	// request to run validateReturn for the given receiptId
+	xmlhttp.open("GET","validateReturn.php?receiptId="+receiptId,true);
+
+	// excecute the request
+	xmlhttp.send();
+}
+
+function cancelReturn()
+{
+	alert("Cancel return!");
+}
+
+function confirmReturn(receiptId, upcs, qtys)
+{
+	alert("Confirm return for receiptId " + receiptId);
+	if (window.XMLHttpRequest)
+	{
+		xmlhttp=new XMLHttpRequest();
+	}
+	else
+	{
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	xmlhttp.onreadystatechange=function() {
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{			
+			displayMessage('Not within 15 days');
+		}
+	}
+	
+	// request to run createReturn for the given receiptId
+	var args = "receiptId=" + receiptId + "&upcs=" + upcs + "&quantity=" + qtys;
+	xmlhttp.open("GET","createReturn.php?" + args,true);
+
+	// excecute the request
+	xmlhttp.send();
+}
+
+function menuopen(element)
+{
+	document.getElementById(element).style.opacity = "1";
+	document.getElementById(element).style.zIndex = "10";
+}
+function menuclose(element)
+{
+	document.getElementById(element).style.opacity = "0";
+	document.getElementById(element).style.zIndex = "-2";
 }
