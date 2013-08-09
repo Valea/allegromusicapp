@@ -6,6 +6,8 @@ var basket = new Array();
 var basketInner;
 var item_upc; 
 var item_quantity;
+var checkout = 0;
+var string = "";
 
 
 function basketItem (upc, quantity){
@@ -168,7 +170,7 @@ function addQuantity(){
 		item_quantity = quantity;
 		var person = new basketItem(item_upc, item_quantity);
 		// create function to addToBasket
-		basket[basket.length] = person;
+		basket.push(person);
 		addToSide(person);
 	  }
     
@@ -183,7 +185,7 @@ function addQuantity(){
 }
 
 function addToSide(person){
-	basketInner = document.getElementById('sidebar_right').innerHTML;
+	basketInner = document.getElementById('basket').innerHTML;
 	 if (window.XMLHttpRequest)
   {// initialize a request for modern browsers
     xmlhttp=new XMLHttpRequest();
@@ -198,7 +200,7 @@ function addToSide(person){
     {
 	  // everything the php script returns goes inside the main_center tag
 	  basketInner += xmlhttp.responseText;
-      document.getElementById("sidebar_right").innerHTML=basketInner;
+      document.getElementById("basket").innerHTML=basketInner;
 	  basketQuantity(0);
     }
   } 
@@ -221,7 +223,7 @@ function removeFromBasket(upc){
 			temp++;
 		}
 	}
-     document.getElementById("sidebar_right").innerHTML= "";
+     document.getElementById("basket").innerHTML= "";
 	 basket = person_temp;
 	for (var i = 0; i < basket.length; i++){
 		addToSide(person_temp[i]);
@@ -235,6 +237,19 @@ function basketQuantity(open){
 	else{
 		document.getElementById("quantity_basket").value = '';
 		document.getElementById('basket_quantity_popup').style.display = 'none';
+		}
+}
+
+function checkOutPopUp(open){
+	if (open == 1){
+		document.getElementById('checkout_popup').style.display = 'inline';
+	}
+	else{
+		document.getElementById("credit_card_number").value = '';
+		document.getElementById("expire_date").value = '';
+		document.getElementById("checkout_popup_display").innerHTML = '';
+		document.getElementById('credit_card_form').style.display = 'none';
+		document.getElementById('checkout_popup').style.display = 'none';
 		}
 }
 
@@ -373,7 +388,88 @@ function signUpForAccount(){
 	
 }
 
+function checkOut(){
+	string = "";
+	for (var i = 0; i < basket.length; i++){
+		string += basket[i].upc;
+		string += ",";
+		string += basket[i].quantity;
+		if (basket[i + 1] != null){
+			string+=",";
+		}
+	}
+	
+	if (window.XMLHttpRequest)
+	{// initialize a request for modern browsers
+		xmlhttp=new XMLHttpRequest();
+	}
+	else
+	{// initialize a request for internet explorer, cuz ie is soooo awesome!
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			document.getElementById("checkout_popup_display").innerHTML=xmlhttp.responseText;
+			checkOutPopUp(1);
+		}
+	}	 
+	// request to run getAllItem.php without query strings  
+	xmlhttp.open("GET","getTotalBasket.php?basketItems="+string,true)
 
+	// excecute the request
+	xmlhttp.send();
+}
+
+function onlineCheckOut(){
+	if (user == "" || user == null){
+		checkOutPopUp(0);
+		signIn(1);
+		displayMessage('Please Sign-In First');
+		return;
+	}
+	if (checkout == 0){
+		document.getElementById('credit_card_form').style.display = 'inline';
+		checkout++;
+		return;
+	}	
+	var creditCard = document.getElementById("credit_card_form");
+	var cardNumber = creditCard.elements[0].value;
+	if (cardNumber .length != 16){
+		displayMessage('Enter a 16 digit card number');
+		return;
+	}
+	var cardDate = creditCard.elements[1].value;
+	if (cardDate.length != 4 ){
+		displayMessage('Enter a 4 digit card date');
+		return;
+	}
+	checkout = 0;
+	if (window.XMLHttpRequest)
+	{// initialize a request for modern browsers
+		xmlhttp=new XMLHttpRequest();
+	}
+	else
+	{// initialize a request for internet explorer, cuz ie is soooo awesome!
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			 displayMessage(xmlhttp.responseText);
+			
+		}
+	}	 
+	// request to run getAllItem.php without query strings  
+	xmlhttp.open("GET","makePurchase.php?basketItems="+string + "&cardnumber=" + cardNumber + "&carddate=" + cardDate + "&user=" + user,true);
+
+	// excecute the request
+	xmlhttp.send();
+	
+	
+}
 
 // check if the email is an actual email
 function is_email(email){

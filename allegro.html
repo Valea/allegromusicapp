@@ -56,6 +56,18 @@
 	<div id = "add_quantity" onclick = "addQuantity()">Add</div>
 </div>
 
+
+<div id = "checkout_popup">
+	<img id = "checkout_popup_cancel" src = "img/cancel.svg" onclick = "checkOutPopUp(0);">
+	<div id = "checkout_popup_display"></div>
+	<form id = "credit_card_form">
+		<input id ="credit_card_number" class = "sign_in_input" type ="text" name = "title" placeholder = "Credit Card Number">
+		<input id ="expire_date" class = "sign_in_input" type ="text" name = "title" placeholder = "Expire Date mmyy">
+	</form>
+	<div id = "checkout_popup_click" onclick = "onlineCheckOut()">Checkout</div>
+</div>
+
+
 <!-- message popup-->
 <div id = "message_popup">
 	<div id = "message_box_text" class = "sign_in_input">placeholder</div>
@@ -118,7 +130,8 @@
 
 <!-- basket menu -->
 <div id = "sidebar_right">
-	
+		<div id = "basket"></div>
+		<div id = "checkout" onclick = "checkOut()">Check Out</div>
 </div>
 
 <!-- main display -->
