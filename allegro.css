@@ -490,7 +490,7 @@ body {
 #search_button:active{
 	box-shadow: inset 0px 0px 0px 6px #386166;
 }
-#sign_in_popup, #message_popup, #search_popup, #basket_quantity_popup,#checkout_popup{
+#sign_in_popup, #message_popup, #search_popup, #basket_quantity_popup,#checkout_popup,#receipt_popup{
 	position:fixed;
 	background-color:white;
 	width: 30em;
@@ -506,7 +506,7 @@ body {
 	z-index:1000;
 }
 
-#checkout_popup{
+#receipt_popup,#checkout_popup{
 	margin-top:-18.3em;
 }
 
@@ -568,7 +568,7 @@ body {
 }
 
 
-#sign_in, #message_box_close, #search, #add_quantity,#checkout_popup_click{
+#receipt_close,#sign_in, #message_box_close, #search, #add_quantity,#checkout_popup_click{
 	width:5em;
 	height:2em;
 	font-family: 'Pathway Gothic One', sans-serif;
@@ -580,15 +580,15 @@ body {
 	margin-top:0.2em;
 }
 
-#message_box_close, #search,#add_quantity,#checkout_popup_click{
+#receipt_close,#message_box_close, #search,#add_quantity,#checkout_popup_click{
 	width:100%;
 }
 
 
-#sign_in:hover, #sign_up:hover,#message_box_close:hover, #search:hover,#add_quantity:hover, #checkout:hover,#checkout_popup_click:hover{
+#receipt_close:hover,#sign_in:hover, #sign_up:hover,#message_box_close:hover, #search:hover,#add_quantity:hover, #checkout:hover,#checkout_popup_click:hover{
 	cursor:pointer;
 }
-#sign_in:active, #message_box_close:active, #search:active, #add_quantity:active,#checkout_popup_click:active{
+#receipt_close:hover,#sign_in:active, #message_box_close:active, #search:active, #add_quantity:active,#checkout_popup_click:active{
 	box-shadow: inset 0px 0px 0px 10px #3e838c;
 }
 
@@ -693,7 +693,7 @@ body {
 	display:none;
 }
 
-#checkout_popup_display{
+#checkout_popup_display, #receipt_text{
 	width:100%;
 	max-height: 20em;
 	overflow-y:auto;

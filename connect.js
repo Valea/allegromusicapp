@@ -458,8 +458,12 @@ function onlineCheckOut(){
 	{
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{
-			 displayMessage(xmlhttp.responseText);
-			
+			 
+			var string = document.getElementById("checkout_popup_display").innerHTML;
+			string += xmlhttp.responseText;
+			checkOutPopUp(0);
+			document.getElementById('receipt_text').innerHTML = string;
+			document.getElementById('receipt_popup').style.display = 'inline';
 		}
 	}	 
 	// request to run getAllItem.php without query strings  
