@@ -216,18 +216,44 @@ function addToSide(person){
 function removeFromBasket(upc){
 	
 	var person_temp = new Array();
-	var temp = 0;
     for (var i = 0; i < basket.length; i++){
 		if (upc != basket[i].upc){
-			person_temp[temp] = basket[i];
-			temp++;
+			person_temp.push(basket[i]);
 		}
 	}
      document.getElementById("basket").innerHTML= "";
 	 basket = person_temp;
+	 
+	string = "";
 	for (var i = 0; i < basket.length; i++){
-		addToSide(person_temp[i]);
+		string += basket[i].upc;
+		string += ",";
+		string += basket[i].quantity;
+		if (basket[i + 1] != null){
+			string+=",";
+		}
 	}
+	
+	if (window.XMLHttpRequest)
+	{// initialize a request for modern browsers
+		xmlhttp=new XMLHttpRequest();
+	}
+	else
+	{// initialize a request for internet explorer, cuz ie is soooo awesome!
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			document.getElementById("basket").innerHTML=xmlhttp.responseText;
+		}
+	}	 
+	// request to run getAllItem.php without query strings  
+	xmlhttp.open("GET","removeFromBasket.php?basketItems="+string,true);
+
+	// excecute the request
+	xmlhttp.send();
 }
 
 function basketQuantity(open){
@@ -464,6 +490,9 @@ function onlineCheckOut(){
 			checkOutPopUp(0);
 			document.getElementById('receipt_text').innerHTML = string;
 			document.getElementById('receipt_popup').style.display = 'inline';
+			displayAllItem();
+			document.getElementById('basket').innerHTML = "";
+			basket = new Array();
 		}
 	}	 
 	// request to run getAllItem.php without query strings  

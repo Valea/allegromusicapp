@@ -31,6 +31,7 @@ for ($i=0; $i<$length; $i++){
 		$itemprice = $price * $numberofitems;
 		$totalPrice += $itemprice;
 		mysql_query("insert into purchase_item values ('$reciptID','$upc','$numberofitems')");
+		mysql_query("update item set stock = stock-'$numberofitems' where upc = '$upc'");
 		
 	}
 	
