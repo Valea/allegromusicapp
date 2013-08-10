@@ -119,6 +119,39 @@ function checkDate(){
 	xmlhttp.send();
 }
 
+function printTop(){
+	var topReportValues = document.getElementById("report_top");
+	var d = topReportValues.elements[0].value;
+	var m = topReportValues.elements[1].value;
+	var y = topReportValues.elements[2].value;
+	var num = topReportValues.elements[3].value;
+	var date = y + "-" + m + "-" + d;
+	//var sqldate = new Date(date);
+// when all fields are covered
+	if (window.XMLHttpRequest)
+	{// initialize a request for modern browsers
+		xmlhttp=new XMLHttpRequest();
+	}
+	else
+	{// initialize a request for internet explorer, cuz ie is soooo awesome!
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			document.getElementById("hullahs4").innerHTML=xmlhttp.responseText;
+			//displayMessage(xmlhttp.responseText);
+		//add(0)
+		}
+	}
+	// request to run signUp.php with query strings  
+	xmlhttp.open("GET","topSellingReport.php?date="+ date+ "&num=" + num,true);
+
+	// excecute the request
+	xmlhttp.send();
+}
+
 // USE THIS METHOD TO DISPLAY A MESSAGE TO A USER!!!!!!!  
 function displayMessage(message){
   document.getElementById("message_box_text").innerHTML = message;
