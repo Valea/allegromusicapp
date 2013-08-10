@@ -57,5 +57,5 @@
 		}
 		echo "</tr>";
 		}
-
+		echo "</table>";
 ?>
