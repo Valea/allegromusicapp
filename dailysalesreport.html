@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<!--https://github.com/boyanghu/allegromusicapp.git-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!-- favicon (little symbol beside the page name) also only works on chrome when site is live -->
+<link rel="shortcut icon" href="img/favicon.png" type="image/png">
+
+<!-- linking the Cascasding Style Sheet to the html page -->
+<link type="text/css" rel="stylesheet" href="dailysalesreport.css"/>
+
+<link href='http://fonts.googleapis.com/css?family=Nixie+One' rel='stylesheet' type='text/css'>
+
+<!-- JavaScript Files -->
+	<script type="text/javascript" src="manager.js"></script>
+
+</head>
+
+<body>
+	<div id ="shopicon" onclick = "menuopen('printsales')">
+		<img id = "title_img" src = "img/title_pic4.png">
+	</div>
+	<div id = "printreports">
+		<div id = "printsales" class= "printbox">
+			<p id = "dailytxt" class = "reporttxt">Daily Sales Report</p>
+			<img class = "printerimg" src= "img/printer.svg">
+			<p id = "printtxt"> Print </p>
+		</div>
+
+		<div id = "printtop" class= "printbox">
+			<p id = "toptxt" class = "reporttxt">Top Selling Report</p>
+			<img class = "printerimg" src= "img/printer.svg">
+			<p id = "printtxt"> Print </p>
+		</div>
+
+	<!-- message popup-->
+	<div id = "message_popup">
+		<div id = "message_box_text" class = "sign_in_input">placeholder</div>
+		<div id = "message_box_close" onclick = "document.getElementById('message_popup').style.display = 'none'">Ok</div>
+	</div>
+	</div>
+
+	<!-- forms! -->
+	<div id="add_popup">
+		<form id="add_item" >
+			<input id="add_title" class="manager_input" name="title" type="text" placeholder="Title" required>
+			<select id="add_type" class="manager_input" name="disk_type" required>
+				<option selected>Disk Type</option>
+				<option value="CD">CD</option>
+				<option value="DVD">DVD</option>
+		</select>
+		<select id="add_cate" class="manager_input" name="category" required>
+			<option selected>Genre</option>
+			<option value="Rock">Rock</option>
+			<option value="Rap">Rap</option>
+			<option value="Pop">Pop</option>
+			<option value="Country">Country</option>
+			<option value="New Age">New Age</option>
+			<option value="Classical">Classical</option>
+			<option value="Instrumental">Instrumental</option>
+		</select>
+		<input id="add_comp" class="manager_input" name="company" type="text" placeholder="Publishing Company" required><br>
+		<input id="add_year" class="manager_input" name="pub_year" type="text" placeholder="Publishing Year" required>
+		<input id="add_price" class="manager_input" name="price" type="text" placeholder="Price" required><br>
+		<input id="add_stock" class="manager_input" name="stock" type="text" placeholder="Stock" required>
+	</form>
+	<div id = "item_submit" class="submit" onclick = "itemAdded()"> Add New Item </div> 
+	<div id="hullahs"></div>
+
+	</div>
+	<div id="stock_popup">
+		<form id="stock_item">
+			<input id="stock_upc" class="manager_input" name="upc" type="text" placeholder="UPC" required><br>
+			<input id="stock_stock" class="manager_input" name="stock" type="text" placeholder="Stock" required><br>
+			<input id="stock_price" class="manager_input" name="price" type="text" placeholder="Price"><br>
+
+		</form>
+		<div id = "stock_submit" class="submit" onclick = "stockAdded()"> Update Stock </div>
+		<div id="hullahs2"></div>
+	</div>
+
+	<div id="sales_popup">
+	<form id="report_sales">
+		<p>Please enter a date for which a sales report will be printed.</p>
+		<input id="sales_day" class="manager_input" name="day" type="text" placeholder="dd">
+		<input id="sales_month" class="manager_input" name="month" type="text" placeholder="mm">
+		<input id="sales_year" class="manager_input" name="year" type="text" placeholder="yyyy">
+	</form>
+	<div id = "sales_submit" class="submit" onclick = "checkDate()"> Return Report </div>
+	<div id = "hullahs3"></div>
+	</div>
+
+	<div id="report_table"></div>
+</body>
