@@ -415,6 +415,12 @@ function signUpForAccount(){
 }
 
 function checkOut(){
+	if (basket.length == 0){
+		displayMessage('You have nothing in your basket');
+		return;
+	}
+	
+	
 	string = "";
 	for (var i = 0; i < basket.length; i++){
 		string += basket[i].upc;
@@ -504,6 +510,45 @@ function onlineCheckOut(){
 	
 }
 
+function searchDB(){
+	var searchValues = document.getElementById("search_form");
+	var title= searchValues.elements[0].value;
+	var artist = searchValues.elements[1].value;
+	if (title == "" && artist == ""){
+		displayMessage("Enter Something");
+		return;
+	}
+	if (window.XMLHttpRequest)
+  {// initialize a request for modern browsers
+    xmlhttp=new XMLHttpRequest();
+  }
+  else
+  {// initialize a request for internet explorer, cuz ie is soooo awesome!
+    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xmlhttp.onreadystatechange=function()
+  {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+	    document.getElementById("container").innerHTML=xmlhttp.responseText;
+	var container = document.querySelector('.masonry');
+	var msnry = new Masonry( container, {
+    columnWidth: 40, isFitWidth: true  });
+	search(0);
+	if (xmlhttp.responseText.trim() == ''){
+		displayMessage('No Items Found');
+	}
+	  clearCheckMark();
+    }
+  } 
+  // request to run getAllItem.php without query strings  
+  xmlhttp.open("GET","getSearch.php?title="+title + "&artist="+artist,true);
+
+  // excecute the request
+  xmlhttp.send();
+	
+	
+}
 // check if the email is an actual email
 function is_email(email){
 	return /^([\w!.%+\-])+@([\w\-])+(?:\.[\w\-]+)+$/.test(email);
