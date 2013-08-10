@@ -13,7 +13,12 @@ $totalPrice = 0;
 $totalQuantity = 0;
 $dateTime = new DateTime();
 $dateTime = $dateTime->format('Y-m-d H:i:s'); 
-mysql_query("insert into purchase (pur_date,cid,card_number,expiryDate) values ('".$dateTime."','$user','$cardNumber','$cardDate')");
+$expectedDate = mysql_query("SELECT * FROM `purchase` WHERE expectedDate is null");
+$daysNeeded = round(mysql_num_rows($expectedDate)/10) + 3;
+$dateAdded = new DateTime();
+$dateAdded = $dateAdded->modify ("+{$daysNeeded} day");
+$dateAdded = $dateAdded->format('Y-m-d'); 
+mysql_query("insert into purchase (pur_date,cid,card_number,expiryDate,expectedDate) values ('".$dateTime."','$user','$cardNumber','$cardDate','$dateAdded')");
 $reciptID = mysql_insert_id();
 
 for ($i=0; $i<$length; $i++){
@@ -38,7 +43,8 @@ for ($i=0; $i<$length; $i++){
 	
 }
 
-echo "<div class = 'checkout_title'><p class = 'checkout_title_text'>Receipt ID: " . $reciptID . "</p></div>";
+echo "<div class = 'checkout_receiptID'><p class = 'checkout_receiptID_text'>Receipt ID: " . $reciptID . "</p></div>";
+echo "<div class = 'checkout_expectedDate'><p class = 'checkout_expectedDate_text'>Expected Date: " . $dateAdded  . "</p></div>";
 	
 mysql_close();
 

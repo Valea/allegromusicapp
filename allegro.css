@@ -634,7 +634,7 @@ body {
 	left: 0.9em;
 }
 
-.checkout_title, .checkout_price, .checkout_quantity, .checkout_itemprice, .checkout_totalprice, .checkout_totalquantity{
+.checkout_title, .checkout_expectedDate,.checkout_receiptID,.checkout_price, .checkout_quantity, .checkout_itemprice, .checkout_totalprice, .checkout_totalquantity{
 	width:100%;
 	background-color: #3e838c;
 	text-align:center;
@@ -644,6 +644,16 @@ body {
 	border-top:1px solid #ece1c3;
 }
 
+.checkout_receiptID{
+	width:15em;
+}
+
+.checkout_expectedDate{
+	width:15em;
+	margin-left:15em;
+	background-color:#D7C299;
+	margin-top:-3em;
+	}
 .checkout_price{
 	width: 10em;
 	background-color:#729792;
@@ -678,13 +688,16 @@ body {
 	background-color:#386166;
 }
 
-.checkout_title_text, .checkout_price_text, .checkout_quantity_text, .checkout_itemprice_text, .checkout_totalprice_text, .checkout_totalquantity_text{
+.checkout_title_text,.checkout_expectedDate_text, .checkout_receiptID_text,.checkout_price_text, .checkout_quantity_text, .checkout_itemprice_text, .checkout_totalprice_text, .checkout_totalquantity_text{
 	font-family: 'Pathway Gothic One', sans-serif;
     font-size:1.5em;
     color:#ece1c3;
     line-height:2em;
 }
 
+.checkout_expectedDate_text{
+	color:#386166;
+}
 .checkout_title_text{
 	 font-size:2em;
 }
