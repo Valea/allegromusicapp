@@ -227,6 +227,7 @@ xmlhttp.onreadystatechange=function()
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
     {
 	// everything the php script returns goes inside the main_center tag
+			document.getElementById("main_center").innerHTML="<div id='container' class='masonry'></div>";	
     document.getElementById("container").innerHTML=xmlhttp.responseText;
 	var container = document.querySelector('.masonry');
 	var msnry = new Masonry( container, {
@@ -241,34 +242,94 @@ xmlhttp.onreadystatechange=function()
   xmlhttp.send();
 }
 
-function displayAllItem() { 
-if (window.XMLHttpRequest)
-  {// initialize a request for modern browsers
-  xmlhttp=new XMLHttpRequest();
-  }
-else
-  {// initialize a request for internet explorer, cuz ie is soooo awesome!
-  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
-xmlhttp.onreadystatechange=function()
-  {
-  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-    {
-	// everything the php script returns goes inside the main_center tag
-    document.getElementById("container").innerHTML=xmlhttp.responseText;
-	var container = document.querySelector('.masonry');
-	var msnry = new Masonry( container, {
-    columnWidth: 40, isFitWidth: true});
+function displayAllItem()
+{ 
+	if (window.XMLHttpRequest)
+	{
+		xmlhttp=new XMLHttpRequest();
+	}
+	else
+	{
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	xmlhttp.onreadystatechange=function() {
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			// everything the php script returns goes inside the main_center tag
+			document.getElementById("main_center").innerHTML="<div id='container' class='masonry'></div>";		
+			document.getElementById("container").innerHTML=xmlhttp.responseText;
+			var container = document.querySelector('.masonry');
+			var msnry = new Masonry( container, {
+				columnWidth: 40, isFitWidth: true
+			});
+		}
+	}
 
-    }
-  }
-
-  // request to run getAllItem.php without query strings  
-  xmlhttp.open("GET","getAllItem_Manager.php",true);
-  // excecute the request
-  xmlhttp.send();
+	// request to run getAllItem_Manager.php without query strings  
+	xmlhttp.open("GET","getAllItem_Manager.php",true);
+	xmlhttp.send();
 }
 
+function displayTable(open)
+{
+	if (open == 1)
+	{
+		if (window.XMLHttpRequest)
+		{
+			xmlhttp=new XMLHttpRequest();
+		}
+		else
+		{
+			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		
+		xmlhttp.onreadystatechange=function() {
+			if (xmlhttp.readyState==4 && xmlhttp.status==200)
+			{
+				// everything the php script returns goes inside the table_names tag
+				document.getElementById("table_name").innerHTML=xmlhttp.responseText;
+				document.getElementById('table_popup').style.display = 'inline';
+			}
+		}
+
+		// request to run getTableNames.php without query strings  
+		xmlhttp.open("GET","getTableNames.php",true);
+		xmlhttp.send();
+	}
+	else
+	{
+		document.getElementById("table_name").selectedIndex = 0;
+		document.getElementById('table_popup').style.display = 'none';
+	}
+}
+
+function displayAllRows(table)
+{
+	if (window.XMLHttpRequest)
+	{
+		// initialize a request for modern browsers
+		xmlhttp=new XMLHttpRequest();
+	}
+	else
+	{
+		// initialize a request for internet explorer, cuz ie is soooo awesome!
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	xmlhttp.onreadystatechange=function() {
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			// everything the php script returns goes inside the main_center tag
+			document.getElementById("main_center").innerHTML=xmlhttp.responseText;
+			document.getElementById('table_popup').style.display = 'none';
+		}
+	}
+
+	// request to run getAllRows.php
+	xmlhttp.open("GET","getAllRows.php?table="+table,true);
+	xmlhttp.send();
+}
 
 // USE THIS METHOD TO DISPLAY A MESSAGE TO A USER!!!!!!!  
 function displayMessage(message){

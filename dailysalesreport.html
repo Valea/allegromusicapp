@@ -23,10 +23,12 @@
 		<div id = "daily_menu" class = "menu"  title = "Print Daily Report" onclick = "sales(1)"><img class = "menu_item" src = "img/calendar.svg"></div>
 		<div id = "favorite_menu" class = "menu"  title = "Print Best Selling" onclick = "pop(1)"><img class = "menu_item" src = "img/star.svg"></div>
 		<div id = "alert_menu" class = "menu"  title = "Items with Low Stock" onclick = "displayLessItem()"><img class = "menu_item" src = "img/warning.svg"></div>
+		<div id = "table_menu" class = "menu"  title = "Display all rows for a Table" onclick = "displayTable(1)"><img class = "menu_item" src = "img/warning.svg"></div>
 	</div>
 	
 	
 	<!-- forms! -->
+	<!-- add item popup -->
 	<div id="add_popup" class = "popup">
 		<form id="add_item" >
 			<img class = "cancel" src = "img/cancel.svg" onclick = "add(0)">
@@ -50,7 +52,9 @@
 			<input id="add_stock"  class = "sign_in_input" name="stock" type="text" placeholder="Stock" >
 		</form>
 		<div id = "item_submit"class ="popup_button"  onclick = "itemAdded()"> Add New Item </div> 
-	</div>
+	</div>	
+	
+	<!-- update item stock popup -->
 	<div id="stock_popup" class = "popup">
 		<img class = "cancel" src = "img/cancel.svg" onclick = "stock(0)">
 		<form id="stock_item">
@@ -60,7 +64,8 @@
 		</form>
 		<div id = "stock_submit" class ="popup_button" onclick = "stockAdded()"> Update Stock </div>
 	</div>
-
+	
+	<!-- daily sales report popup -->
 	<div id="sales_popup" class = "popup">
 		<img class = "cancel" src = "img/cancel.svg" onclick = "sales(0)">
 	<form id="report_sales">
@@ -72,6 +77,7 @@
 	<div id = "sales_submit" class ="popup_button"  onclick = "checkDate()"> Return Report </div>
 	</div>
 
+	<!-- top selling items report popup -->
 	<div id="popularity_popup" class = "popup">
 	<img class = "cancel" src = "img/cancel.svg" onclick = "pop(0)">
 	<form id="report_top">
@@ -83,10 +89,20 @@
 	</form>
 	<div id = "top_submit" class ="popup_button"  onclick = "printTop()"> Return Report </div>
 	</div>
+	
+	<!-- display table popup -->
+	<div id="table_popup" class = "popup">
+			<img class = "cancel" src = "img/cancel.svg" onclick = "displayTable(0)">
+			<select id="table_name" class="sign_in_input" name="table_name">
+			</select>
+		<div id="display_table" class ="popup_button"  onclick = "displayAllRows(document.getElementById('table_name').value)">Show All Rows</div> 
+	</div>
+	
 	<div id = "report_popup" class = "popup">
 		<div id = "report_text" class = "sign_in_input">placeholder</div>
 		<div id = "report_close" class ="popup_button" onclick = "document.getElementById('report_popup').style.display = 'none'">Ok</div>
 	</div>
+	
 	<div id = "message_popup" class = "popup">
 		<div id = "message_box_text" class = "sign_in_input">placeholder</div>
 		<div id = "message_box_close" class ="popup_button" onclick = "document.getElementById('message_popup').style.display = 'none'">Ok</div>
