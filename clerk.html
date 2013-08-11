@@ -37,7 +37,7 @@
 		<!-- upc and qty info -->
 		<div id = "clerk_item">
 			<form id = "clerk_purchase_form">
-				<input id = "purchase_upc" class="sign_in_input" type="text" name="purchase_upc" size="6" maxlength="6" placeholder="Item UPC (6-digit)">
+				<input id = "purchase_upc" class="clerk_input" type="text" name="purchase_upc" size="6" maxlength="6" placeholder="Item UPC (6-digit)">
 			</form>
 			<div class = "item_add" onclick="addToBasket(document.getElementById('purchase_upc').value)"><p class = "item_add_text">Add To Purchase</p></div>
 		</div>		
@@ -46,7 +46,7 @@
 	<!-- return -->
 	<div id = "clerk_return">
 		<form id = "clerk_return_form">			
-			<input id="receipt_id" class="sign_in_input" type="text" placeholder="Receipt Id"><br>
+			<input id="receipt_id" class="clerk_input" type="text" placeholder="Receipt Id"><br>
 		</form>
 		<div class = "item_add" onclick="validateReturn()"><p class = "item_add_text">Process Return</p></div>
 	</div>

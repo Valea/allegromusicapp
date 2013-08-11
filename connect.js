@@ -141,9 +141,9 @@ function showCheckMark(genre){
 // addToBasket takes in a upc and adds it to basket
 function addToBasket(upc)
 {
-	if (isNaN(upc) || upc == null || upc.length != 6)
+	if (isNaN(upc) || upc == null || upc.toString().length != 6)
 	{
-		displayMessage('Please enter a 6-digit UPC');
+		displayMessage('Please enter a valid 6-digit UPC');
 		return;
 	}
 	
@@ -683,6 +683,14 @@ function instorePurchase(type)
 function validateReturn()
 {
 	var receiptId = document.getElementById("receipt_id").value;
+	
+	if (isNaN(receiptId) || receiptId === null || receiptId === '')
+	{
+		displayMessage('Please enter a valid receipt ID');
+		return;
+	}
+	
+	
 	if (window.XMLHttpRequest)
 	{
 		xmlhttp=new XMLHttpRequest();
@@ -705,11 +713,7 @@ function validateReturn()
 			}
 			else
 			{      
-				var string = document.getElementById("checkout_popup_display").innerHTML;
-				string += xmlhttp.responseText;
-				checkOutPopUp(0);
-				document.getElementById('receipt_text').innerHTML = string;
-				document.getElementById('receipt_popup').style.display = 'inline';
+				document.getElementById("main_center").innerHTML = xmlhttp.responseText;
 			}			
 		}
 	}

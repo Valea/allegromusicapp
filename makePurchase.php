@@ -61,17 +61,17 @@ for ($i=0; $i<$length; $i++)
 }
 
 echo "<div class = 'checkout_receiptID'><p class = 'checkout_receiptID_text'>Receipt ID: " . $reciptID . "</p></div>";
-echo "<div class = 'checkout_expectedDate'><p class = 'checkout_expectedDate_text'>Purchase Date: " . $dateTime . "</p></div>";
+echo "<div class = 'checkout_expectedDate'><p class = 'checkout_expectedDate_text'>Date: " . $dateTime . "</p></div>";
 
 if (!(is_null($cardNumber)))
 {
 	$cardNumber_substr = substr($cardNumber, -5);
-	echo "<br><div class = 'checkout_receiptID'><p class = 'checkout_receiptID_text'>Card #: ***********" . $cardNumber_substr . "</p></div>";
+	echo "<div class = 'checkout_receiptID'><p class = 'checkout_receiptID_text'>Card #: ***********" . $cardNumber_substr . "</p></div>";
 }
 
 if (!(is_null($user)))
 {
-	echo "<br><div class = 'checkout_expectedDate'><p class = 'checkout_expectedDate_text'>Expected Date: " . $dateAdded  . "</p></div>";
+	echo "<div class = 'checkout_expectedDate'><p class = 'checkout_expectedDate_text'>Est. Delivery: " . $dateAdded  . "</p></div>";
 }
 	
 mysql_close();

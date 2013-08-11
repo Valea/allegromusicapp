@@ -21,35 +21,41 @@ if ($num_results > 0)
 			$interval = $pur_date->diff($date_now);
 			if ($interval->days <= 15)
 			{
-				echo "<div class = 'ret_pur_date'><p class = 'ret_receipt_text'>Purchase Date: " . $purchase["pur_date"] . "</p></div>";
-				echo "<div class = 'ret_receipt_id'><p class = 'ret_receipt_text'>Receipt Id: " . $purchase["receiptId"] . "</p></div>";
+				echo "<div class = 'clerk_input'><p class = 'ret_receipt_text'>Purchase Date: " . $purchase["pur_date"] . "</p></div>";
+				echo "<div class = 'clerk_input'><p class = 'ret_receipt_text'>Receipt Id: " . $purchase["receiptId"] . "</p></div>";
 				
 				//Determine whether purchase was Cash or Credit
-				if (!is_null($purchase["card_number"]))
+				if (!is_null($purchase["card_number"]) && !empty($purchase["card_number"]))
 				{
-					echo "<div class = 'ret_cc_num'><p class = 'ret_receipt_text'>Credit Card Number: " . $purchase["card_number"] . "</p></div>";
-					echo "<div class = 'ret_cc_expdate'><p class = 'ret_receipt_text'>Expiry Date: " . $purchase["expiryDate"] . "</p></div>";
+					echo "<div class = 'clerk_input'><p class = 'ret_receipt_text'>Payment Type: Credit</p></div>";
+					echo "<div class = 'clerk_input'><p class = 'ret_receipt_text'>Credit Card Number: " . $purchase["card_number"] . "</p></div>";
+					echo "<div class = 'clerk_input'><p class = 'ret_receipt_text'>Expiry Date: " . $purchase["expiryDate"] . "</p></div>";
+				}
+				else
+				{
+					echo "<div class = 'clerk_input'><p class = 'ret_receipt_text'>Payment Type: Cash</p></div>";
 				}
 				
 				$items_sql = "SELECT * FROM purchase_item P, item I WHERE P.upc = I.upc AND P.receiptId = '$receiptId'";
 				$items_result = mysql_query($items_sql);
 				$i = 0;
 				
-				// return a table called mainTable
-				echo "<table id = 'mainTable'>";
+				// return a table called returnTable
+				echo "<table id = 'returnTable'>";
 				echo "<thead><tr>
-						<th scope='col'>Select Item</th>
-						<th scope='col'>QTY to Refund</th>
-						<th scope='col'>Refund Amount</th>
-						<th scope='col'>Item Name</th>
-						<th scope='col'>UPC</th>
-						<th scope='col'>Price</th>
-						<th scope='col'>QTY</th>
+						<th scope='col' class='return_header_small' align='center'>Select Item</th>
+						<th scope='col' class='return_header_small'>QTY to Refund</th>
+						<th scope='col' class='return_header_small'>Refund Amount</th>
+						<th scope='col' class='return_header_wide'>Item Name</th>
+						<th scope='col' class='return_header_small'>UPC</th>
+						<th scope='col' class='return_header_small'>Price</th>
+						<th scope='col' class='return_header_small'>QTY</th>
 					</tr></thead>";
 				
 				$selected_btn_set = false;
+				$item_index = 0;
 				while ($item = mysql_fetch_array($items_result))
-				{					
+				{
 					//First, check if there have been previous returns for the given receiptId
 					//If amount already returned is same as total quantity purchased, don't allow return of this item anymore!
 					$prev_ret_sql = "SELECT * FROM returns WHERE receiptId = '$receiptId'";
@@ -74,15 +80,11 @@ if ($num_results > 0)
 					if($i == 0)
 					{
 						// return a new table row
-						echo "<tr>";
+						echo "<tr class =". "d" .($item_index & 1). ">";
 					}
-
-					// return an item
-					echo "<div class = 'item'>";
 					
 					//Radio button - disable the radio button if qty_remaining is 0
-					echo "<td>";
-					
+					echo "<td>";					
 					if ($qty_remaining == 0)
 					{
 						echo "<input id ='refund_radio' type='radio' name='refund_radio' value=" . $item['upc'] . " disabled>";
@@ -114,7 +116,7 @@ if ($num_results > 0)
 						echo "<input id=" . $refund_qty_id . " type='text' name='refund_qty' value='1' min='1' max=" . $qty_remaining . " onkeyup='this.onchange' onchange='updateRefundQtyAmount(this.value, " . $qty_remaining . ", " . $item['price'] . ", " . $item['upc'] . ")'>";
 					}
 					echo "</td>";
-					$i++;				
+					$i++;
 
 					//Amount refundable (quantity to refund * price)
 					$refund_amt_id = "refund_amt_" . $item['upc'];
@@ -126,26 +128,26 @@ if ($num_results > 0)
 					
 					//Item title
 					echo "<td>";
-					echo "<div class = 'item_title'><p class = 'item_price_text'>" . $item['title'] . "</p></div>";
+					echo "<div><p class = 'return_item_text'>" . $item['title'] . "</p></div>";
 					echo "</td>";
 					$i++;
 
 					//Item UPC
 					echo "<td>";
-					echo "<div class = 'item_upc'><p class = 'item_price_text'>" . $item['upc'] . "</p></div>";
+					echo "<div><p class = 'return_item_text'>" . $item['upc'] . "</p></div>";
 					echo "</td>";
 					$i++;
 
 					//Item price - we recorded price in cents now we have to covert it back to dollars
 					$price = $item['price']/100;
 					echo "<td>";
-					echo "<div class = 'item_price'><p class = 'item_price_text'>$" . $price . "</p></div>";
+					echo "<div><p class = 'return_item_text'>$" . $price . "</p></div>";
 					echo "</td>";
 					$i++;
 
 					//Item quantity
 					echo "<td>";
-					echo "<div class = 'item_quantity'><p class = 'item_price_text'>" . $item['quantity'] . "</p></div>";
+					echo "<div><p class = 'return_item_text'>" . $item['quantity'] . "</p></div>";
 					echo "</td>";
 					$i++;
 
@@ -154,11 +156,13 @@ if ($num_results > 0)
 						echo "</tr>";
 						$i = 0;			
 					}
+					
+					$item_index++;
 				}
 				
-				echo "</table>";			
-				echo "<div id = 'cancel_return' class='submit' onclick = 'cancelReturn()'>Cancel Return</div>";
-				echo "<div id = 'confirm_return' class='submit' onclick = 'confirmReturn(" . $receiptId . ")'>Confirm Return</div>";
+				echo "</table>";				
+				echo "<div id = 'cancel_return' class='item_add' onclick = 'cancelReturn()'><p class = 'item_add_text'>Cancel Return</p></div>";
+				echo "<div id = 'confirm_return' class='item_add' onclick = 'confirmReturn(" . $receiptId . ")'><p class = 'item_add_text'>Confirm Return</p></div>";
 			}
 			else
 			{
