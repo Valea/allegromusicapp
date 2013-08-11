@@ -46,7 +46,7 @@
 	<!-- return -->
 	<div id = "clerk_return">
 		<form id = "clerk_return_form">			
-			<input id="receipt_id" class="clerk_input" type="text" placeholder="Receipt Id"><br>
+			<input id="return_receipt_id" class="clerk_input" type="text" placeholder="Receipt Id"><br>
 		</form>
 		<div class = "item_add" onclick="validateReturn()"><p class = "item_add_text">Process Return</p></div>
 	</div>
@@ -74,7 +74,7 @@
 		<input id ="credit_card_number" class = "sign_in_input" type ="text" name = "title" placeholder = "Credit Card Number" style="visibility:hidden">
 		<input id ="expire_date" class = "sign_in_input" type ="text" name = "title" placeholder = "Expire Date mmyy" style="visibility:hidden">
 	</form>
-	<div id = "checkout_popup_click" onclick = "instorePurchase(document.getElementById('payment_type').value)">Proceed</div>
+	<div id = "checkout_popup_click" onclick = "instoreCheckout(document.getElementById('payment_type').value)">Proceed</div>
 </div>
 
 <!-- receipt popup -->

@@ -100,7 +100,6 @@ body {
 	box-shadow: inset 0px 0px 0px 6px #ece1c3;
 }
 
-
 #center{
 	height:100%;
 }
@@ -490,7 +489,24 @@ body {
 #search_button:active{
 	box-shadow: inset 0px 0px 0px 6px #386166;
 }
-#sign_in_popup, #message_popup, #search_popup, #basket_quantity_popup,#checkout_popup,#receipt_popup{
+
+#message_popup{
+	position:fixed;
+	background-color:white;
+	width: 30em;
+	height:auto;
+	left:50%;
+	top:50%;
+	overflow:hidden;
+	border:0.7em solid white;
+	box-shadow: 0px 0px 15px 3px #323232;
+	margin-top:-13.3em;
+	margin-left:-15.2em;
+	display:none;
+	z-index:1500;
+}
+
+#sign_in_popup, #search_popup, #basket_quantity_popup,#checkout_popup,#receipt_popup{
 	position:fixed;
 	background-color:white;
 	width: 30em;

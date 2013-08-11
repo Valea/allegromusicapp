@@ -18,7 +18,9 @@ function basketItem (upc, quantity){
 // when the page loads
 function pageInit(){
   // displays all items to the main page
-  displayAllItem();	
+  displayAllItem();
+  checkOutPopUp(0);
+  
 }
 
 // display all items to the main center
@@ -170,6 +172,12 @@ function addToBasket(upc)
 			else
 			{	
 				item_upc = upc;
+				
+				if (document.getElementById("purchase_upc") != null)
+				{
+					document.getElementById("purchase_upc").value = "";
+				}
+				
 				basketQuantity(1);
 			}
 		}
@@ -314,7 +322,8 @@ function basketQuantity(open)
 
 function checkOutPopUp(open){
 	if (open == 1){
-		document.getElementById('checkout_popup').style.display = 'inline';
+		document.getElementById('checkout_popup').style.display = 'inline';		
+		document.getElementById('credit_card_form').style.display = 'inline';
 	}
 	else{
 		document.getElementById("credit_card_number").value = '';
@@ -469,8 +478,7 @@ function checkOut(){
 	if (basket.length == 0){
 		displayMessage('You have nothing in your basket');
 		return;
-	}
-	
+	}	
 	
 	string = "";
 	for (var i = 0; i < basket.length; i++){
@@ -632,7 +640,7 @@ function togglePaymentInfo(type)
 	}
 }
 
-function instorePurchase(type)
+function instoreCheckout(type)
 {	
 	if (window.XMLHttpRequest)
 	{
@@ -676,53 +684,61 @@ function instorePurchase(type)
 		
 		xmlhttp.open("GET","makePurchase.php?basketItems="+string + "&cardnumber=" + cardNumber + "&carddate=" + cardDate, true);
 	}
+	else
+	{
+		displayMessage('Please select a payment type');
+		return;
+	}
 	
 	xmlhttp.send();	
 }
 
 function validateReturn()
 {
-	var receiptId = document.getElementById("receipt_id").value;
-	
-	if (isNaN(receiptId) || receiptId === null || receiptId === '')
+	if (document.getElementById("return_receipt_id") != null)
 	{
-		displayMessage('Please enter a valid receipt ID');
-		return;
-	}
-	
-	
-	if (window.XMLHttpRequest)
-	{
-		xmlhttp=new XMLHttpRequest();
-	}
-	else
-	{
-		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-	}
-	
-	xmlhttp.onreadystatechange=function() {
-		if (xmlhttp.readyState==4 && xmlhttp.status==200)
-		{			
-			if (xmlhttp.responseText.trim() === 'Invalid')
-			{
-				displayMessage('Invalid receiptId');
-			}
-			else if (xmlhttp.responseText.trim() === 'Not Within 15 Days')
-			{
-				displayMessage('Not within 15 days');
-			}
-			else
-			{      
-				document.getElementById("main_center").innerHTML = xmlhttp.responseText;
-			}			
+		var receiptId = document.getElementById("return_receipt_id").value;
+		
+		if (isNaN(receiptId) || receiptId === null || receiptId === '')
+		{
+			displayMessage('Please enter a valid receipt ID');
+			return;
 		}
-	}
-	
-	// request to run validateReturn for the given receiptId
-	xmlhttp.open("GET","validateReturn.php?receiptId="+receiptId,true);
+		
+		
+		if (window.XMLHttpRequest)
+		{
+			xmlhttp=new XMLHttpRequest();
+		}
+		else
+		{
+			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		
+		xmlhttp.onreadystatechange=function() {
+			if (xmlhttp.readyState==4 && xmlhttp.status==200)
+			{			
+				if (xmlhttp.responseText.trim() === 'Invalid')
+				{
+					displayMessage('Invalid receiptId');
+				}
+				else if (xmlhttp.responseText.trim() === 'Not Within 15 Days')
+				{
+					displayMessage('Not within 15 days');
+				}
+				else
+				{      
+					document.getElementById("main_center").innerHTML = xmlhttp.responseText;
+				}			
+			}
+		}
+		
+		// request to run validateReturn for the given receiptId
+		xmlhttp.open("GET","validateReturn.php?receiptId="+receiptId,true);
 
-	// excecute the request
-	xmlhttp.send();
+		// excecute the request
+		xmlhttp.send();
+	}
 }
 
 function cancelReturn()
@@ -767,6 +783,10 @@ function confirmReturn(receiptId)
 			checkOutPopUp(0);
 			document.getElementById('receipt_text').innerHTML = string;
 			document.getElementById('receipt_popup').style.display = 'inline';
+			if (document.getElementById("return_receipt_id") != null)
+			{
+				document.getElementById("return_receipt_id").value = "";
+			}
 		}
 	}
 	
