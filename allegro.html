@@ -45,7 +45,7 @@
 		<input id ="title_search" class = "sign_in_input" type ="text" name = "title" placeholder = "Disk Title">
 		<input id ="leading_singer_search" class = "sign_in_input" type ="text" name = "name" placeholder = "Artist">
 	</form>
-	<div id = "search" onclick = "search()">Search</div>
+	<div id = "search" onclick = "searchDB()">Search</div>
 </div>
 
 <div id = "basket_quantity_popup">
@@ -55,6 +55,22 @@
 	</form>
 	<div id = "add_quantity" onclick = "addQuantity()">Add</div>
 </div>
+
+
+<div id = "checkout_popup">
+	<img id = "checkout_popup_cancel" src = "img/cancel.svg" onclick = "checkOutPopUp(0);">
+	<div id = "checkout_popup_display"></div>
+	<form id = "credit_card_form">
+		<input id ="credit_card_number" class = "sign_in_input" type ="text" name = "title" placeholder = "Credit Card Number">
+		<input id ="expire_date" class = "sign_in_input" type ="text" name = "title" placeholder = "Expire Date mmyy">
+	</form>
+	<div id = "checkout_popup_click" onclick = "onlineCheckOut()">Checkout</div>
+</div>
+
+<div id = "receipt_popup">
+	<div id = "receipt_text" >placeholder</div>
+	<div id = "receipt_close" onclick = "document.getElementById('receipt_popup').style.display = 'none'">Ok</div>
+</div
 
 <!-- message popup-->
 <div id = "message_popup">
@@ -114,17 +130,17 @@
 	<div id = "search_button" onclick = "search(1)"><img id = "search_img" src = "img/search.svg"></div>
 	<div id = "sign_in_button" onclick = "signIn(1)">Sign In</div>
 
-
 </div>
 
-<form action="manager.php">
 <!-- basket menu -->
 <div id = "sidebar_right">
-	
+		<div id = "basket"></div>
+		<div id = "checkout" onclick = "checkOut()">Check Out</div>
 </div>
 
 <!-- main display -->
 <div id = "main_center" >
+	<div id = "container" class = 'masonry'></div>
 </div>
 
 
