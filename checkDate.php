@@ -63,14 +63,14 @@
 		    echo "<tr>";
 
 		  // return a item title
-		  echo "<td><div class = 'item_title'><p>" . $sale['upc'] . "</p></div></td>";
-		  echo "<td><div class = 'item_category'><p>" . $sale['category'] . "</p></div></td>";
+		  echo "<td><div  ><p>" . $sale['upc'] . "</p></div></td>";
+		  echo "<td><div ><p>" . $sale['category'] . "</p></div></td>";
 
 		  // we recorded price in cents now we have to covert it back to dollars
 		  $price = $sale['price']/100;
-		  echo "<td><div class = 'item_price'><p>$" . $price . "</p></div></td>";
+		  echo "<td><div  ><p>$" . $price . "</p></div></td>";
 
-		  echo "<td><div class = 'item_company'><p>" . $sale['quantity'] . "</p></div></td>";
+		  echo "<td><div ><p>" . $sale['quantity'] . "</p></div></td>";
 		  $units = $units + $sale['quantity'];
 
 		  echo "<td><div class = 'item_stock'><p>$" . $price * $sale['quantity'] . "</p></div></td>";

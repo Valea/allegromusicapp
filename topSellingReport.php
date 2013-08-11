@@ -48,10 +48,10 @@
 		    echo "<tr>";
 
 		  // return a item title
-		  echo "<td><div class = 'item_title'><p>" . $best['title'] . "</p></div></td>";
-		  echo "<td><div class = 'item_company'><p>" . $best['company'] . "</p></div></td>";
-		  echo "<td><div class = 'item_stock'><p>" . $best['stock'] . "</p></div></td>";
-		  echo "<td><div class = 'top_quantity'><p>" . $best['quant'] . "</p></div></td>";
+		  echo "<td><div><p>" . $best['title'] . "</p></div></td>";
+		  echo "<td><div ><p>" . $best['company'] . "</p></div></td>";
+		  echo "<td><div ><p>" . $best['stock'] . "</p></div></td>";
+		  echo "<td><div><p>" . $best['quant'] . "</p></div></td>";
 
 			$i++;
 		}
