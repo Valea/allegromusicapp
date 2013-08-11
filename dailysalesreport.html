@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<!--https://github.com/boyanghu/allegromusicapp.git-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!-- favicon (little symbol beside the page name) also only works on chrome when site is live -->
+<link rel="shortcut icon" href="img/favicon.png" type="image/png">
+
+<!-- linking the Cascasding Style Sheet to the html page -->
+<link type="text/css" rel="stylesheet" href="dailysalesreport.css"/>
+
+<link href='http://fonts.googleapis.com/css?family=Nixie+One' rel='stylesheet' type='text/css'>
+
+<!-- JavaScript Files -->
+	<script type="text/javascript" src="manager.js"></script>
+	<script type="text/javascript" src="masonry.js"></script>
+
+</head>
+
+<body onload=  "displayAllItem()" >
+	<div id ="shopicon" >
+		<div id = "add_menu" class = "menu" title = "Add New Item" onclick = "add(1)"><img class = "menu_item" src = "img/plus.svg"></div>
+		<div id = "update_menu" class = "menu"  title = "Add More Stock" onclick = "stock(1)"><img class = "menu_item" src = "img/floppy.svg"></div>
+		<div id = "daily_menu" class = "menu"  title = "Print Daily Report" onclick = "sales(1)"><img class = "menu_item" src = "img/calendar.svg"></div>
+		<div id = "favorite_menu" class = "menu"  title = "Print Best Selling" onclick = "pop(1)"><img class = "menu_item" src = "img/star.svg"></div>
+		<div id = "alert_menu" class = "menu"  title = "Items with Low Stock" onclick = "displayLessItem()"><img class = "menu_item" src = "img/warning.svg"></div>
+	</div>
+	
+	
+	<!-- forms! -->
+	<div id="add_popup" class = "popup">
+		<form id="add_item" >
+			<img class = "cancel" src = "img/cancel.svg" onclick = "add(0)">
+			<input id="add_title" class="sign_in_input" name="title" type="text" placeholder="Title" >
+			<select id="add_type" class=" sign_in_input" name="disk_type" >
+				<option selected>CD</option>
+				<option value="DVD">DVD</option>
+			</select>
+			<select id="add_cate"  class = "sign_in_input" name="category" >
+				<option selected>Instrumental</option>
+				<option value="Rock">Rock</option>
+				<option value="Rap">Rap</option>
+				<option value="Pop">Pop</option>
+				<option value="Country">Country</option>
+				<option value="New Age">New Age</option>
+				<option value="Classical">Classical</option>
+			</select>
+			<input id="add_comp"  class = "sign_in_input" name="company" type="text" placeholder="Publishing Company" >
+			<input id="add_year" class = "sign_in_input" name="pub_year" type="text" placeholder="Publishing Year" >
+			<input id="add_price"  class = "sign_in_input" name="price" type="text" placeholder="Price" >
+			<input id="add_stock"  class = "sign_in_input" name="stock" type="text" placeholder="Stock" >
+		</form>
+		<div id = "item_submit"class ="popup_button"  onclick = "itemAdded()"> Add New Item </div> 
+	</div>
+	<div id="stock_popup" class = "popup">
+		<img class = "cancel" src = "img/cancel.svg" onclick = "stock(0)">
+		<form id="stock_item">
+			<input id="stock_upc" class = "sign_in_input" name="upc" type="text" placeholder="UPC" >
+			<input id="stock_stock" class = "sign_in_input" name="stock" type="text" placeholder="Stock" >
+			<input id="stock_price"  class = "sign_in_input" name="price" type="text" placeholder="Price">
+		</form>
+		<div id = "stock_submit" class ="popup_button" onclick = "stockAdded()"> Update Stock </div>
+	</div>
+
+	<div id="sales_popup" class = "popup">
+		<img class = "cancel" src = "img/cancel.svg" onclick = "sales(0)">
+	<form id="report_sales">
+		<p id = "report_sales_text" class = "sign_in_input" >Please enter a date</p>
+		<input id="sales_day" class = "sign_in_input"  name="day" type="text" placeholder="dd">
+		<input id="sales_month" class = "sign_in_input"  name="month" type="text" placeholder="mm">
+		<input id="sales_year" class = "sign_in_input"  name="year" type="text" placeholder="yyyy">
+	</form>
+	<div id = "sales_submit" class ="popup_button"  onclick = "checkDate()"> Return Report </div>
+	</div>
+
+	<div id="popularity_popup" class = "popup">
+	<img class = "cancel" src = "img/cancel.svg" onclick = "pop(0)">
+	<form id="report_top">
+		<p id = "report_sales_text" class = "sign_in_input">Date and Top amount</p>
+		<input id="top_day" class = "sign_in_input" name="day" type="text" placeholder="dd">
+		<input id="top_month" class = "sign_in_input" name="month" type="text" placeholder="mm">
+		<input id="top_year" class = "sign_in_input" name="year" type="text" placeholder="yyyy">
+		<input id="top_num" class = "sign_in_input" name="num" type="text" placeholder="number of items">
+	</form>
+	<div id = "top_submit" class ="popup_button"  onclick = "printTop()"> Return Report </div>
+	</div>
+	<div id = "report_popup" class = "popup">
+		<div id = "report_text" class = "sign_in_input">placeholder</div>
+		<div id = "report_close" class ="popup_button" onclick = "document.getElementById('report_popup').style.display = 'none'">Ok</div>
+	</div>
+	<div id = "message_popup" class = "popup">
+		<div id = "message_box_text" class = "sign_in_input">placeholder</div>
+		<div id = "message_box_close" class ="popup_button" onclick = "document.getElementById('message_popup').style.display = 'none'">Ok</div>
+	</div>
+<div id = "main_center" >
+	<div id = "container" class = 'masonry'></div>
+</div>
+	
+</body>
+
+</html>
