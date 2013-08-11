@@ -107,7 +107,15 @@ function stockAdded(){
 		return;
 	}
 	var stock = addStockValues.elements[1].value;
+	if (stock == ""){
+		displayMessage("Please Enter a New Stock");
+		return;
+	}
+	
 	var price = addStockValues.elements[2].value;
+	if (price == ""){
+		price = 0;
+	}
 // when all fields are covered
 	if (window.XMLHttpRequest)
 	{// initialize a request for modern browsers
@@ -128,7 +136,7 @@ function stockAdded(){
 		}
 	}
 	// request to run signUp.php with query strings  
-	xmlhttp.open("GET","addStock.php?upc="+ upc+ "&stock=" + stock+ "&price=" + price,true);
+	xmlhttp.open("GET","updateStock.php?upc="+ upc+ "&stock=" + stock+ "&price=" + price,true);
 
 	// excecute the request
 	xmlhttp.send();
