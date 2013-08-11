@@ -21,30 +21,30 @@ if ($num_results > 0)
 			$interval = $pur_date->diff($date_now);
 			if ($interval->days <= 15)
 			{
-				echo "<div class = 'ret_pur_date'><p class = 'ret_receipt_text'>" . $purchase["pur_date"] . "</p></div>";
-				echo "<div class = 'ret_receipt_id'><p class = 'ret_receipt_text'>" . $purchase["receiptId"] . "</p></div>";
+				echo "<div class = 'ret_pur_date'><p class = 'ret_receipt_text'>Purchase Date: " . $purchase["pur_date"] . "</p></div>";
+				echo "<div class = 'ret_receipt_id'><p class = 'ret_receipt_text'>Receipt Id: " . $purchase["receiptId"] . "</p></div>";
 				
 				//Determine whether purchase was Cash or Credit
 				if (!is_null($purchase["card_number"]))
 				{
-					echo "<div class = 'ret_cc_num'><p class = 'ret_receipt_text'>" . $purchase["card_number"] . "</p></div>";
-					echo "<div class = 'ret_cc_expdate'><p class = 'ret_receipt_text'>" . $purchase["expiryDate"] . "</p></div>";
+					echo "<div class = 'ret_cc_num'><p class = 'ret_receipt_text'>Credit Card Number: " . $purchase["card_number"] . "</p></div>";
+					echo "<div class = 'ret_cc_expdate'><p class = 'ret_receipt_text'>Expiry Date: " . $purchase["expiryDate"] . "</p></div>";
 				}
 				
 				$items_sql = "SELECT * FROM purchase_item P, item I WHERE P.upc = I.upc AND P.receiptId = '$receiptId'";
 				$items_result = mysql_query($items_sql);
 				$i = 0;
-								
+				
 				// return a table called mainTable
 				echo "<table id = 'mainTable'>";
 				echo "<thead><tr>
 						<th scope='col'>Select Item</th>
 						<th scope='col'>QTY to Refund</th>
+						<th scope='col'>Refund Amount</th>
 						<th scope='col'>Item Name</th>
 						<th scope='col'>UPC</th>
 						<th scope='col'>Price</th>
 						<th scope='col'>QTY</th>
-						<th scope='col'>Ext. Price</th>
 					</tr></thead>";
 				
 				$selected_btn_set = false;
@@ -111,8 +111,16 @@ if ($num_results > 0)
 					}
 					else
 					{
-						echo "<input id=" . $refund_qty_id . " type='text' name='refund_qty' value='1' min='1' max=" . $qty_remaining . ">";
+						echo "<input id=" . $refund_qty_id . " type='text' name='refund_qty' value='1' min='1' max=" . $qty_remaining . " onkeyup='this.onchange' onchange='updateRefundQtyAmount(this.value, " . $qty_remaining . ", " . $item['price'] . ", " . $item['upc'] . ")'>";
 					}
+					echo "</td>";
+					$i++;				
+
+					//Amount refundable (quantity to refund * price)
+					$refund_amt_id = "refund_amt_" . $item['upc'];
+					$max_refund_amt = $qty_remaining * ($item['price']/100);
+					echo "<td>";
+					echo "<input id=" . $refund_amt_id . " type='text' name='refund_amt' value=" . ($item['price']/100) . " min='0' max=" . $max_refund_amt . " disabled>";
 					echo "</td>";
 					$i++;
 					
@@ -141,13 +149,6 @@ if ($num_results > 0)
 					echo "</td>";
 					$i++;
 
-					//Extended price (quantity * price)
-					$extprice = $item['quantity'] * ($item['price']/100);
-					echo "<td>";
-					echo "<div class = 'item_ext_price'><p class = 'item_price_text'>$" . $extprice . "</p></div>";
-					echo "</td>";
-					$i++;
-
 					if ($i == 7)
 					{
 						echo "</tr>";
@@ -161,7 +162,7 @@ if ($num_results > 0)
 			}
 			else
 			{
-				echo "2";
+				echo "Not Within 15 Days";
 			}
 			break;
 		}
@@ -169,7 +170,7 @@ if ($num_results > 0)
 }
 else
 { 
-	echo "0";
+	echo "Invalid";
 }
 
 mysql_close();

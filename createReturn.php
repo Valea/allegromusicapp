@@ -6,6 +6,7 @@ include_once("MYSQL_Connect.php");
 $receiptId=$_GET['rid'];
 $upc=$_GET['upc'];
 $qty=$_GET['qty'];
+$amt=$_GET['amt'];
 $retid=0;
 
 //create an entry in Returns table
@@ -20,7 +21,7 @@ if (!mysql_query($return_sql))
 else
 {
 	$retid = mysql_insert_id();
-	echo "1 Return added. retid = " . $retid;
+	echo "<div class = 'checkout_receiptID'><p class = 'checkout_receiptID_text'>Return ID: " . $retid . "</p></div>";
 }
 
 //create an entry in ReturnItem table for the given item upc
@@ -32,7 +33,9 @@ if (!mysql_query($ret_item_sql))
 }
 else
 {
-	echo "1 ReturnItem added";
+	echo "<div class = 'checkout_receiptID'><p class = 'checkout_receiptID_text'>UPC: " . $upc . "</p></div>";
+	echo "<div class = 'checkout_receiptID'><p class = 'checkout_receiptID_text'>Qty: " . $qty . "</p></div>";
+	echo "<div class = 'checkout_receiptID'><p class = 'checkout_receiptID_text'>Amount refunded: " . $amt . "</p></div>";
 }
 
 //update the stock for the corresponding item
@@ -43,7 +46,13 @@ if (!mysql_query($item_sql))
 }
 else
 {
-	echo "Updated stock for item upc: " . $upc; 
+	$check_stock_sql = "SELECT stock FROM item WHERE upc = '$upc'";
+	$check_stock_result = mysql_query($check_stock_sql);
+	
+	while ($item_stock = mysql_fetch_array($check_stock_result))
+	{
+		echo "<div class = 'checkout_receiptID'><p class = 'checkout_receiptID_text'>Updated Stock: " . $item_stock['stock'] . "</p></div>";
+	}
 }
 
 mysql_close();

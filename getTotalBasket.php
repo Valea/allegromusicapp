@@ -9,8 +9,8 @@ $length = count($items);
 $totalPrice = 0;
 $totalQuantity = 0;
 
-for ($i=0; $i<$length; $i++){
-
+for ($i=0; $i<$length; $i++)
+{
 	//get all items from the database
 	$allItems = mysql_query("SELECT * FROM item WHERE upc = '".$items[$i]."'");
 	$i++;
@@ -27,13 +27,11 @@ for ($i=0; $i<$length; $i++){
 		echo "<div class = 'checkout_price'><p class = 'checkout_price_text'>$" . $price . "</p></div>";
 		echo "<div class = 'checkout_quantity'><p class = 'checkout_quantity_text'>Quantity: " . $numberofitems . "</p></div>";
 		echo "<div class = 'checkout_itemprice'><p class = 'checkout_itemprice_text'>$" . $itemprice . "</p></div>";
-	}
-	
-	
+	}	
 }
 
-	echo "<div class = 'checkout_totalquantity'><p class = 'checkout_totalquantity_text'>Total Quantity: " . $totalQuantity . "</p></div>";
-	echo "<div class = 'checkout_totalprice'><p class = 'checkout_totalprice_text'>Total Price: $" . $totalPrice . "</p></div>";
+echo "<div class = 'checkout_totalquantity'><p class = 'checkout_totalquantity_text'>Total Quantity: " . $totalQuantity . "</p></div>";
+echo "<div class = 'checkout_totalprice'><p class = 'checkout_totalprice_text'>Total Price: $" . $totalPrice . "</p></div>";
 	
 mysql_close();
 

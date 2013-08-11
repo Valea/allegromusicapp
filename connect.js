@@ -19,8 +19,6 @@ function basketItem (upc, quantity){
 function pageInit(){
   // displays all items to the main page
   displayAllItem();	
-  
-  // create basket view for the right side bar
 }
 
 // display all items to the main center
@@ -141,51 +139,92 @@ function showCheckMark(genre){
 
 
 // addToBasket takes in a upc and adds it to basket
-function addToBasket(upc){
-	item_upc = upc;
-	basketQuantity(1);
+function addToBasket(upc)
+{
+	if (isNaN(upc) || upc == null || upc.length != 6)
+	{
+		displayMessage('Please enter a 6-digit UPC');
+		return;
+	}
+	
+	// create function to addToBasket
+	if (window.XMLHttpRequest)
+	{
+		// initialize a request for modern browsers
+		xmlhttp=new XMLHttpRequest();
+	}
+	else
+	{
+		// initialize a request for internet explorer, cuz ie is soooo awesome!
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	xmlhttp.onreadystatechange=function(){
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			// everything the php script returns goes inside the main_center tag
+			if (xmlhttp.responseText.trim() === 'false')
+			{
+				displayMessage('Invalid UPC! Does not exist in database');
+			}
+			else
+			{	
+				item_upc = upc;
+				basketQuantity(1);
+			}
+		}
+	}
+	
+	xmlhttp.open("GET","checkUPC.php?upc="+upc,true)
+	xmlhttp.send();
 }
 
-function addQuantity(){
+function addQuantity()
+{
 	var quantityForm = document.getElementById("basket_quantity_form");
 	var quantity = quantityForm.elements[0].value;
-	if (isNaN(quantity)||quantity == null || quantity == 0){
+	
+	if (isNaN(quantity)||quantity == null || quantity == 0)
+	{
+		basketQuantity(0);
 		displayMessage('Please Enter a Number');
 		return;
 	}
-   // create function to addToBasket
-	 if (window.XMLHttpRequest)
-     {// initialize a request for modern browsers
-       xmlhttp=new XMLHttpRequest();
-     }
-    else
-    {// initialize a request for internet explorer, cuz ie is soooo awesome!
-      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    xmlhttp.onreadystatechange=function()
-    {
-      if (xmlhttp.readyState==4 && xmlhttp.status==200)
-      {
-	    // everything the php script returns goes inside the main_center tag
-	   if (xmlhttp.responseText.trim() === 'false'){
-		 displayMessage('Not enough Items in Stock');
-	   }
-	  else{
-		item_quantity = quantity;
-		var person = new basketItem(item_upc, item_quantity);
-		// create function to addToBasket
-		basket.push(person);
-		addToSide(person);
-	  }
-    
-    }
-  } 
-  // request to run getAllItem.php without query strings  
-  xmlhttp.open("GET","checkQuantity.php?upc="+item_upc+"&quantity="+quantity,true)
-
-  // excecute the request
-  xmlhttp.send();	
-  
+	
+	// create function to addToBasket
+	if (window.XMLHttpRequest)
+	{
+		// initialize a request for modern browsers
+		xmlhttp=new XMLHttpRequest();
+	}
+	else
+	{
+		// initialize a request for internet explorer, cuz ie is soooo awesome!
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	xmlhttp.onreadystatechange=function(){
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			// everything the php script returns goes inside the main_center tag
+			if (xmlhttp.responseText.trim() === 'false')
+			{
+				basketQuantity(0);
+				displayMessage('Not enough Items in Stock');
+			}
+			else
+			{
+				item_quantity = quantity;
+				var person = new basketItem(item_upc, item_quantity);
+				// create function to addToBasket
+				basket.push(person);
+				addToSide(person);
+			}
+		}
+	}
+	
+	xmlhttp.open("GET","checkQuantity.php?upc="+item_upc+"&quantity="+quantity,true)
+	xmlhttp.send();
 }
 
 function addToSide(person){
@@ -260,14 +299,17 @@ function removeFromBasket(upc){
 	xmlhttp.send();
 }
 
-function basketQuantity(open){
-	if (open == 1){
+function basketQuantity(open)
+{
+	if (open == 1)
+	{
 		document.getElementById('basket_quantity_popup').style.display = 'inline';
 	}
-	else{
+	else
+	{
 		document.getElementById("quantity_basket").value = '';
 		document.getElementById('basket_quantity_popup').style.display = 'none';
-		}
+	}
 }
 
 function checkOutPopUp(open){
@@ -278,9 +320,13 @@ function checkOutPopUp(open){
 		document.getElementById("credit_card_number").value = '';
 		document.getElementById("expire_date").value = '';
 		document.getElementById("checkout_popup_display").innerHTML = '';
+		if (document.getElementById("payment_type") != null)
+		{
+			document.getElementById("payment_type").selectedIndex = 0;
+		}
 		document.getElementById('credit_card_form').style.display = 'none';
 		document.getElementById('checkout_popup').style.display = 'none';
-		}
+	}
 }
 
 function search(open){
@@ -510,9 +556,7 @@ function onlineCheckOut(){
 	xmlhttp.open("GET","makePurchase.php?basketItems="+string + "&cardnumber=" + cardNumber + "&carddate=" + cardDate + "&user=" + user,true);
 
 	// excecute the request
-	xmlhttp.send();
-	
-	
+	xmlhttp.send();	
 }
 
 function searchDB(){
@@ -570,37 +614,75 @@ function displayMessage(message){
 	document.getElementById('message_popup').style.display = 'inline'
 }
 
+//REGION - CLERK PAGE METHODS
 function togglePaymentInfo(type)
 {
 	//Hide initially
-	document.getElementById("cc_number").style.visibility = 'hidden';
-	document.getElementById("cc_expdate").style.visibility = 'hidden';
+	document.getElementById("credit_card_number").style.visibility = 'hidden';
+	document.getElementById("expire_date").style.visibility = 'hidden';
 	if (type == "Cash")
 	{
-		document.getElementById("cc_number").style.visibility = 'hidden';
-		document.getElementById("cc_expdate").style.visibility = 'hidden';
+		document.getElementById("credit_card_number").style.visibility = 'hidden';
+		document.getElementById("expire_date").style.visibility = 'hidden';
 	}
 	else if (type == "Credit")
 	{
-		document.getElementById("cc_number").style.visibility = 'visible';
-		document.getElementById("cc_expdate").style.visibility = 'visible';
+		document.getElementById("credit_card_number").style.visibility = 'visible';
+		document.getElementById("expire_date").style.visibility = 'visible';
 	}
 }
 
-function cancelPurchase()
-{
-	alert("Cancel purchase!");
-}
-
-function confirmPurchase()
-{
-	alert("Confirm purchase!");
+function instorePurchase(type)
+{	
+	if (window.XMLHttpRequest)
+	{
+		xmlhttp=new XMLHttpRequest();
+	}
+	else
+	{
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	xmlhttp.onreadystatechange=function() {
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{			 
+			var string = document.getElementById("checkout_popup_display").innerHTML;
+			string += xmlhttp.responseText;
+			checkOutPopUp(0);
+			document.getElementById('receipt_text').innerHTML = string;
+			document.getElementById('receipt_popup').style.display = 'inline';
+			document.getElementById('basket').innerHTML = "";
+			basket = new Array();
+		}
+	}	
+	
+	if (type == "Cash")
+	{
+		xmlhttp.open("GET","makePurchase.php?basketItems="+string, true);
+	}
+	else if (type == "Credit")
+	{	
+		var creditCard = document.getElementById("credit_card_form");
+		var cardNumber = creditCard.elements[0].value;
+		if (cardNumber.length != 16){
+			displayMessage('Enter a 16-digit card number');
+			return;
+		}
+		var cardDate = creditCard.elements[1].value;
+		if (cardDate.length != 4 ){
+			displayMessage('Enter a 4-digit card expiry date');
+			return;
+		}
+		
+		xmlhttp.open("GET","makePurchase.php?basketItems="+string + "&cardnumber=" + cardNumber + "&carddate=" + cardDate, true);
+	}
+	
+	xmlhttp.send();	
 }
 
 function validateReturn()
 {
 	var receiptId = document.getElementById("receipt_id").value;
-	alert("Validate return for receiptId " + receiptId);
 	if (window.XMLHttpRequest)
 	{
 		xmlhttp=new XMLHttpRequest();
@@ -613,19 +695,21 @@ function validateReturn()
 	xmlhttp.onreadystatechange=function() {
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{			
-			if (xmlhttp.responseText.trim() == '0')
+			if (xmlhttp.responseText.trim() === 'Invalid')
 			{
-				alert('Invalid receiptId');
 				displayMessage('Invalid receiptId');
 			}
-			else if (xmlhttp.responseText.trim() == '2')
+			else if (xmlhttp.responseText.trim() === 'Not Within 15 Days')
 			{
-				alert('Not within 15 days');
 				displayMessage('Not within 15 days');
 			}
 			else
 			{      
-				document.getElementById("main_center").innerHTML=xmlhttp.responseText;
+				var string = document.getElementById("checkout_popup_display").innerHTML;
+				string += xmlhttp.responseText;
+				checkOutPopUp(0);
+				document.getElementById('receipt_text').innerHTML = string;
+				document.getElementById('receipt_popup').style.display = 'inline';
 			}			
 		}
 	}
@@ -639,7 +723,9 @@ function validateReturn()
 
 function cancelReturn()
 {
-	alert("Cancel return!");
+	document.getElementById("main_center").innerHTML="";
+	checkOutPopUp(0);
+	displayMessage("Return cancelled");
 }
 
 function confirmReturn(receiptId)
@@ -657,8 +743,8 @@ function confirmReturn(receiptId)
 	}
 	
 	var qty = document.getElementById("refund_qty_" + upc).value;
-
-	alert("Confirm return for receiptId " + receiptId + " upc: " + upc + " qty: " + qty);
+	var amt = document.getElementById("refund_amt_" + upc).value;
+	
 	if (window.XMLHttpRequest)
 	{
 		xmlhttp=new XMLHttpRequest();
@@ -670,18 +756,41 @@ function confirmReturn(receiptId)
 	
 	xmlhttp.onreadystatechange=function() {
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
-		{			
-			displayMessage('Not within 15 days');
+		{
+			document.getElementById("main_center").innerHTML="";
+			var string = document.getElementById("checkout_popup_display").innerHTML;
+			string += xmlhttp.responseText;
+			checkOutPopUp(0);
+			document.getElementById('receipt_text').innerHTML = string;
+			document.getElementById('receipt_popup').style.display = 'inline';
 		}
 	}
 	
 	// request to run createReturn for the given receiptId
-	var args = "rid=" + receiptId + "&upc=" + upc + "&qty=" + qty;
+	var args = "rid=" + receiptId + "&upc=" + upc + "&qty=" + qty + "&amt=" + amt;
 	xmlhttp.open("GET","createReturn.php?" + args,true);
 
 	// excecute the request
 	xmlhttp.send();
 }
+
+function updateRefundQtyAmount(qty, qtyRemain, price, upc)
+{
+	if (qty > qtyRemain)
+	{
+		document.getElementById("refund_qty_" + upc).value = qtyRemain;
+		qty = qtyRemain;
+	}
+	else if (qty < 1)
+	{
+		document.getElementById("refund_qty_" + upc).value = 1;
+		qty = 1;
+	}
+
+	var total = (qty * (price/100)).toFixed(2);
+	document.getElementById("refund_amt_" + upc).value = total;
+}
+//END REGION - CLERK PAGE METHODS
 
 function menuopen(element)
 {

@@ -21,42 +21,77 @@
 </head>
 
 <body>
-	<!-- shop icon -->
-	<div id ="shopicon">
-		<img id = "title_img" src = "img/title_pic4.png">
+
+<!-- message popup-->
+<div id = "message_popup">
+	<div id = "message_box_text" class = "sign_in_input">placeholder</div>
+	<div id = "message_box_close" onclick = "document.getElementById('message_popup').style.display = 'none'">Ok</div>
+</div>
+
+<!-- left sidebar -->
+<div id = "sidebar_left">
+	<img id = "title_img" src = "img/title_pic4.png">
+
+	<!-- purchase -->
+	<div id = "clerk_purchase">
+		<!-- upc and qty info -->
+		<div id = "clerk_item">
+			<form id = "clerk_purchase_form">
+				<input id = "purchase_upc" class="sign_in_input" type="text" name="purchase_upc" size="6" maxlength="6" placeholder="Item UPC (6-digit)">
+			</form>
+			<div class = "item_add" onclick="addToBasket(document.getElementById('purchase_upc').value)"><p class = "item_add_text">Add To Purchase</p></div>
+		</div>		
 	</div>
-	
-	<!-- message popup-->
-	<div id = "message_popup">
-		<div id = "message_box_text" class = "sign_in_input">placeholder</div>
-	</div>
-	
-	<!-- purchase popup -->
-	<div id = "purchase_popup">
-		<form id = "clerk_purchase">
-			<select id="add_payment_type" class="clerk_input" name="payment_type" required onchange="togglePaymentInfo(this.value);">
-				<option>Select a Payment Type</option>
-				<option value="Cash">Cash</option>
-				<option value="Credit">Credit Card</option>
-			</select>
-			<input id="cc_number" class="clerk_input" type="text" placeholder="Credit Card #" style="visibility:hidden"><br>	
-			<input id="cc_expdate" class="clerk_input" type="text" placeholder="Expiry Date" style="visibility:hidden"><br>	
+
+	<!-- return -->
+	<div id = "clerk_return">
+		<form id = "clerk_return_form">			
+			<input id="receipt_id" class="sign_in_input" type="text" placeholder="Receipt Id"><br>
 		</form>
-		<div id = "cancel_purchase" class="submit" onclick = "cancelPurchase()">Cancel Purchase</div>
-		<div id = "confirm_purchase" class="submit" onclick = "confirmPurchase()">Confirm Purchase</div>
-		<div id="hullahs"></div>
+		<div class = "item_add" onclick="validateReturn()"><p class = "item_add_text">Process Return</p></div>
 	</div>
-	
-	<!-- return popup -->
-	<div id = "return_popup">
-		<form id = "clerk_return">			
-			<input id="receipt_id" class="clerk_input" type="text" placeholder="Receipt Id"><br>
-		</form>
-		<div id = "process_return" class="submit" onclick = "validateReturn()">Process Return</div>
-		<div id="hullahs"></div>
-	</div>
-	
-	<!-- main display -->
-	<div id = "main_center">
-	</div>
+</div>
+
+<!-- quantity popup -->
+<div id = "basket_quantity_popup">
+	<img id = "basket_quantity_cancel" src = "img/cancel.svg" onclick = "basketQuantity(0)">
+	<form id = "basket_quantity_form">
+		<input id ="quantity_basket" class = "sign_in_input" type ="text" name = "title" placeholder = "Quantity">
+	</form>
+	<div id = "add_quantity" onclick = "addQuantity()">Add</div>
+</div>
+
+<!-- checkout popup -->
+<div id = "checkout_popup">
+	<img id = "checkout_popup_cancel" src = "img/cancel.svg" onclick = "checkOutPopUp(0);">
+	<div id = "checkout_popup_display"></div>
+	<select id="payment_type" class="clerk_input" name="payment_type" required onchange="togglePaymentInfo(this.value)">
+		<option>Select a Payment Type</option>
+		<option value="Cash">Cash</option>
+		<option value="Credit">Credit Card</option>
+	</select>
+	<form id = "credit_card_form">
+		<input id ="credit_card_number" class = "sign_in_input" type ="text" name = "title" placeholder = "Credit Card Number" style="visibility:hidden">
+		<input id ="expire_date" class = "sign_in_input" type ="text" name = "title" placeholder = "Expire Date mmyy" style="visibility:hidden">
+	</form>
+	<div id = "checkout_popup_click" onclick = "instorePurchase(document.getElementById('payment_type').value)">Proceed</div>
+</div>
+
+<!-- receipt popup -->
+<div id = "receipt_popup">
+	<div id = "receipt_text" >placeholder</div>
+	<div id = "receipt_close" onclick = "document.getElementById('receipt_popup').style.display = 'none'">Ok</div>
+</div>
+
+<!-- basket menu -->
+<div id = "sidebar_right">
+		<div id = "basket"></div>
+		<div id = "checkout" onclick = "checkOut()">Check Out</div>
+</div>
+
+<!-- main display -->
+<div id = "main_center">
+</div>
+
 </body>
+</html>
