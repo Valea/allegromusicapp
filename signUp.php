@@ -16,7 +16,7 @@ $q = "insert into customer values ('" . $username . "','" . $password . "', '" .
 
 $customer = mysql_query("SELECT * FROM customer WHERE cid='".$username."'");
 if (mysql_num_rows($customer)>0){
-	echo "You already have an account with us";
+	echo "E-mail id already exists!<br>Please choose another e-mail id.";
 }
 else {
 
