@@ -459,9 +459,23 @@ function cancelReturn()
 	alert("Cancel return!");
 }
 
-function confirmReturn(receiptId, upcs, qtys)
+function confirmReturn(receiptId)
 {
-	alert("Confirm return for receiptId " + receiptId);
+	var upc_radios = document.getElementsByName("refund_radio");
+	var upc = 0;
+	
+	for (var i=0; i < upc_radios.length; i++)
+	{
+		if (upc_radios[i].checked)
+		{
+			upc = upc_radios[i].value;
+			break;
+		}
+	}
+	
+	var qty = document.getElementById("refund_qty_" + upc).value;
+
+	alert("Confirm return for receiptId " + receiptId + " upc: " + upc + " qty: " + qty);
 	if (window.XMLHttpRequest)
 	{
 		xmlhttp=new XMLHttpRequest();
@@ -479,7 +493,7 @@ function confirmReturn(receiptId, upcs, qtys)
 	}
 	
 	// request to run createReturn for the given receiptId
-	var args = "receiptId=" + receiptId + "&upcs=" + upcs + "&quantity=" + qtys;
+	var args = "rid=" + receiptId + "&upc=" + upc + "&qty=" + qty;
 	xmlhttp.open("GET","createReturn.php?" + args,true);
 
 	// excecute the request

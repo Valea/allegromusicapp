@@ -3,9 +3,9 @@
 // connect with the database
 include_once("MYSQL_Connect.php");
 
-$receiptId=$_GET['receiptId'];
-// $upcs=json_decode($_GET['upcs']);
-// $quantity=(isset($_GET['quantity']) ? json_decode($_GET['quantity']) : null);
+$receiptId=$_GET['rid'];
+$upc=$_GET['upc'];
+$qty=$_GET['qty'];
 $retid=0;
 
 //create an entry in Returns table
@@ -21,28 +21,21 @@ if (!mysql_query($return_sql))
 else
 {
 	$retid = mysql_insert_id();
-	echo "1 Return added. receiptId = " . $retid;
+	echo "1 Return added. retid = " . $retid;
 }
 
-/*
-//create an entry in PurchaseItem table for each item upc/
-foreach ($upcs as $index=>$upc)
+//create an entry in ReturnItem table for the given item upc
+$ret_item_sql = "INSERT INTO return_item (retid, upc, quantity)
+						VALUES ('$retid', '$upc', '$qty')";
+
+if (!mysql_query($ret_item_sql))
 {
-	$purchaseItem_sql = "IF NOT EXISTS (SELECT * FROM return_item WHERE retid = '$retid' AND upc = '$upc')
-	BEGIN
-		INSERT INTO return_item (retid, upc, quantity)
-		VALUES ('$retid', '$upc', '$quantity[$index]')
-	END";
-	if (!mysql_query($purchaseItem_sql))
-	{
 	echo "Error: " . mysql_error();
-	}
-	else
-	{
-	echo "1 PurchaseItem added";
-	}
 }
-*/
+else
+{
+	echo "1 ReturnItem added";
+}
 
 mysql_close();
 
