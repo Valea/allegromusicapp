@@ -51,6 +51,7 @@ function itemAdded(){
 		{
 			displayMessage(xmlhttp.responseText);
 			add(0);
+			displayAllItem();
 		}
 	}
 	// request to run signUp.php with query strings  
@@ -120,9 +121,10 @@ function stockAdded(){
 	{
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{
-			document.getElementById("hullahs2").innerHTML=xmlhttp.responseText;
-			//displayMessage(xmlhttp.responseText);
-		//add(0)
+			
+			displayMessage(xmlhttp.responseText);
+			stock(0);
+			displayAllItem();
 		}
 	}
 	// request to run signUp.php with query strings  

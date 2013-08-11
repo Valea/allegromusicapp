@@ -53,6 +53,7 @@
 		  echo "<td><div ><p>" . $best['stock'] . "</p></div></td>";
 		  echo "<td><div><p>" . $best['quant'] . "</p></div></td>";
 
+
 			$i++;
 		}
 		echo "</tr>";
