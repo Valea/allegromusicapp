@@ -19,6 +19,4 @@ echo "Data for $title inserted successfully!";
 }
 else{ echo "An error occurred!"; }
 
-mysql_close();
-
 ?>

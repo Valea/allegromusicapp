@@ -21,19 +21,19 @@ if ($num_results > 0)
 			$interval = $pur_date->diff($date_now);
 			if ($interval->days <= 15)
 			{
-				echo "<div class = 'clerk_input'><p class = 'ret_receipt_text'>Purchase Date: " . $purchase["pur_date"] . "</p></div>";
-				echo "<div class = 'clerk_input'><p class = 'ret_receipt_text'>Receipt Id: " . $purchase["receiptId"] . "</p></div>";
+				echo "<div class = 'item_title'><p class = 'item_title_text'>Purchase Date: " . $purchase["pur_date"] . "</p></div>";
+				echo "<div class = 'item_category'><p class = 'item_category_text'>Receipt Id: " . $purchase["receiptId"] . "</p></div>";
 				
 				//Determine whether purchase was Cash or Credit
 				if (!is_null($purchase["card_number"]) && !empty($purchase["card_number"]))
 				{
-					echo "<div class = 'clerk_input'><p class = 'ret_receipt_text'>Payment Type: Credit</p></div>";
-					echo "<div class = 'clerk_input'><p class = 'ret_receipt_text'>Credit Card Number: " . $purchase["card_number"] . "</p></div>";
-					echo "<div class = 'clerk_input'><p class = 'ret_receipt_text'>Expiry Date: " . $purchase["expiryDate"] . "</p></div>";
+					echo "<div class = 'item_disk_type'><p class = 'item_disk_type_text'>Payment Type: Credit</p></div>";
+					echo "<div class =  'item_lead_singer'><p class = 'item_lead_singer_text'>Credit Card Number: " . $purchase["card_number"] . "</p></div>";
+					echo "<div class =  'item_company'><p class =  'item_company_text'>Expiry Date: " . $purchase["expiryDate"] . "</p></div>";
 				}
 				else
 				{
-					echo "<div class = 'clerk_input'><p class = 'ret_receipt_text'>Payment Type: Cash</p></div>";
+					echo "<div class = 'item_has_song'><p class = 'item_has_song_text'>Payment Type: Cash</p></div>";
 				}
 				
 				$items_sql = "SELECT * FROM purchase_item P, item I WHERE P.upc = I.upc AND P.receiptId = '$receiptId'";
@@ -161,8 +161,8 @@ if ($num_results > 0)
 				}
 				
 				echo "</table>";				
-				echo "<div id = 'cancel_return' class='item_add' onclick = 'cancelReturn()'><p class = 'item_add_text'>Cancel Return</p></div>";
-				echo "<div id = 'confirm_return' class='item_add' onclick = 'confirmReturn(" . $receiptId . ")'><p class = 'item_add_text'>Confirm Return</p></div>";
+				echo "<div id = 'cancel_return' class='bigbutton' onclick = 'cancelReturn()'>Cancel Return</div>";
+				echo "<div id = 'confirm_return' class='bigbutton' onclick = 'confirmReturn(" . $receiptId . ")'>Confirm Return</div>";
 			}
 			else
 			{

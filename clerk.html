@@ -22,36 +22,6 @@
 
 <body>
 
-<!-- message popup-->
-<div id = "message_popup">
-	<div id = "message_box_text" class = "sign_in_input">placeholder</div>
-	<div id = "message_box_close" onclick = "document.getElementById('message_popup').style.display = 'none'">Ok</div>
-</div>
-
-<!-- left sidebar -->
-<div id = "sidebar_left">
-	<img id = "title_img" src = "img/title_pic4.png">
-
-	<!-- purchase -->
-	<div id = "clerk_purchase">
-		<!-- upc and qty info -->
-		<div id = "clerk_item">
-			<form id = "clerk_purchase_form">
-				<input id = "purchase_upc" class="clerk_input" type="text" name="purchase_upc" size="6" maxlength="6" placeholder="Item UPC (6-digit)">
-			</form>
-			<div class = "item_add" onclick="addToBasket(document.getElementById('purchase_upc').value)"><p class = "item_add_text">Add To Purchase</p></div>
-		</div>		
-	</div>
-
-	<!-- return -->
-	<div id = "clerk_return">
-		<form id = "clerk_return_form">			
-			<input id="return_receipt_id" class="clerk_input" type="text" placeholder="Receipt Id"><br>
-		</form>
-		<div class = "item_add" onclick="validateReturn()"><p class = "item_add_text">Process Return</p></div>
-	</div>
-</div>
-
 <!-- quantity popup -->
 <div id = "basket_quantity_popup">
 	<img id = "basket_quantity_cancel" src = "img/cancel.svg" onclick = "basketQuantity(0)">
@@ -83,14 +53,43 @@
 	<div id = "receipt_close" onclick = "document.getElementById('receipt_popup').style.display = 'none'">Ok</div>
 </div>
 
-<!-- basket menu -->
-<div id = "sidebar_right">
-		<div id = "basket"></div>
-		<div id = "checkout" onclick = "checkOut()">Check Out</div>
+<!-- message popup-->
+<div id = "message_popup">
+	<div id = "message_box_text" class = "sign_in_input">placeholder</div>
+	<div id = "message_box_close" class = "button" onclick = "document.getElementById('message_popup').style.display = 'none'">Ok</div>
 </div>
+
+<!-- left sidebar -->
+<div id = "sidebar_left">
+	<div id = "checkout_title" class = "title"> Check Out</div>
+	<!-- purchase -->
+		<div id = "clerk_item" class = "transaction">
+			<form id = "clerk_purchase_form">
+				<input id = "purchase_upc" class="clerk_input" type="text" name="purchase_upc" size="6" maxlength="6" placeholder="Item UPC (6-digit)">
+			</form>
+			<div id = "add_item_button" class = "bigbutton" onclick="addToBasket(document.getElementById('purchase_upc').value)">Add To Purchase</div>
+		</div>		
+	<div id = "basket" class = "container"></div>
+	<div id = "checkout" onclick = "checkOut()" class = "bigbutton">Check Out</div>
+
+</div>
+
+
+
+<!-- basket menu -->
+
 
 <!-- main display -->
 <div id = "main_center">
+	<div id = "return_title" class = "title">Return</div>
+	<!-- return -->
+	<div id = "clerk_return" class = "transaction">
+		<form id = "clerk_return_form">			
+			<input id="return_receipt_id" class="clerk_input" type="text" placeholder="Receipt Id"><br>
+		</form>
+		<div class = "bigbutton" onclick="validateReturn()">Process Return</div>
+	</div>
+	<div id = "return_container" class = "container"></div>
 </div>
 
 </body>

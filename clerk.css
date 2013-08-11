@@ -64,37 +64,44 @@ body {
 
 /* Code Starts here */
 #sidebar_left{
-	width: 20em;
+	width: 50%;
 	height: 100%;
-	background-color:#729792;
 	float:left;
-	box-shadow: inset -15px 0px 25px -10px #323232;
 	overflow-Y:auto;
-	overflow-X:hidden;
+	overflow-X:auto;
+	background-image:url("img/bgnoise.png");
 }
 
-
-#sidebar_right{
-	width:15em;
-	height:100%;
-	float:right;
-	background-color: #4C7175;
-	box-shadow: inset 15px 0px 25px -10px #323232;
-	overflow-Y:auto;
-	overflow-X:hidden;
-}
-
-#checkout{
-	width: 6.5em;
-	font-family: 'Pathway Gothic One', sans-serif;
-    font-size:2em;
-    color:#ece1c3;
-    line-height:2em;
-	background-color: #d30d0d;
-	margin-left: 0.5em;
-	margin-top: 0.5em;
+.title{
+	font-family: 'Nixie One', cursive;
+	font-size: 4em;
 	text-align: center;
+	border: 8px solid white;
+	line-height: 1.4em;
+	box-shadow: 0 0 15px 3px black;
+	position: relative;
+	background-color: #4C7175;
+	color: #ece1c3;
+	width: 90%;
+	margin:auto;
+	margin-top: 0.25em;
+	margin-bottom: 0.25em;
 }
+
+.transaction,.container{
+	width: 90%;
+	margin:auto;
+	margin-bottom: 1em;
+	border: 8px solid white;
+	background-color:white;
+	box-shadow: 0 0 15px 3px black;
+}
+
+#return_title{
+	color: #4C7175;
+	background-color: #D7C299;
+}
+
 
 #checkout:active{
 	box-shadow: inset 0px 0px 0px 6px #ece1c3;
@@ -108,12 +115,6 @@ body {
 	background-image:url("img/bgnoise.png");
     overflow:auto;
 }
-
-#title_img{
-	width: 17em;
-	margin:1.25em;	
-}
-
 
 #filter_row{
 	width:100%;
@@ -188,10 +189,11 @@ body {
     
 }
 
-#container{
-	margin:auto;
-	margin-top: 2em;
-	margin-bottom: 3.5em;
+.container{
+	height:40em;
+	overflow-x:hidden;
+	overflow-y:auto;
+	background-color:#8ebdb6;
 	
 }
 
@@ -204,44 +206,36 @@ body {
 
 .item_title_text{
     font-family: 'Nixie One', cursive;
-    font-size:1.5em;
+    font-size:3em;
 	color:#ece1c3;
-	line-height:2.2em;
+	line-height:2em;
 }
 
 .item_category{
-    width:7.5em;
-    height:2em;
+    width:50%;
     background-color: #D7C299;
     
-}
-.has_song_img{
-	width:1em;
-	margin-left: 1.5em;
-	margin-top: 0.5em;
-	margin-bottom: 0.5em;
 }
 
 
 .item_category_text{
     font-family: 'Pathway Gothic One', sans-serif;
-    font-size:1em;
+    font-size:2em;
     color:#386166;
 	line-height:2em;
-	    margin-left: 0.5em;
+	 margin-left: 0.5em;
 }
 
 .item_disk_type{
-    margin-top:-2em;
-    margin-left:7.5em;
-    width:10.5em;
-    height:2em;
+    width:50%;
+	margin-top:-4em;
+	margin-left:50%;
     background-color: #386166;
 }
 
 .item_disk_type_text{
     font-family: 'Pathway Gothic One', sans-serif;
-    font-size:1em;
+    font-size:2em;
     color:#ece1c3;
     line-height:2em;
     margin-left: 0.5em;
@@ -250,13 +244,12 @@ body {
 .item_company, .item_has_song{
     
     width:100%;
-    height:2em;
     background-color: :#386166;
 }
 
 .item_company_text, .item_has_song_text{
     font-family: 'Pathway Gothic One', sans-serif;
-    font-size:1em;
+    font-size:2em;
     color:#ece1c3;
     line-height:2em;
     margin-left: 0.5em;
@@ -274,20 +267,18 @@ body {
 }
 
 .item_has_song_text{
-	margin-left: 3.5em;
-	margin-top: -2.25em;
+
 }
 
 .item_lead_singer{
     
     width:100%;
-    height:2em;
     background-color: #3e838c;
 }
 
 .item_lead_singer_text{
     font-family: 'Pathway Gothic One', sans-serif;
-    font-size:1em;
+    font-size:2em;
     color:#323232;
     line-height:2em;
     margin-left: 0.5em;
@@ -296,7 +287,7 @@ body {
 
 .item_pub_year{
     
-    width:6em;
+   width:100%;
     height:2em;
     background-color: #3e838c;
 }
@@ -310,9 +301,8 @@ body {
 }
 
 .item_price{
-    margin-top:-2em;
-    margin-left:6em;
-    width:6em;
+ 
+    width:100%;
     height:2em;
     background-color: #4C7175;
 }
@@ -327,9 +317,7 @@ body {
 
 
 .item_stock{
-    margin-top:-2em;
-    margin-left:12em;
-    width:6em;
+    width:100%;
     height:2em;
     background-color: #386166;
 }
@@ -343,13 +331,6 @@ body {
 }
 
 
-.item_add{
-    
-    width:100%;
-    height:2.5em;
-    background-color: #F5DEB3;
-    text-align:center;
-}
 
 .item_add_text{
     font-family: 'Pathway Gothic One', sans-serif;
@@ -367,10 +348,10 @@ body {
 }
 
 .basket{
-	width: 13em;
+	width: 80%;
 	height:auto;
-	margin-left: 1em;
-	margin-top: 1em;
+	margin-left: 10%;
+	margin-top: 2em;
 	overflow-x:hidden;
 	
 }
@@ -384,41 +365,41 @@ body {
 
 .basket_title_text{
 	font-family: 'Pathway Gothic One', sans-serif;
-    font-size:1em;
+    font-size:2em;
     color:#386166;
     line-height:2em;
 }
 
 .basket_price{
 	background-color: #D7C299;
-	width:5em;
-	height:2em;
+	width:40%;
+	height:3em;
 	overflow:hidden;
+	text-align:center;
 }
 
 .basket_price_text{
 	font-family: 'Pathway Gothic One', sans-serif;
-    font-size:1em;
+    font-size:1.5em;
     color:#386166;
     line-height:2em;
-	margin-left: 0.5em;
 }
 
 .basket_stock{
-	background-color: #8ebdb6;
-	margin-top: -2em;
-	margin-left: 5em;
-	width:100%;
-	height:2em;
+	background-color: #3e838c;
+	margin-top: -3em;
+	margin-left: 40%;
+	width:60%;
+	height:3em;
 	overflow:hidden;
+	text-align:center;
 }
 
 .basket_stock_text{
 	font-family: 'Pathway Gothic One', sans-serif;
-    font-size:1em;
-    color:#386166;
+    font-size:1.5em;
+    color:#ece1c3;
     line-height:2em;
-	margin-left: 0.5em;
 }
 
 .basket_remove{
@@ -430,7 +411,7 @@ body {
 
 .basket_remove_text{
 	font-family: 'Pathway Gothic One', sans-serif;
-    font-size:1em;
+    font-size:1.5em;
     color:#ece1c3;
     line-height:2em;
 }
@@ -528,7 +509,7 @@ body {
 
 
 #message_popup,#basket_quantity_popup{
-	margin-top:-5.3em;
+	margin-top:-10.3em;
 }
 
 .sign_in_input{
@@ -561,6 +542,9 @@ body {
 }
 
 #message_box_text{
+	max-height: 10em;
+	overflow-y:auto;
+	overflow-x:auto;
 	background-color:#3e838c;
 	height:auto;
 	text-align:center;
@@ -584,7 +568,7 @@ body {
 }
 
 
-#receipt_close,#sign_in, #message_box_close, #search, #add_quantity,#checkout_popup_click{
+.bigbutton,#receipt_close,#sign_in, #message_box_close, #search, #add_quantity,#checkout_popup_click{
 	width:5em;
 	height:2em;
 	font-family: 'Pathway Gothic One', sans-serif;
@@ -596,15 +580,15 @@ body {
 	margin-top:0.2em;
 }
 
-#receipt_close,#message_box_close, #search,#add_quantity,#checkout_popup_click{
+.bigbutton,#receipt_close,#message_box_close, #search,#add_quantity,#checkout_popup_click{
 	width:100%;
 }
 
 
-#receipt_close:hover,#sign_in:hover, #sign_up:hover,#message_box_close:hover, #search:hover,#add_quantity:hover, #checkout:hover,#checkout_popup_click:hover{
+.bigbutton:hover,#receipt_close:hover,#sign_in:hover, #sign_up:hover,#message_box_close:hover, #search:hover,#add_quantity:hover, #checkout:hover,#checkout_popup_click:hover{
 	cursor:pointer;
 }
-#receipt_close:hover,#sign_in:active, #message_box_close:active, #search:active, #add_quantity:active,#checkout_popup_click:active{
+.bigbutton:active,#receipt_close:hover,#sign_in:active, #message_box_close:active, #search:active, #add_quantity:active,#checkout_popup_click:active{
 	box-shadow: inset 0px 0px 0px 10px #3e838c;
 }
 
@@ -677,14 +661,26 @@ body {
 
 .clerk_input{
     border:none;
-  	width: 100%;
-    font-family: 'Nixie One', sans-serif;
-    font-size: 1em;
-    color:#ffffff;
-    background-color:#386166;
-    z-index:10;
+	width: 100%;
+	height: 2em;
+	font-family: 'Pathway Gothic One', sans-serif;
+	font-size: 2em;
+	line-height:2em;
+	color:#ece1c3;
+	z-index:10;
+	background-color:#3e838c;
+	text-align:center;
 }
 
+#return_receipt_id{
+	background-color:#E8C782;
+	color:#386166;
+}
+
+#add_item_button{
+	background-color:#D7C299;
+	color:#d30d0d;
+}
 .return_header_small{
     border:none;
   	width: 10%;

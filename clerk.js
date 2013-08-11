@@ -1,5 +1,3 @@
-// JavaScript Document for Front and Back transactions
-
 var signUp = 0;
 var user ="";
 var basket = new Array();
@@ -22,7 +20,7 @@ function addToBasket(upc)
 		displayMessage('Please enter a valid 6-digit UPC');
 		return;
 	}
-	
+
 	if (window.XMLHttpRequest)
 	{
 		xmlhttp=new XMLHttpRequest();
@@ -31,7 +29,7 @@ function addToBasket(upc)
 	{
 		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 	}
-	
+
 	xmlhttp.onreadystatechange=function(){
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{
@@ -44,19 +42,19 @@ function addToBasket(upc)
 			{
 				// otherwise, upc is valid, so set item_upc to given upc
 				item_upc = upc;
-				
+
 				// reset the purchase_upc field on the clerk page to empty
 				if (document.getElementById("purchase_upc") != null)
 				{
 					document.getElementById("purchase_upc").value = "";
 				}
-				
+
 				// open the basketQuantity popup
 				basketQuantity(1);
 			}
 		}
 	}
-	
+
 	// request to run checkUPC.php with upc parameter
 	xmlhttp.open("GET","checkUPC.php?upc="+upc,true)
 	xmlhttp.send();
@@ -66,7 +64,7 @@ function addQuantity()
 {
 	var quantityForm = document.getElementById("basket_quantity_form");
 	var quantity = quantityForm.elements[0].value;
-	
+
 	//Check for a valid quantity value
 	if (isNaN(quantity)||quantity == null || quantity == 0)
 	{
@@ -74,7 +72,7 @@ function addQuantity()
 		displayMessage('Please Enter a Number');
 		return;
 	}
-	
+
 	if (window.XMLHttpRequest)
 	{
 		xmlhttp=new XMLHttpRequest();
@@ -83,7 +81,7 @@ function addQuantity()
 	{
 		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 	}
-	
+
 	xmlhttp.onreadystatechange=function(){
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{
@@ -103,7 +101,7 @@ function addQuantity()
 			}
 		}
 	}
-	
+
 	// request to run checkQuantity.php with item upc and quantity parameters
 	xmlhttp.open("GET","checkQuantity.php?upc="+item_upc+"&quantity="+quantity,true)
 	xmlhttp.send();
@@ -120,19 +118,19 @@ function addToSide(person)
 	{
 		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 	}
-	
+
 	xmlhttp.onreadystatechange=function(){
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{
 			// everything the php script returns goes inside the basket tag (right side bar)
 			basketInner += xmlhttp.responseText;
 			document.getElementById("basket").innerHTML=basketInner;
-			
+
 			//close the basketQuantity popup
 			basketQuantity(0);
 		}
 	}
-	
+
 	// request to run addToBasket.php with the (upc,quantity) pair
 	xmlhttp.open("GET","addToBasket.php?upc="+person.upc +"&quantity=" +person.quantity,true)
 	xmlhttp.send();
@@ -147,10 +145,10 @@ function removeFromBasket(upc)
 			person_temp.push(basket[i]);
 		}
 	}
-	
+
 	document.getElementById("basket").innerHTML= "";
 	basket = person_temp;
-	 
+
 	string = "";
 	for (var i = 0; i < basket.length; i++){
 		string += basket[i].upc;
@@ -160,7 +158,7 @@ function removeFromBasket(upc)
 			string+=",";
 		}
 	}
-	
+
 	if (window.XMLHttpRequest)
 	{
 		xmlhttp=new XMLHttpRequest();
@@ -169,7 +167,7 @@ function removeFromBasket(upc)
 	{
 		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 	}
-	
+
 	xmlhttp.onreadystatechange=function(){
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{
@@ -177,7 +175,7 @@ function removeFromBasket(upc)
 			document.getElementById("basket").innerHTML=xmlhttp.responseText;
 		}
 	}
-	
+
 	// request to run removeFromBasket.php with the new basket string as parameter
 	xmlhttp.open("GET","removeFromBasket.php?basketItems="+string,true);
 	xmlhttp.send();
@@ -226,7 +224,7 @@ function checkOut()
 		displayMessage('You have nothing in your basket');
 		return;
 	}
-	
+
 	// create a comma-delimited string of (upc,quantity) pairs
 	string = "";
 	for (var i = 0; i < basket.length; i++){
@@ -237,7 +235,7 @@ function checkOut()
 			string+=",";
 		}
 	}
-	
+
 	if (window.XMLHttpRequest)
 	{
 		xmlhttp=new XMLHttpRequest();
@@ -246,7 +244,7 @@ function checkOut()
 	{
 		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 	}
-	
+
 	xmlhttp.onreadystatechange=function(){
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{
@@ -254,7 +252,7 @@ function checkOut()
 			checkOutPopUp(1);
 		}
 	}
-	
+
 	// request to run getTotalBasket.php
 	xmlhttp.open("GET","getTotalBasket.php?basketItems="+string,true)
 	xmlhttp.send();
@@ -295,7 +293,7 @@ function instoreCheckout(type)
 	{
 		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 	}
-	
+
 	xmlhttp.onreadystatechange=function() {
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{			 
@@ -308,7 +306,7 @@ function instoreCheckout(type)
 			basket = new Array();
 		}
 	}	
-	
+
 	if (type == "Cash")
 	{
 		xmlhttp.open("GET","makePurchase.php?basketItems="+string, true);
@@ -326,7 +324,7 @@ function instoreCheckout(type)
 			displayMessage('Enter a 4-digit card expiry date');
 			return;
 		}
-		
+
 		xmlhttp.open("GET","makePurchase.php?basketItems="+string + "&cardnumber=" + cardNumber + "&carddate=" + cardDate, true);
 	}
 	else
@@ -334,7 +332,7 @@ function instoreCheckout(type)
 		displayMessage('Please select a payment type');
 		return;
 	}
-	
+
 	xmlhttp.send();	
 }
 
@@ -344,14 +342,14 @@ function validateReturn()
 	if (document.getElementById("return_receipt_id") != null)
 	{
 		var receiptId = document.getElementById("return_receipt_id").value;
-		
+
 		if (isNaN(receiptId) || receiptId === null || receiptId === '')
 		{
 			displayMessage('Please enter a valid receipt ID');
 			return;
 		}
-		
-		
+
+
 		if (window.XMLHttpRequest)
 		{
 			xmlhttp=new XMLHttpRequest();
@@ -360,7 +358,7 @@ function validateReturn()
 		{
 			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 		}
-		
+
 		xmlhttp.onreadystatechange=function() {
 			if (xmlhttp.readyState==4 && xmlhttp.status==200)
 			{			
@@ -374,11 +372,11 @@ function validateReturn()
 				}
 				else
 				{      
-					document.getElementById("main_center").innerHTML = xmlhttp.responseText;
+					document.getElementById("return_container").innerHTML = xmlhttp.responseText;
 				}			
 			}
 		}
-		
+
 		// request to run validateReturn for the given receiptId
 		xmlhttp.open("GET","validateReturn.php?receiptId="+receiptId,true);
 		xmlhttp.send();
@@ -398,7 +396,7 @@ function confirmReturn(receiptId)
 {
 	var upc_radios = document.getElementsByName("refund_radio");
 	var upc = 0;
-	
+
 	for (var i=0; i < upc_radios.length; i++)
 	{
 		if (upc_radios[i].checked)
@@ -407,10 +405,10 @@ function confirmReturn(receiptId)
 			break;
 		}
 	}
-	
+
 	var qty = document.getElementById("refund_qty_" + upc).value;
 	var amt = document.getElementById("refund_amt_" + upc).value;
-	
+
 	if (window.XMLHttpRequest)
 	{
 		xmlhttp=new XMLHttpRequest();
@@ -419,23 +417,22 @@ function confirmReturn(receiptId)
 	{
 		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 	}
-	
+
 	xmlhttp.onreadystatechange=function() {
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{
-			document.getElementById("main_center").innerHTML="";
+			document.getElementById("return_container").innerHTML="";
 			var string = document.getElementById("checkout_popup_display").innerHTML;
 			string += xmlhttp.responseText;
 			checkOutPopUp(0);
-			document.getElementById('receipt_text').innerHTML = string;
-			document.getElementById('receipt_popup').style.display = 'inline';
+			displayMessage(string);
 			if (document.getElementById("return_receipt_id") != null)
 			{
 				document.getElementById("return_receipt_id").value = "";
 			}
 		}
 	}
-	
+
 	// request to run createReturn for the given receiptId
 	var args = "rid=" + receiptId + "&upc=" + upc + "&qty=" + qty + "&amt=" + amt;
 	xmlhttp.open("GET","createReturn.php?" + args,true);
