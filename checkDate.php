@@ -73,7 +73,7 @@
 		  echo "<td><div ><p>" . $sale['quantity'] . "</p></div></td>";
 		  $units = $units + $sale['quantity'];
 
-		  echo "<td><div class = 'item_stock'><p>$" . $price * $sale['quantity'] . "</p></div></td>";
+		  echo "<td><div ><p>$" . $price * $sale['quantity'] . "</p></div></td>";
 		  if (!(array_key_exists($sale['category'], $catstock)))
 		  {
 		  	$catstock[$sale['category']] = 0;
