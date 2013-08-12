@@ -309,7 +309,7 @@ function instoreCheckout(type)
 
 	if (type == "Cash")
 	{
-		xmlhttp.open("GET","makePurchase.php?basketItems="+string, true);
+		xmlhttp.open("GET","makePurchase_Clerk.php?basketItems="+string, true);
 	}
 	else if (type == "Credit")
 	{	
@@ -325,7 +325,7 @@ function instoreCheckout(type)
 			return;
 		}
 
-		xmlhttp.open("GET","makePurchase.php?basketItems="+string + "&cardnumber=" + cardNumber + "&carddate=" + cardDate, true);
+		xmlhttp.open("GET","makePurchase_Clerk.php?basketItems="+string + "&cardnumber=" + cardNumber + "&carddate=" + cardDate, true);
 	}
 	else
 	{

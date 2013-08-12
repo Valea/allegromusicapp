@@ -216,6 +216,9 @@ body {
     background-color: :#386166;
 }
 
+.item_has_song{
+	height:auto;
+}
 .item_company_text, .item_has_song_text{
     font-family: 'Pathway Gothic One', sans-serif;
     font-size:1em;
@@ -236,6 +239,7 @@ body {
 }
 
 .item_has_song_text{
+	height:auto;
 	margin-left: 3.5em;
 	margin-top: -2.25em;
 }
