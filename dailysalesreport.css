@@ -56,27 +56,28 @@ body {
 	padding: 0;
 	height: 100%;
 	overflow:hidden;
-	
+
 }
 
 #shopicon{
 	height:100%;
-	width:3em;
+	width:4em;
 	overflow:hidden;
 	float:left;
 	background-color:#323232;
-	box-shadow: 0 0 10px 2px black;
+	box-shadow: 0 0 20px 4px black;
 }
 
+
 .menu{
-	width:3em;
-	height: 3em;
+	width:4em;
+	height: 4em;
 	background-color: #8ebdb6;
 }
 .menu_item{
-	width: 1.5em;
-	margin-left:0.75em;
-	margin-top:0.75em;
+	width: 1.75em;
+	margin-left:1.125em;
+	margin-top:1.125em;
 }
 
 .menu:hover{
@@ -87,7 +88,9 @@ body {
 	box-shadow: inset 0 0 0 5px #386166;
 }
 
-
+#table_menu{
+	background-color: #729792;
+}
 #alert_menu:active{
 	box-shadow: inset 0 0 0 5px #d30d0d;
 }
@@ -96,7 +99,7 @@ body {
 	background-color:#729792;
 }
 
-#daily_menu{
+#daily_menu,#deliver_menu{
 	background-color:#3e838c;
 }
 
@@ -210,15 +213,18 @@ body {
     margin-left: 0.5em;
 }
 
-.item_company, .item_has_song{
+.item_company{
     width:100%;
     height:2em;
     background-color: :#386166;
 }
 
 .item_has_song{
-	height:auto;
+    width:100%;
+    height:auto;
+    background-color: :#386166;
 }
+
 .item_company_text, .item_has_song_text{
     font-family: 'Pathway Gothic One', sans-serif;
     font-size:1em;
@@ -239,7 +245,6 @@ body {
 }
 
 .item_has_song_text{
-	height:auto;
 	margin-left: 3.5em;
 	margin-top: -2.25em;
 }
@@ -308,8 +313,6 @@ body {
     margin-left: 0.5em;
 }
 
-
-
 .sign_in_input{
 	border:none;
 	width: 100%;
@@ -317,6 +320,17 @@ body {
 	font-family: 'Pathway Gothic One', sans-serif;
 	font-size: 2em;
 	line-height:2em;
+	color:#ece1c3;
+	z-index:10;
+}
+
+.add_item_input{
+	border:none;
+	width: 100%;
+	height: 1.5em;
+	font-family: 'Pathway Gothic One', sans-serif;
+	font-size: 2em;
+	line-height: 1.5em;
 	color:#ece1c3;
 	z-index:10;
 }
@@ -334,7 +348,11 @@ body {
 }
 
 #report_popup{
+	
+}
 
+#table_name{
+	background-color:#3e838c;
 }
 
 #message_box_text, #report_sales_text{
@@ -355,24 +373,24 @@ body {
 	background-color:#8ebdb6;
 }
 
-#add_type,#stock_upc,#top_day{
+#add_type,#stock_upc,#top_day,#deliver_id{
 	background-color:#729792;
 }
 
 #add_cate,#stock_stock,#top_month{
 	background-color:	#3e838c;
-	
+
 }
 
 #add_comp,#stock_price, #top_year{
 	background-color:#4C7175;
 }
 
-#add_year,#top_num{
+#add_year,#top_num,#add_singers{
 	background-color:#386166;
 }
 
-#add_price{
+#add_price,#add_songs{
 	background-color:#3e838c;
 }
 
@@ -386,7 +404,7 @@ body {
 
 #sales_month{
 	background-color:	#4C7175;
-	
+
 }
 
 #sales_year{
