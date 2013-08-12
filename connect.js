@@ -163,25 +163,26 @@ function addQuantity(){
       if (xmlhttp.readyState==4 && xmlhttp.status==200)
       {
 	    // everything the php script returns goes inside the main_center tag
-	   if (xmlhttp.responseText.trim() === 'false'){
-		 displayMessage('Not enough Items in Stock');
+	   if (xmlhttp.responseText.trim() === 'true'){
+			item_quantity = quantity;
+			var person = new basketItem(item_upc, item_quantity);
+			// create function to addToBasket
+			basket.push(person);
+			addToSide(person);
 	   }
-	  else{
-		item_quantity = quantity;
-		var person = new basketItem(item_upc, item_quantity);
-		// create function to addToBasket
-		basket.push(person);
-		addToSide(person);
-	  }
-    
+	   else
+	   {
+			var qtyInStock = xmlhttp.responseText.trim();
+			displayMessage('Not enough in stock! Accept amount of ' + qtyInStock + '?');
+			document.getElementById("quantity_basket").value = qtyInStock;
+	   }
     }
   } 
   // request to run getAllItem.php without query strings  
   xmlhttp.open("GET","checkQuantity.php?upc="+item_upc+"&quantity="+quantity,true)
 
   // excecute the request
-  xmlhttp.send();	
-  
+  xmlhttp.send();  
 }
 
 function addToSide(person){

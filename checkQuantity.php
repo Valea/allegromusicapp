@@ -14,7 +14,7 @@ while ($item = mysql_fetch_array($result))
 {
 	if ($item["stock"] < $quantity)
 	{
-		echo "false";
+		echo $item['stock'];
 	}
 	else
 	{ 
