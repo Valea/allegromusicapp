@@ -304,8 +304,6 @@ body {
     margin-left: 0.5em;
 }
 
-
-
 .sign_in_input{
 	border:none;
 	width: 100%;
@@ -313,6 +311,17 @@ body {
 	font-family: 'Pathway Gothic One', sans-serif;
 	font-size: 2em;
 	line-height:2em;
+	color:#ece1c3;
+	z-index:10;
+}
+
+.add_item_input{
+	border:none;
+	width: 100%;
+	height: 1.5em;
+	font-family: 'Pathway Gothic One', sans-serif;
+	font-size: 1em;
+	line-height: 1.5em;
 	color:#ece1c3;
 	z-index:10;
 }
@@ -364,11 +373,11 @@ body {
 	background-color:#4C7175;
 }
 
-#add_year,#top_num{
+#add_year,#top_num,#add_singers{
 	background-color:#386166;
 }
 
-#add_price{
+#add_price,#add_songs{
 	background-color:#3e838c;
 }
 

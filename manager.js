@@ -1,4 +1,19 @@
 var less = 1;
+
+// when the page loads
+function pageInit(){
+	// displays all items to the main page
+	displayAllItem();
+	
+	//re-initialize popup window fields
+	add(0);
+	stock(0);
+	sales(0);
+	pop(0);
+	displayTable(0);
+}
+
+
 function add(open){
 	if (open ==1){
 		document.getElementById('add_popup').style.display = 'inline';
@@ -11,10 +26,14 @@ function add(open){
 		document.getElementById("add_year").value = '';
 		document.getElementById("add_price").value = '';
 		document.getElementById("add_stock").value = '';
+		document.getElementById("add_singers").value = '';
+		document.getElementById("add_songs").value = '';
 		document.getElementById('add_popup').style.display = 'none';
 	}
 }
-function itemAdded(){
+function itemAdded()
+{
+	//Get field values from form and ensure all required fields are present
 	var addItemValues = document.getElementById("add_item");
 	var title = addItemValues.elements[0].value;
 	if (title == ""){
@@ -22,27 +41,39 @@ function itemAdded(){
 		return;
 	}
 	var diskType = addItemValues.elements[1].value;
-	var category= addItemValues.elements[2].value;
+	var category = addItemValues.elements[2].value;
 	var company = addItemValues.elements[3].value;
 	var year = addItemValues.elements[4].value;
-	var price= addItemValues.elements[5].value;
+	var price = addItemValues.elements[5].value;
 	if (price == "" || isNaN(price)){
 		displayMessage("Add a Price");
 		return;
 	}
 	var stock= addItemValues.elements[6].value;
-	if (stock== "" || isNaN(stock)){
+	if (stock == "" || isNaN(stock)){
 		displayMessage("Add a Stock");
+		return;
+	}
+	var singers= addItemValues.elements[7].value;
+	if (singers == ""){
+		displayMessage("Add a Leading Singer");
+		return;
+	}
+	var songs= addItemValues.elements[8].value;
+	if (songs == ""){
+		displayMessage("Add a Song Title");
 		return;
 	}
 
 	// when all fields are covered
 	if (window.XMLHttpRequest)
-	{// initialize a request for modern browsers
+	{
+		// initialize a request for modern browsers
 		xmlhttp=new XMLHttpRequest();
 	}
 	else
-	{// initialize a request for internet explorer, cuz ie is soooo awesome!
+	{
+		// initialize a request for internet explorer, cuz ie is soooo awesome!
 		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 	}
 	xmlhttp.onreadystatechange=function()
@@ -54,8 +85,11 @@ function itemAdded(){
 			displayAllItem();
 		}
 	}
-	// request to run signUp.php with query strings  
-	xmlhttp.open("GET","addItem.php?title="+ title+ "&disk_type=" + diskType+ "&category=" + category+ "&company=" + company+ "&pub_year=" + year + "&price=" + price + "&stock=" + stock,true);
+	// request to run addItem.php
+	var args = "title="+ title+ "&disk_type=" + diskType+ "&category=" + category + 
+				"&company=" + company+ "&pub_year=" + year + "&price=" + price + "&stock=" + stock + 
+				"&singers=" + singers + "&songs=" + songs;
+	xmlhttp.open("GET","addItem.php?"+args,true);
 
 	// excecute the request
 	xmlhttp.send();

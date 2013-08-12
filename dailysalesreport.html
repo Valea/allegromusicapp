@@ -16,7 +16,7 @@
 
 </head>
 
-<body onload=  "displayAllItem()" >
+<body onload=  "pageInit()" >
 	<div id ="shopicon" >
 		<div id = "add_menu" class = "menu" title = "Add New Item" onclick = "add(1)"><img class = "menu_item" src = "img/plus.svg"></div>
 		<div id = "update_menu" class = "menu"  title = "Add More Stock" onclick = "stock(1)"><img class = "menu_item" src = "img/floppy.svg"></div>
@@ -32,12 +32,12 @@
 	<div id="add_popup" class = "popup">
 		<form id="add_item" >
 			<img class = "cancel" src = "img/cancel.svg" onclick = "add(0)">
-			<input id="add_title" class="sign_in_input" name="title" type="text" placeholder="Title" >
-			<select id="add_type" class=" sign_in_input" name="disk_type" >
+			<input id="add_title" class="add_item_input" name="title" type="text" placeholder="Disc Title" >
+			<select id="add_type" class=" add_item_input" name="disk_type" >
 				<option selected>CD</option>
 				<option value="DVD">DVD</option>
 			</select>
-			<select id="add_cate"  class = "sign_in_input" name="category" >
+			<select id="add_cate"  class = "add_item_input" name="category" >
 				<option selected>Instrumental</option>
 				<option value="Rock">Rock</option>
 				<option value="Rap">Rap</option>
@@ -46,10 +46,12 @@
 				<option value="New Age">New Age</option>
 				<option value="Classical">Classical</option>
 			</select>
-			<input id="add_comp"  class = "sign_in_input" name="company" type="text" placeholder="Publishing Company" >
-			<input id="add_year" class = "sign_in_input" name="pub_year" type="text" placeholder="Publishing Year" >
-			<input id="add_price"  class = "sign_in_input" name="price" type="text" placeholder="Price" >
-			<input id="add_stock"  class = "sign_in_input" name="stock" type="text" placeholder="Stock" >
+			<input id="add_comp"  class = "add_item_input" name="company" type="text" placeholder="Publishing Company" >
+			<input id="add_year" class = "add_item_input" name="pub_year" type="text" placeholder="Publishing Year" >
+			<input id="add_price"  class = "add_item_input" name="price" type="text" placeholder="Price (cents)" >
+			<input id="add_stock"  class = "add_item_input" name="stock" type="text" placeholder="Stock" >			
+			<input id="add_singers"  class = "add_item_input" name="singer" type="text" placeholder="Lead Singer" >
+			<input id="add_songs"  class = "add_item_input" name="song" type="text" placeholder="Songs" >
 		</form>
 		<div id = "item_submit"class ="popup_button"  onclick = "itemAdded()"> Add New Item </div> 
 	</div>	
